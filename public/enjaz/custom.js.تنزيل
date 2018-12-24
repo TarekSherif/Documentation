@@ -1,0 +1,29 @@
+$(document).ready(function(){
+	// custom home tabs
+	$("."+$(".home-internal .home-navigator-box.active a").attr("rel")).show();
+	$(".home-internal .home-navigator-box a").click(function(){
+		$(".home-internal .home-navigator-box.active").removeClass("active");
+		$(this).parent().addClass("active");
+		$(".home-navigator-box-tabs").hide();
+		var cur_tab = "."+$(this).attr("rel");
+		$(cur_tab).show();
+		return false;
+	});
+
+    // disable click on tooltip links
+	$("a.tooltips[href=''],a.tooltips[href='#']").on('click', function (event) {
+	    if ($(this).data("target") === undefined) {
+	        event.stopPropagation();
+	        return false;
+	    }
+	});
+
+    // bootstrap nav dropdown on hover 
+	$('ul.nav li.dropdown').hover(function () {
+	    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	}, function () {
+	    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	});
+
+	
+});

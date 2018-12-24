@@ -1,0 +1,29 @@
+﻿$(document).ready(function () {
+    // add anti forgery token for all froms found in the page
+    if ($("form input[name=__RequestVerificationToken]").length == 0) {
+        $("input[name=__RequestVerificationToken]").appendTo("form");
+    }
+
+    // Since confModal is essentially a nested modal it's enforceFocus method
+    // must be no-op'd or the following error results 
+    // "Uncaught RangeError: Maximum call stack size exceeded"
+    // But then when the nested modal is hidden we reset modal.enforceFocus
+    //var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
+
+    //$.fn.modal.Constructor.prototype.enforceFocus = function () { };
+   
+  
+
+});
+
+function ShowMessage(title, message, color) {
+
+    if (color == null) {
+        color = "black";
+    }
+
+    $("#dlgMessageTitle").text(title);
+    $("#dlgMessageContent").css("color", color).html(message);
+
+    $("#dlgMessage").modal("show");
+}

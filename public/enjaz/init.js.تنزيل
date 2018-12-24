@@ -1,0 +1,158 @@
+﻿function GetJTableRowsCount(jtable) {
+    //return $(jtable + ' tbody tr').not('.jtable-no-data-row').length
+    return $(jtable).find(".jtable-data-row").length;
+}
+
+function RemoveJTableRow(row) {
+    row.closest('tr').remove();
+}
+
+$(document).ready(function () {
+
+    // Hijri datepicker 
+    $(".is-calendarsPicker").calendarsPicker({ calendar: $.calendars.instance('ummalqura', 'ar') }); // init hijri datepicker
+
+    // jTable
+    //$('.jtable-no-data-row').hide();// hide no data found at first time.
+
+    $('input:text:first').focus();
+    var $inp = $('input');
+    $inp.bind('keydown', function (e) {
+        //var key = (e.keyCode ? e.keyCode : e.charCode);
+        var key = e.which;
+        if (key == 13) {
+            if ($("input:submit:first").length > 0) {
+                $("input:submit:first").click();
+            }
+            else if ($("input:button:first").length > 0) {
+                $("input:button:first").click();
+            }
+        }
+    });
+
+    // print icon 
+    $("#print_icon").on('click', function () {
+        window.print();
+        return false;
+    });
+
+    // form validation
+    if ($('.validate').length > 0)
+        $('.validate').validate();
+
+    // Handle Select2 Dropdowns
+    if ($().select2) {
+        $('.select2me').select2({
+            placeholder: "Select",
+            allowClear: true
+        });
+    }
+    if ($().valid) {
+        $('.select2me').on('change', function () {
+            $(this).valid();
+        });
+    }
+
+    // tooltips
+    $('.tooltips').tooltip();
+});
+
+// by mohannad abu sall
+(function ($) {
+
+    function implementNumeric(max) {
+
+        $(this).numeric({
+            allowPlus: false, // Allow the + sign
+            allowMinus: false,  // Allow the - sign
+            allowThouSep: false,  // Allow the thousands separator, default is the comma eg 12,000
+            allowDecSep: false,  // Allow the decimal separator, default is the fullstop eg 3.141
+            allowLeadingSpaces: false,
+            maxDigits: max
+        });
+    }
+
+    function implementArabicOnly(max) {
+
+        $(this).alphanum({
+            allowLatin: false,
+            allowPlus: false, // Allow the + sign
+            allowMinus: false,  // Allow the - sign
+            allowThouSep: false,  // Allow the thousands separator, default is the comma eg 12,000
+            allowDecSep: false,  // Allow the decimal separator, default is the fullstop eg 3.141
+            allowLeadingSpaces: false,
+            allowSpace: true, // Allow the space character
+            allowUpper: true, // Allow Upper Case characters
+            allowOtherCharSets: true,
+            allowNumeric: true,
+            maxLength: max
+        });
+    }
+    function implementEnglishOnly(max) {
+
+        $(this).alphanum({
+            allowPlus: false, // Allow the + sign
+            allowMinus: false,  // Allow the - sign
+            allowThouSep: false,  // Allow the thousands separator, default is the comma eg 12,000
+            allowDecSep: false,  // Allow the decimal separator, default is the fullstop eg 3.141
+            allowLeadingSpaces: false,
+            allowSpace: true, // Allow the space character
+            allowUpper: true, // Allow Upper Case characters
+            allowOtherCharSets: false,
+            allowNumeric: false,
+            maxLength: max
+        });
+    }
+    function implementEmailOnly() {
+
+        $(this).alphanum({
+            allow: '.!@#$%^&*{}-_|~/+=',
+            allowPlus: false, // Allow the + sign
+            allowMinus: true,  // Allow the - sign
+            allowThouSep: false,  // Allow the thousands separator, default is the comma eg 12,000
+            allowDecSep: false,  // Allow the decimal separator, default is the fullstop eg 3.141
+            allowLeadingSpaces: false,
+            allowSpace: false, // Allow the space character
+            allowUpper: true, // Allow Upper Case characters
+            allowOtherCharSets: false,
+            allowNumeric: true,
+            maxLength: 50
+        });
+    }
+    function implementExecludeSpecialChars(max) {
+
+        $(this).alphanum({
+            allowPlus: false, // Allow the + sign
+            allowMinus: false,  // Allow the - sign
+            allowThouSep: false,  // Allow the thousands separator, default is the comma eg 12,000
+            allowDecSep: false,  // Allow the decimal separator, default is the fullstop eg 3.141
+            allowLeadingSpaces: false,
+            allowSpace: true, // Allow the space character
+            allowUpper: true, // Allow Upper Case characters
+            allowOtherCharSets: true,
+            allowNumeric: true,
+            maxLength: max
+        });
+    }
+
+    $.fn.extend({
+        Numeric: function (max) {
+            implementNumeric.call(this, max);
+        },
+
+        ExecludeSpecialChars: function () {
+            implementExecludeSpecialChars.call(this);
+        },
+
+        ArabicOnly: function (max) {
+            implementArabicOnly.call(this, max);
+        },
+        EnglishOnly: function (max) {
+            implementEnglishOnly.call(this, max);
+        },
+        EmailOnly: function () {
+            implementEmailOnly.call(this);
+        }
+    });
+
+})(jQuery);
