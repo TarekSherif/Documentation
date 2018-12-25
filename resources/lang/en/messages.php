@@ -20,7 +20,7 @@ return [
     'CompanyReport'=>'CompanyReport',
     'OnlinePayment'=>'OnlinePayment',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
-    'OnlinePayment.Edit'=>"تعديل طلب خدمات الكترونية",
+    'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",
     
     // 'Company'
     'Oindex'=>'index',
@@ -116,6 +116,7 @@ return [
 
     
     // OnlinePayment
+    'SOrderID'=>'Search By Order Code ' ,
       'OCode'=>'Order Code' ,
       'ODate'=>'Order Date' , 
       'TCode'=>'Trunsaction Code' , 

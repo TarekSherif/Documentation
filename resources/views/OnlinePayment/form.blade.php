@@ -1,3 +1,4 @@
+<input type="hidden" class="form-control  "  id="OnlinePaymentID"  name="OnlinePaymentID" value="{{old('OnlinePaymentID',$OnlinePayment->OnlinePaymentID)}}" >
 <div class="portlet box  mofa-green">
     
     <div class="portlet-body form">
@@ -70,15 +71,21 @@
                 </div>
             </div>
 
-
-
+       
+        
             <div class="form-group row">
                 <label for='SID' class="col-md-2 control-label"> @lang('messages.SID') </label>
                 <div class="col-md-6">
                     <select name="SID" id="SID" class="form-control">
                             <option  selected hidden disabled> --@lang('messages.select')  @lang('messages.Serves')--</option>
                                     @foreach ($Serves as $item)
-                                        <option value="{{$item->SID}}">{{$item->Serves}}</option>
+                                        @if ($OnlinePayment->SID==$item->SID)
+                                            <option selected value="{{$item->SID}}">{{$item->Serves}}</option>
+                                        @else
+                                            <option  value="{{$item->SID}}">{{$item->Serves}}</option>
+                                        @endif
+                                       
+                                        
                                     @endforeach
                                 </select> @if ($errors->has('SID'))
                     <span class="invalid-feedback" role="alert">
@@ -131,15 +138,7 @@
                 </div>
             </div>
 
-            <div class="form-actions fluid right">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a class="btn btn-default" href=" ">
-                            @lang('messages.print')         
-                        </a>
-                    </div>
-                </div>
-            </div>
+          
 
 
         </div>

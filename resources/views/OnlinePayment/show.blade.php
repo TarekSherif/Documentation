@@ -230,13 +230,14 @@
                                         <div class="form-actions fluid right">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <a class="btn btn-default" href="https://enjazit.com.sa/Enjaz/Main">
+                                                    <a class="btn btn-default" href="{{url('/')}}/OnlinePayment/{{$OnlinePayment->OnlinePaymentID}}/edit">
                                             عودة
                                         </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <input name="__RequestVerificationToken" type="hidden" value="FP8ZigjZuKjXvzZwKQTF8Qdx3U4GCnrVrvXr6FgNcfD6z1U9V35+029XynfRzuGcs83pWchAwxjwWtV1auzLrqUnRYHZJa2pksdq4BHKT8wNPUWv2US63m1CXl+BiOAu+qEm2BMNKOH8Xp1koheoyztCvLoqHcHQ2OPJK+8YNX0="></form>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +256,9 @@
     <!-- END PAGE CONTAINER -->
  
 
-
+<script>
+    window.print();
+</script>
 
 </body>
 

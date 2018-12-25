@@ -21,6 +21,7 @@ Route::resource('OnlinePayment','OnlinePaymentController');
 
 
 Route::get('CompanyReport', 'TransactionController@CompanyReport');
+Route::get('OrderReport/{OrderID}', 'TransactionController@OrderReport');
 
 Route::get('DocumentServesTimeLine/{DID}', 'TransactionController@DocumentServesTimeLine');
 

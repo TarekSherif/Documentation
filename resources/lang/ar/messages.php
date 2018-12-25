@@ -20,9 +20,9 @@ return [
     'CompanyReport'=>'تقرير الشركات',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
-    'OnlinePayment.Edit'=>"تعديل طلب خدمات الكترونية",
+    'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",
    
-
+   
     // 'Company'
     'Oindex'=>'م',
     'CID'=>'رقم الترخيص',
@@ -121,6 +121,7 @@ return [
 
 
     // OnlinePayment
+    'SOrderID'=>'بحث  برقم الطلب ' ,
     'OCode'=>'رقم الطلب' ,
     'ODate'=>'تاريخ الطلب' , 
     'TCode'=>'رقم العملية' , 

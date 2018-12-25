@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\OnlinePayment;
-
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -38,6 +36,13 @@ class TransactionController extends Controller
     {
         return view('Orders');
     }
+    public function OrderReport($OrderID)
+    {
+        $Data=array('OrderID'=>$OrderID);
+        return view('Order.OrderReport',$Data);
+    }
+    
+
 
     /**
      * Show the application dashboard.
@@ -47,7 +52,7 @@ class TransactionController extends Controller
     public function Order($OrderID=-1)
     {
         $Data = array('OrderID' => $OrderID );
-        return view('Order',$Data);
+        return view('Order.Order',$Data);
     }
 
    

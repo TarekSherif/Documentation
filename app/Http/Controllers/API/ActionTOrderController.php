@@ -71,6 +71,37 @@ class ActionTOrderController extends Controller
              }
              return response()->json($jTableResult);
              }
+             public function ListOfACOnlinePayment()
+             {
+               $Result =  array();
+             
+                   try
+                   {
+                      $where="'".((isset($_GET['term']))?$_GET['term']:"")."%'";
+                      // $whereBID=((isset($_GET['BID']) && $_GET['BID']!=0  )?" and BID='".$_GET['BID']."'":"");
+                      $whereBID="";
+                      $SQL="SELECT  OnlinePayment.OnlinePaymentID, OnlinePayment.OCode   as 'value', OnlinePayment.OCode  as 'label' 
+                            from OnlinePayment 
+                            where OnlinePayment.OCode like $where  $whereBID;";
+                      
+       
+                      
+      
+                       $Data= DB::select($SQL);
+                       $Result=$Data;
+                     
+                      
+                   }
+                   catch(Exception $ex)
+                   {
+                       //Return error Message
+                       $Result['Result'] = "ERROR";
+                       $Result['Message'] = $ex->getMessage();
+                      
+                   }
+                   return response()->json($Result);
+                   }
+                 
 //Getting records (ACName)
     public function ListOfACName()
        {

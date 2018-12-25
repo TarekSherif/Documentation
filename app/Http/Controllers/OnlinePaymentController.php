@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use App\OnlinePayment;
+use App\Models\OnlinePayment;
 use Illuminate\Http\Request;
 
 class OnlinePaymentController extends Controller
@@ -88,7 +88,7 @@ class OnlinePaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OnlinePayment  $onlinePayment
+     * @param  \App\Models\OnlinePayment  $onlinePayment
      * @return \Illuminate\Http\Response
      */
     public function show(OnlinePayment $onlinePayment, $id)
@@ -102,10 +102,10 @@ class OnlinePaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OnlinePayment  $onlinePayment
+     * @param  \App\Models\OnlinePayment  $onlinePayment
      * @return \Illuminate\Http\Response
      */
-    public function edit(OnlinePayment $onlinePayment, $id)
+    public function edit($id)
     {
         $Data =$this->GetLookUpData();
         $Data['OnlinePayment']= OnlinePayment::find( $id) ;
@@ -117,7 +117,7 @@ class OnlinePaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OnlinePayment  $onlinePayment
+     * @param  \App\Models\OnlinePayment  $onlinePayment
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, OnlinePayment $onlinePayment)
@@ -140,7 +140,7 @@ class OnlinePaymentController extends Controller
             'required'=> ':attribute field is required',
         ]);
         
-        $OnlinePayment = OnlinePayment::find( $id) ;
+        $OnlinePayment = OnlinePayment::find( $request->OnlinePaymentID) ;
         $OnlinePayment->fill( $request->only($OnlinePayment->getFillable()));
         $OnlinePayment->BID=Auth::user()->BID;
         $OnlinePayment->createby=Auth::user()->id;
@@ -154,7 +154,7 @@ class OnlinePaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OnlinePayment  $onlinePayment
+     * @param  \App\Models\OnlinePayment  $onlinePayment
      * @return \Illuminate\Http\Response
      */
     public function destroy(OnlinePayment $onlinePayment)
