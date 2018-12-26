@@ -136,7 +136,8 @@ ReloadServesNotifications();
            source: '{{url("/")}}/api/ListOfACName?_token={{ csrf_token() }}&BID='+$selectBranch.val(),
            "position": { my: "center top", at: "center bottom"},
            select: function (e, ui) {
-              window.open( "{{url("/")}}/Order/"+ui.item.OrderID, '_self');
+              window.open( "{{url("/")}}/Order/"+ui.item.OrderID+"/edit", '_self');
+              
            }
        }).data("autocomplete")._renderItem = function (ul, item) {
       
@@ -147,7 +148,7 @@ ReloadServesNotifications();
               redStyle=" style='color:rgb(221, 75, 57);' ";  
               EDate="";
           }
-                  var Sdate = new Date(item.createTime).toLocaleDateString("en-US")
+                  var Sdate = new Date(item.created_at).toLocaleDateString("en-US")
                   return $( "<li></li>" )
                       .append(
                         `<a ` +redStyle+`>

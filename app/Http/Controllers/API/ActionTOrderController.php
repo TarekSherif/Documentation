@@ -25,9 +25,9 @@ class ActionTOrderController extends Controller
                             `TOrder`.`address`,
                             `TOrder`.`Otherphone`,
                             `TOrder`.`price`,
-                            `TOrder`.`Cost`,
+                            `TOrder`.`paid`,
                             `TOrder`.`createby`,
-                            `TOrder`.`createTime`,
+                            `TOrder`.`created_at`,
                             `TOrder`.`EDate`,
                             `Branch`.`BName`,
                             `users`.`name`
@@ -112,17 +112,17 @@ class ActionTOrderController extends Controller
                 $where="'".((isset($_GET['term']))?$_GET['term']:"")."%'";
                 // $whereBID=((isset($_GET['BID']) && $_GET['BID']!=0  )?" and BID='".$_GET['BID']."'":"");
                 $whereBID="";
-                $SQL="SELECT `o`.`OrderID` ,`o`.`createTime`,`o`.`EDate`,`o`.`phone` , `o`.`BID`,`Document`.`DOName`
+                $SQL="SELECT `o`.`OrderID` ,`o`.`created_at`,`o`.`EDate`,`o`.`phone` , `o`.`BID`,`Document`.`DOName`
                 FROM `TOrder` o
                       join Document on `o`.`OrderID`=`Document`.`OrderID` 
                       where `o`.`phone` like $where  $whereBID
                  UNION 
-                      SELECT `o`.`OrderID`, `o`.`createTime`,`o`.`EDate`,`o`.`phone` ,`o`.`BID`,`Document`.`DOName`
+                      SELECT `o`.`OrderID`, `o`.`created_at`,`o`.`EDate`,`o`.`phone` ,`o`.`BID`,`Document`.`DOName`
                        FROM `TOrder` o
                       join Document on `o`.`OrderID`=`Document`.`OrderID` 
                       where `o`.`OrderID` like $where  $whereBID
                 UNION 
-                    SELECT `o`.`OrderID`,`o`.`createTime`,`o`.`EDate`,`o`.`phone`,`o`.`BID`,`Document`.`DOName`
+                    SELECT `o`.`OrderID`,`o`.`created_at`,`o`.`EDate`,`o`.`phone`,`o`.`BID`,`Document`.`DOName`
                       FROM `TOrder`  o
                     join Document on `o`.`OrderID`=`Document`.`OrderID` 
                     where `Document`.`DOName` like $where  $whereBID;";
@@ -148,21 +148,21 @@ class ActionTOrderController extends Controller
 
           private function insertSQL(){
             $price=(isset($_POST["price"])?$_POST["price"]:"0" );
-            $Cost=(isset($_POST["Cost"])?$_POST["Cost"]:"0" );
-            $SQL="INSERT INTO TOrder( phone,address,Otherphone,price,Cost ,createby,BID) 
-            VALUES( '" . $_POST["phone"] . "','" . $_POST["address"] . "','" . $_POST["Otherphone"] . "'," . $price  . "," . $Cost . "," .  $_POST["createby"]  . "," .  $_POST["BID"]  . ");";
+            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
+            $SQL="INSERT INTO TOrder( phone,address,Otherphone,price,paid ,createby,BID) 
+            VALUES( '" . $_POST["phone"] . "','" . $_POST["address"] . "','" . $_POST["Otherphone"] . "'," . $price  . "," . $paid . "," .  $_POST["createby"]  . "," .  $_POST["BID"]  . ");";
             DB::insert( $SQL);
          }
          private function updateSQL(){
             $price=(isset($_POST["price"])?$_POST["price"]:"0" );
-            $Cost=(isset($_POST["Cost"])?$_POST["Cost"]:"0" );
+            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
 
             $SQL=	"UPDATE TOrder SET
                     phone = '" . $_POST["phone"] . "',
                     address='" . $_POST["address"] . "',
                     Otherphone = '" . $_POST["Otherphone"] . "',
                     price=" .  $price . ",
-                    Cost = " . $Cost . "
+                    paid = " . $paid . "
                     WHERE OrderID = " . $_POST["OrderID"] . ";";
             
           DB::update($SQL);
@@ -185,9 +185,9 @@ class ActionTOrderController extends Controller
                                    `TOrder`.`address`,
                                    `TOrder`.`Otherphone`,
                                    `TOrder`.`price`,
-                                   `TOrder`.`Cost`,
+                                   `TOrder`.`paid`,
                                    `TOrder`.`createby`,
-                                   `TOrder`.`createTime`,
+                                   `TOrder`.`created_at`,
                                    `TOrder`.`EDate`,
                                    `Branch`.`BName`,
                                    `users`.`name`
@@ -205,9 +205,9 @@ class ActionTOrderController extends Controller
                                 `TOrder`.`address`,
                                 `TOrder`.`Otherphone`,
                                 `TOrder`.`price`,
-                                `TOrder`.`Cost`,
+                                `TOrder`.`paid`,
                                 `TOrder`.`createby`,
-                                `TOrder`.`createTime`,
+                                `TOrder`.`created_at`,
                                 `TOrder`.`EDate`,
                                 `Branch`.`BName`,
                                 `users`.`name`

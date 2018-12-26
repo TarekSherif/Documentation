@@ -5,7 +5,9 @@ return [
    'Mname'=>'Documentation',
     //menu
     'Documents' => 'Documents',
-    'Order' => 'Add Order',
+    'Order' => ' Add Order',
+    'Order.edit' => ' Order',
+    'Order.create'=>' Order',
     'Settings'=>'Settings',
     'Branchs'=>'Branchs',
     'users'=>'Users',
@@ -29,12 +31,12 @@ return [
     //Orders
     'ID'=>'ID',
     'phone'=>'phone',
-    'createTime'=>'create Time',
+    'created_at'=>'create Time',
     'Addedby'=>'Added by ',
     'delivery'=>"delivery", 
     'address' =>'address',
     'Otherphone'=>'Other phone',
-    
+    'paid'=>'The amount paid',
 
   // Document Serves
   
@@ -110,7 +112,7 @@ return [
     'BFB'=>'FaceBook',
     'BWhats'=>'WhatsUp',
     'BWebSite'=>'Web Site',
-
+    'BFax'=>'Fax',
     'GeneralSettings'=>'General Settings ',
     'ShowAllBranchs'=>'Show All Branchs',
 
@@ -120,12 +122,12 @@ return [
       'OCode'=>'Order Code' ,
       'ODate'=>'Order Date' , 
       'TCode'=>'Trunsaction Code' , 
-      'address'=>'address' , 
+      'Onlineaddress'=>'address' , 
       'passportID'=>'passportID' ,
       'OName'=>'Order Name' , 
       'DTypeID'=>'DTypeID' ,
       'SID'=>'SID' , 
-      'Cost'=>'Cost' ,
+       'OnlineCost'=>'Cost' ,
       'ReceiptCode'=>'ReceiptCode' ,
       'Locked'=>'Locked' , 
 

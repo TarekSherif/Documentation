@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class OnlinePaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,18 +65,7 @@ class OnlinePaymentController extends Controller
         [
             'required'=> ':attribute field is required',
         ]);
- /* <!-- /resources/views/post/create.blade.php -->
-          <h1>Create Post</h1>
-         @if (errors->any())
-             <div class='alert alert-danger'>
-                 <ul>
-                     @foreach (errors->all() as error)
-                         <li>{{ error }}</li>
-                     @endforeach
-                 </ul>
-             </div>
-         @endif
- <!-- Create Post Form --> */
+ 
         $OnlinePayment = new OnlinePayment();
         $OnlinePayment->fill( $request->only($OnlinePayment->getFillable()));
         $OnlinePayment->BID=Auth::user()->BID;

@@ -153,7 +153,7 @@ Route::post('UpdateOrder', 'API\ActionTOrderController@UpdateOrder');
 Route::post('DeleteOrder', 'API\ActionTOrderController@DeleteOrder');
 Route::post('UpdateTOrderLocked', 'API\ActionTOrderController@UpdateTOrderLocked');
 
-// Route::post('SaveOrder/phone/{OrderID?}/{address?}/{Otherphone?}/{price?}/{Cost?}', 'API\ActionTOrderController@SaveOrder');
+// Route::post('SaveOrder/phone/{OrderID?}/{address?}/{Otherphone?}/{price?}/{paid?}', 'API\ActionTOrderController@SaveOrder');
 Route::post('SaveOrder', 'API\ActionTOrderController@SaveOrder');
 
 

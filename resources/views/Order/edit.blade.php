@@ -11,9 +11,7 @@
 		<div class="container">
 			<div class="row">
 
-				<input  name="createby" type="hidden" value="{{Auth::user()->id}}" />
-				<input   name="BID" type="hidden" value="{{Auth::user()->BID}}" />
-			
+				
 				<div class="col-xs-1">
 						<div class="form-group ">
 							<label>@lang("messages.ID")  </label>
@@ -40,7 +38,7 @@
 				</div>
 				<div class="col-xs-2">
 					<div class="form-group ">
-						<label>@lang("messages.createTime")  </label>
+						<label>@lang("messages.created_at")  </label>
 						<h5 id="lblSdate"></h5>
 					</div>
 				</div>
@@ -52,7 +50,7 @@
 					<a class="btn btn-primary" id="btnSave">
 						<i class="fa fa-floppy-o"></i>
 					</a>
-					<a class="btn btn-primary" id="btnPrint">
+				<a class="btn btn-primary" id="btnPrint" href="{{url('/')}}/OrderReport/{{$OrderID}}">
 						<i class="fa fa-print"></i>
 					</a>
 
@@ -86,16 +84,16 @@
 							 value="" />
 						</div>
 					</div>
-					<div class="col-xs-10">
+					<div class="col-xs-12">
 						<div class="form-group ">
 							<label>@lang("messages.price")  </label>
 							<input class=" form-control " id="price" name="price" placeholder="@lang('messages.price')" type="number" value=0 />
 						</div>
 					</div>
-					<div class="col-xs-10">
+					<div class="col-xs-12">
 						<div class="form-group ">
-							<label>@lang("messages.Cost")  </label>
-							<input class=" form-control " id="Cost" name="Cost" placeholder="@lang('messages.Cost')" type="number" value=0 />
+							<label>@lang("messages.paid")  </label>
+							<input class=" form-control " id="paid" name="paid" placeholder="@lang('messages.paid')" type="number" value=0 />
 						</div>
 					</div>
 
@@ -163,17 +161,7 @@
 			}
 		
 		});
-		$('#btnPrint').click(function() {
-			var PostData={
-				OrderID:{{$OrderID}}
-			};
-			
-			$.post("{{url('/')}}/api/UpdateTOrderLocked?_token={{ csrf_token() }}",PostData,function(data){
-				alert("");
-				location.reload();
-			});
-			
-		});
+	
 		$('#btnSave').click(function() {
 			$phone=$("#phone");
 		if($phone.val()=="")
@@ -202,12 +190,12 @@
 function LoadOrder(Record) {
 		 $("#lblBranchs").html( Record.BName);
 		$("#lblUsers").html(Record.name);
-		$("#lblSdate").html(Record.createTime);
+		$("#lblSdate").html(Record.created_at);
 		$("#phone").val(Record.phone);
 		$("#address").val(Record.address);
 		$("#Otherphone").val(Record.Otherphone);
 		$("#price").val(Record.price);
-		$("#Cost").val(Record.Cost);
+		$("#paid").val(Record.paid);
 }
 
 function LoadOrderDocuments(OrderID) {
@@ -303,14 +291,14 @@ function LoadOrderDocuments(OrderID) {
 															}
 														}  
 												},
-												Cost: {
-													title:  ' @lang("messages.Cost")',
+												paid: {
+													title:  ' @lang("messages.paid")',
 													visibility: 'visible',
 													input: function (data) {
 															if (data.record) {
-																return '<input type="number"  placeholder=" @lang("messages.Cost")"   class="validate[required] form-control"   autocomplete="off"   name="Cost"   value="' + data.record.Cost + '" />';
+																return '<input type="number"  placeholder=" @lang("messages.paid")"   class="validate[required] form-control"   autocomplete="off"   name="paid"   value="' + data.record.paid + '" />';
 															} else {
-																return '<input type="number"  placeholder=" @lang("messages.Cost")"     class="validate[required] form-control"  autocomplete="off"   name="Cost"     />';
+																return '<input type="number"  placeholder=" @lang("messages.paid")"     class="validate[required] form-control"  autocomplete="off"   name="paid"     />';
 															}
 														}  
 												},
@@ -388,7 +376,7 @@ function LoadOrderDocuments(OrderID) {
 
 
 													// data.form.find("input[name='price']")
-													// data.form.find("input[name='Cost']")
+													// data.form.find("input[name='paid']")
 
 												 });
 												data.form.validationEngine('attach'+promptPosition);

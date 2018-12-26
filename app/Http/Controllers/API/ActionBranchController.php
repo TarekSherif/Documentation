@@ -63,7 +63,7 @@ class ActionBranchController extends Controller
             try
             {
                     //Insert record into database
-                    $SQL="INSERT INTO `alhendy`.`Branch` (`BName`, `Baddress`, `BFB`, `BWhats`, `BMail`, `BWebSite`, `BPhones`, `SOrder`) VALUES ('" . $_POST["BName"] . "', '" . $_POST["Baddress"] . "', '" . $_POST["BFB"] . "', '" . $_POST["BWhats"] . "', '" . $_POST["BMail"] . "', '" . $_POST["BWebSite"] . "', '" . $_POST["BPhones"] . "', '" . $_POST["SOrder"] . "')";
+                    $SQL="INSERT INTO `alhendy`.`Branch` (`BName`, `Baddress`, `BFB`, `BWhats`, `BMail`, `BWebSite`, `BPhones`,`BFax` ,`SOrder`) VALUES ('" . $_POST["BName"] . "', '" . $_POST["Baddress"] . "', '" . $_POST["BFB"] . "', '" . $_POST["BWhats"] . "', '" . $_POST["BMail"] . "', '" . $_POST["BWebSite"] . "', '" . $_POST["BPhones"] . "', '" . $_POST["BFax"] . "','" . $_POST["SOrder"] . "')";
                     
                     DB::insert( $SQL);
                     //Get last inserted record (to return to jTable)
@@ -103,6 +103,7 @@ class ActionBranchController extends Controller
                             `BMail`= '" . $_POST["BMail"] . "' ,
                             `BWebSite`= '" . $_POST["BWebSite"] . "' ,
                             `BPhones`= '" . $_POST["BPhones"] . "' ,
+                            `BFax`= '" . $_POST["BFax"] . "' ,
                             `SOrder`= '" . $_POST["SOrder"] . "' 
                         WHERE  BID = '" . $_POST["BID"] . "' ";
                  

@@ -32,16 +32,11 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function Orders()
-    {
-        return view('Orders');
-    }
-    public function OrderReport($OrderID)
-    {
-        $Data=array('OrderID'=>$OrderID);
-        return view('Order.OrderReport',$Data);
-    }
-    
+    // public function Orders()
+    // {
+    //     return view('Orders');
+    // }
+   
 
 
     /**
@@ -69,12 +64,7 @@ class TransactionController extends Controller
         return view('DocumentOUT',$Data);
     }
       
-  
-    public function DocumentServesTimeLine($DID)
-    {
-        $Data = array('DID' => $DID );
-        return view('DocumentServesTimeLine', $Data);
-    }
+ 
     public function CompanyReport()
     {
         $SQL="select     `CID`  ,  `CName` from Company order by   `SOrder` ;";

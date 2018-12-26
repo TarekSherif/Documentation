@@ -5,7 +5,9 @@ return [
     'Mname'=>'توثيق',
     //menu Pages
     'Documents' => ' المستندات',
-    'Order' => 'اضافة طلب ',
+    'Order' => 'اضافة طلب',
+    'Order.edit' => 'الطلب',
+    'Order.create'=>' الطلب',
     'Settings'=>'الاعدادات',
     'Branchs'=>'الفروع',
     'users'=>'المستخدمين',
@@ -30,11 +32,12 @@ return [
     //Orders
     'ID'=>'م',
     'phone'=>'التليفون',
-    'createTime'=>'وقت انشاء الطلب',
+    'created_at'=>'وقت انشاء الطلب',
     'Addedby'=>'اضافة بواسطة',
     'address' =>'العنوان',
     'Otherphone'=>'تليفون اخر',
     'delivery'=>"خدمة التوصيل",
+    'paid'=>' المبلغ المدفوع',
   // Document Serves
     'DOName'=>'اسم صاحب المستند',
     'priority'=>'درجة السرعه',
@@ -113,7 +116,7 @@ return [
     'BFB'=>'فيس بوك',
     'BWhats'=>'واتس اب',
     'BWebSite'=>'موقع',
-
+    'BFax'=>'فاكس',
     'GeneralSettings'=>'الاعدادات العامة',
     'ShowAllBranchs'=>'عرض معلومات كل الفروع',
 
@@ -125,12 +128,12 @@ return [
     'OCode'=>'رقم الطلب' ,
     'ODate'=>'تاريخ الطلب' , 
     'TCode'=>'رقم العملية' , 
-    'address'=>'الممثلية في' , 
+    'Onlineaddress'=>'الممثلية في' , 
     'passportID'=>'رقم الهوية او رقم الجواز' ,
     'OName'=>'الاسم' , 
     'DTypeID'=>'الموضوع' ,
     'SID'=>'نوع الإجراء' , 
-    'Cost'=>'اجمالي المبلغ' ,
+    'OnlineCost'=>'اجمالي المبلغ' ,
     'ReceiptCode'=>'رقم الأيصال' ,
     'Locked'=>'موقع' , 
     'createby'=>'موقع' ,

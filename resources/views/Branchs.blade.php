@@ -102,6 +102,16 @@
                                     }
                                 }  
                             },
+                        BFax: {
+                        title: '@lang("messages.BFax")',
+                        input: function (data) {
+                                if (data.record) {
+                                    return '<input type="text"  placeholder="@lang("messages.BFax")"   class=" form-control validate[required]"   autocomplete="off"   name="BFax"   value="' + data.record.BFax + '" />';
+                                } else {
+                                    return '<input type="text"  placeholder="@lang("messages.BFax")"     class="form-control validate[required]"  autocomplete="off"   name="BFax"     />';
+                                }
+                            }  
+                        },
                         BPhones: {
                             title: '@lang("messages.phone")',
                             input: function (data) {

@@ -12,16 +12,17 @@
 */
 
 
-Route::get('Orders', 'TransactionController@Orders');
-Route::get('Order/{OrderID?}', 'TransactionController@Order');
+// Route::get('Orders', 'TransactionController@Orders');
+// Route::get('Order/{OrderID?}', 'TransactionController@Order');
 Route::get('DocumentIN/{SID?}', 'TransactionController@DocumentIN');
 Route::get('DocumentOUT/{SID?}', 'TransactionController@DocumentOUT');
 
 Route::resource('OnlinePayment','OnlinePaymentController');
-
+Route::resource('Order','OrderController');
+Route::get('OrderReport/{OrderID}', 'OrderController@OrderReport');
 
 Route::get('CompanyReport', 'TransactionController@CompanyReport');
-Route::get('OrderReport/{OrderID}', 'TransactionController@OrderReport');
+
 
 Route::get('DocumentServesTimeLine/{DID}', 'TransactionController@DocumentServesTimeLine');
 

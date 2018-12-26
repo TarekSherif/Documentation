@@ -13,6 +13,7 @@ tfoot { display:table-footer-group }
 }
 table.no-border ,table.no-border   th,table.no-border   td {
     border: 0px;
+    background-color:#ffffff;
 }
 table.no-border tr:nth-child(even){ background-color:#ffffff; } 
 table.no-border tr:hover {   background-color:#ffffff }

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
+
 
 use Illuminate\Database\Eloquent\Model;
 
-class order extends Model
+class Order extends Model
 {
     protected $table = 'TOrder';
-    protected $fillable = [ 'phone', 'address', 'Otherphone', 'price', 'Cost', 'createby', 'BID', 'createTime', 'EDate', 'Locked'];
+    protected $fillable = [ 'phone', 'address', 'Otherphone', 'price', 'paid', 'createby', 'BID', 'EDate', 'Locked'];
     protected $primaryKey = 'OrderID';
     
 }

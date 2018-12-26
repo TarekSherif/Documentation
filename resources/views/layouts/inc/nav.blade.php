@@ -47,12 +47,12 @@
                 </form>
                 <!-- /.search form -->
 
-
+http://127.0.0.1:8000/Order/create
 
             </li> --}}
       
-            <li class="{{ $view_name == "Order" ? "active" : "" }} ">
-                <a href="{{url('/')}}/Order/-1" >
+            <li class="{{ $view_name == "Order.create" ? "active" : "" }} ">
+                <a href="{{url('/')}}/Order/create" >
                         <i class="fa fa-plus sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">
                                 @lang('messages.Order')
@@ -62,7 +62,7 @@
 
             </li>
            
-            <li class="{{ $view_name == "OnlinePayment" ? "active" : "" }} ">
+            <li class="{{ $view_name == "OnlinePayment.Create" ? "active" : "" }} ">
                 <a href="{{url('/')}}/OnlinePayment/create" >
                         <i class="fa fa-credit-card sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">
