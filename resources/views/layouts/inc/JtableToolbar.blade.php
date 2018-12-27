@@ -20,7 +20,7 @@ toolbar: {
                              + $(jtable).html() +
                          `</table>
                      </body>
-                 </html>`;
+                  `;
                   newWindow.document.write(html);
                   newWindow.print();
                   e.preventDefault();
