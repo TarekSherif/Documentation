@@ -131,10 +131,10 @@ class ActionDocumentServesController extends Controller
                      $SQL ="  SELECT   `Serves`.`SID`,
                                         `Serves`.`Serves`,
                                         count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
-                                        count(listofdocumentsneedout.DSID) as ServesOutCount 
+                                        count(listofdocumentsNeedout.DSID) as ServesOutCount 
                             FROM `ListOfDocumentsNeedin` 
                             RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
-                            LEFT JOIN listofdocumentsneedout on listofdocumentsneedout.SID=`Serves`.`SID`
+                            LEFT JOIN listofdocumentsNeedout on listofdocumentsNeedout.SID=`Serves`.`SID`
                             GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
                             ORDER BY `Serves`.`SOrder`
                     ;";
@@ -142,12 +142,12 @@ class ActionDocumentServesController extends Controller
                     $SQL=" SELECT   `Serves`.`SID`,
                                     `Serves`.`Serves`,
                                     count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
-                                    count(listofdocumentsneedout.DSID) as ServesOutCount 
+                                    count(listofdocumentsNeedout.DSID) as ServesOutCount 
                             FROM `ListOfDocumentsNeedin` 
                             RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
                             and ListOfDocumentsNeedin.BID=$BID
-                            LEFT JOIN listofdocumentsneedout on listofdocumentsneedout.SID=`Serves`.`SID`
-                            and listofdocumentsneedout.BID=$BID
+                            LEFT JOIN listofdocumentsNeedout on listofdocumentsNeedout.SID=`Serves`.`SID`
+                            and listofdocumentsNeedout.BID=$BID
                             GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
                             ORDER BY `Serves`.`SOrder`
                     ";
