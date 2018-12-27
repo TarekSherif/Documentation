@@ -22,7 +22,7 @@ toolbar: {
                      </body>
                   `;
                   newWindow.document.write(html);
-                  newWindow.print();
+                  {{-- newWindow.print(); --}}
                   e.preventDefault();
               }
           },
