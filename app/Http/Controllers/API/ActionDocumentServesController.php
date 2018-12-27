@@ -130,10 +130,10 @@ class ActionDocumentServesController extends Controller
 
                      $SQL ="  SELECT   `Serves`.`SID`,
                                         `Serves`.`Serves`,
-                                        count(listofdocumentsneedin.DSID) as ServesInCount ,
+                                        count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
                                         count(listofdocumentsneedout.DSID) as ServesOutCount 
-                            FROM `listofdocumentsneedin` 
-                            RIGHT  JOIN `Serves`  on `listofdocumentsneedin`.`SID`=`Serves`.`SID`
+                            FROM `ListOfDocumentsNeedin` 
+                            RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
                             LEFT JOIN listofdocumentsneedout on listofdocumentsneedout.SID=`Serves`.`SID`
                             GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
                             ORDER BY `Serves`.`SOrder`
@@ -141,11 +141,11 @@ class ActionDocumentServesController extends Controller
                 }else{
                     $SQL=" SELECT   `Serves`.`SID`,
                                     `Serves`.`Serves`,
-                                    count(listofdocumentsneedin.DSID) as ServesInCount ,
+                                    count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
                                     count(listofdocumentsneedout.DSID) as ServesOutCount 
-                            FROM `listofdocumentsneedin` 
-                            RIGHT  JOIN `Serves`  on `listofdocumentsneedin`.`SID`=`Serves`.`SID`
-                            and listofdocumentsneedin.BID=$BID
+                            FROM `ListOfDocumentsNeedin` 
+                            RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
+                            and ListOfDocumentsNeedin.BID=$BID
                             LEFT JOIN listofdocumentsneedout on listofdocumentsneedout.SID=`Serves`.`SID`
                             and listofdocumentsneedout.BID=$BID
                             GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
