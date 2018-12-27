@@ -64,7 +64,7 @@ class OrderController extends Controller
     public function create()
     {
         //
-        return view("Order.create");
+        return view("Order.Create");
     }
 
     /**
