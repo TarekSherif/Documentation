@@ -7,7 +7,7 @@ return [
     'Documents' => ' المستندات',
     'Order' => 'اضافة طلب',
     'Order.edit' => 'الطلب',
-    'Order.create'=>' الطلب',
+    'Order.Create'=>' الطلب',
     'Settings'=>'الاعدادات',
     'Branchs'=>'الفروع',
     'users'=>'المستخدمين',

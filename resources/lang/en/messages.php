@@ -7,7 +7,7 @@ return [
     'Documents' => 'Documents',
     'Order' => ' Add Order',
     'Order.edit' => ' Order',
-    'Order.create'=>' Order',
+    'Order.Create'=>' Order',
     'Settings'=>'Settings',
     'Branchs'=>'Branchs',
     'users'=>'Users',
