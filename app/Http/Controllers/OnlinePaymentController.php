@@ -57,7 +57,7 @@ class OnlinePaymentController extends Controller
             'address' => 'required' ,
             'passportID' => 'required' ,
             'OName' => 'required' ,
-            'DTypeID' => 'required' ,
+            'DType' => 'required' ,
             'SID' => 'required' ,
             'Cost' => 'required' ,
             'ReceiptCode' => 'required' ,

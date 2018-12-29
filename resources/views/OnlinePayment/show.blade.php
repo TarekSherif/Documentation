@@ -20,8 +20,16 @@
     </script>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    
+
+    <link href="{{url('/')}}/enjaz/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url('/')}}/enjaz/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+
+    
+    
 
     <link href="{{url('/')}}/enjaz/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/enjaz/select2.css">
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
 
@@ -152,7 +160,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">
-                                                    @lang('messages.address')
+                                                    @lang('messages.Onlineaddress')
                                 </label>
                                                 <div class="col-md-6 control-display-label">
                                                     {{$OnlinePayment->address}}
