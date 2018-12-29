@@ -193,7 +193,7 @@ ReloadServesNotifications();
               {
                 var NCount=0;
                   $.each( data.Records, function( key, value ) {
-                    NCount+=value.ServesInCount+value.ServesOutCount;
+                    NCount+=Number(value.ServesInCount)+Number(value.ServesOutCount);
                       $("#TblCurrentServesState tbody").append(
                        `<tr>
                             <th>
