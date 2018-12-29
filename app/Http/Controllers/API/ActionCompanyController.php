@@ -156,7 +156,7 @@ class ActionCompanyController extends Controller
                           try
                           {
                                   //Delete from database
-                                  $SQL="DELETE FROM Company WHERE CID ='" . $_POST["CID"] . "';";
+                                  $SQL="DELETE FROM Company WHERE CID =" . $_POST["CID"] ;
                                   DB::delete($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";
