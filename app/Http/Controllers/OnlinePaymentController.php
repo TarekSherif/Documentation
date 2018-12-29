@@ -90,7 +90,7 @@ class OnlinePaymentController extends Controller
         //
         $Data =$this->GetLookUpData();
         $Data['OnlinePayment']= OnlinePayment::find( $id) ;
-        return view("OnlinePayment.Show",$Data);
+        return view("OnlinePayment.show",$Data);
     }
 
     /**
