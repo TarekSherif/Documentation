@@ -131,7 +131,7 @@ class ActionDocumentController extends Controller
         {
                 //Delete from database
                 $SQL="DELETE FROM Document WHERE DID = " . $_POST["DID"] . ";";
-                DB::update($SQL);
+                DB::delete($SQL);
                 //Return result to jTable
                 $jTableResult['Result'] = "OK";
         }

@@ -107,7 +107,7 @@ class ActionusersController extends Controller
                           {
                                   //Delete from database
                                   $SQL="DELETE FROM users WHERE id = " . $_POST["id"] . ";";
-                                  DB::update($SQL);
+                                  DB::delete($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";
                                

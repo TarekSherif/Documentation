@@ -154,7 +154,7 @@ class ActionDocumentTypeController extends Controller
                           try
                           {
                                   //Delete from database
-                                  $SQL="DELETE FROM DocumentType WHERE DTypeID = " . $_POST["DTypeID"] . ";";
+                                  $SQL="DELETE FROM DocumentType WHERE DTypeID = '" . $_POST["DTypeID"] . "';";
                                   DB::delete($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";

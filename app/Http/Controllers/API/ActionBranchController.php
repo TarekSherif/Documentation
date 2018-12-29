@@ -135,7 +135,7 @@ class ActionBranchController extends Controller
                     {
                             //Delete from database
                             $SQL="DELETE FROM Branch WHERE BID = '" . $_POST["BID"] . "';";
-                            DB::update($SQL);
+                            DB::delete($SQL);
                             //Return result to jTable
                             $jTableResult['Result'] = "OK";
                          

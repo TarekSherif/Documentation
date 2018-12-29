@@ -128,7 +128,7 @@ class ActionServesController extends Controller {
                 {
                         //Delete from database
                         $SQL="DELETE FROM Serves WHERE SID = " . $_POST["SID"] . ";";
-                        DB::update($SQL);
+                        DB::delete($SQL);
                         //Return result to jTable
                         $jTableResult['Result'] = "OK";
                         

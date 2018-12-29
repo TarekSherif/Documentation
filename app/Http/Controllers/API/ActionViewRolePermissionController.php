@@ -106,7 +106,7 @@ class ActionViewRolePermissionController extends Controller {
                 {
                         //Delete from database
                         $SQL="DELETE FROM ViewRolePermission WHERE RVPID = " . $_POST["RVPID"] . ";";
-                        DB::update($SQL);
+                        DB::delete($SQL);
                         //Return result to jTable
                         $jTableResult['Result'] = "OK";
                         

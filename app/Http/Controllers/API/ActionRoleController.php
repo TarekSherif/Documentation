@@ -139,7 +139,7 @@ class ActionRoleController extends Controller
                           {
                                   //Delete from database
                                   $SQL="DELETE FROM Role WHERE RID = " . $_POST["RID"] . ";";
-                                  DB::update($SQL);
+                                  DB::delete($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";
                                

@@ -432,7 +432,7 @@ class ActionDocumentServesController extends Controller
             {
                     //Delete from database
                     $SQL="DELETE FROM DocumentServes WHERE DSID = " . $_POST["DSID"] . ";";
-                    DB::update($SQL);
+                    DB::delete($SQL);
                     //Return result to jTable
                     
                     $jTableResult['Result'] = "OK";

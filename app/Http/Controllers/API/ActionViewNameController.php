@@ -167,7 +167,7 @@ class ActionViewNameController extends Controller
                           {
                                   //Delete from database
                                   $SQL="DELETE FROM ViewName WHERE ViewName = '" . $_POST["ViewName"] . "';";
-                                  DB::update($SQL);
+                                  DB::delete($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";
                                

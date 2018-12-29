@@ -332,7 +332,7 @@ class ActionTOrderController extends Controller
                          {
                                  //Delete from database
                                  $SQL="DELETE FROM TOrder WHERE OrderID = " . $_POST["OrderID"] . ";";
-                                 DB::update($SQL);
+                                 DB::delete($SQL);
                                  //Return result to jTable
                                  $jTableResult['Result'] = "OK";
                               
