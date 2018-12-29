@@ -24,10 +24,10 @@
 			</form>
 		</div>
 		<div class="col-xs-2">
-			<br>
+			{{-- <br>
 			<a class="btn btn-primary" id="btnPrint">
 					<i class="fa fa-print"></i>
-				</a>
+				</a> --}}
 
 		</div>
 	</div>

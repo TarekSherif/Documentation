@@ -56,8 +56,7 @@ $(function () {
                 },
                 password: {
                     title: '@lang("messages.password")',
-					 list: false,
-                     edit:false,
+					
 					input: function (data) {
 							if (data.record) {
 								return '<input type="password"  placeholder=" @lang("messages.password")"   class=" form-control validate[required]"   autocomplete="off"   name="password"   value="' + data.record.password + '" />';

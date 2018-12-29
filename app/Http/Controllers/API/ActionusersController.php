@@ -42,7 +42,7 @@ class ActionusersController extends Controller
 
                     
                           //Insert record into database
-                          $SQL="INSERT INTO users(name,email,password,role,BID) VALUES('" . $_POST["name"] . "' ,'" . $_POST["email"] . "','" . Hash::make($_POST["password"] ). "','" . $_POST["role"] . "','" . $_POST["BID"] . "');";
+                          $SQL="INSERT INTO users(name,email,password,role,BID) VALUES('" . $_POST["name"] . "' ,'" . $_POST["email"] . "','" . $_POST["password"]. "','" . $_POST["role"] . "','" . $_POST["BID"] . "');";
                           DB::insert( $SQL);
                           //Get last inserted record (to return to jTable)
                          
@@ -77,6 +77,7 @@ class ActionusersController extends Controller
                           $SQL="UPDATE users SET
                              name = '" . $_POST["name"] . "',
                              email= '" . $_POST["email"] . "',
+                             password= '" . $_POST["password"]  . "',
                              role= '" . $_POST["role"] . "',
                              BID= '" . $_POST["BID"] . "' 
                             WHERE id = " . $_POST["id"];

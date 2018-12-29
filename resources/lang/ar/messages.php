@@ -16,7 +16,7 @@ return [
     'welcome'=>'الصفحة الرئيسية',
     'login'=>'تسجيل  دخول',
     'register'=>'تسجيل جديد',
-    'DocumentOUT'=>' دخول',
+    'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
     'Company'=>' الشركات',
     'CompanyReport'=>'تقرير الشركات',
