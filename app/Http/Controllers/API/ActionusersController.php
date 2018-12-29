@@ -64,7 +64,12 @@ class ActionusersController extends Controller
                   return response()->json($jTableResult);
               }
       
-      
+            //   function login() {    
+            //     $user = DB::select("select * from users where email = '" . $_POST["email"] . "' and password = '" . $_POST["password"] . "'");
+            //     if(!empty($user)){
+            //          Auth::login($user);
+            //     } 
+            // }
               public function Updateuser()
               {
                   $jTableResult =  array();

@@ -400,10 +400,10 @@ class ActionDocumentServesController extends Controller
             // SOrder= '" . $_POST["SOrder"] . "' ,
             // currentServe=$currentServe
             $SQL="UPDATE DocumentServes SET 
-            DID= '" . $_POST["DID"] . "' ,
+            `DID`= '" . $_POST["DID"] . "' ,
             `SID`= '" . $_POST["SID"] . "' ,
-            Cost= '" . $_POST["Cost"] . "',
-            price=  '" . $_POST["price"] . "'
+            `Cost`= '" . $_POST["Cost"] . "',
+            `price`=  '" . $_POST["price"] . "'
             WHERE DSID = " . $_POST["DSID"];
             
             DB::update($SQL);

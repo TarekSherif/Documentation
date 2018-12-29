@@ -291,14 +291,14 @@ function LoadOrderDocuments(OrderID) {
 															}
 														}  
 												},
-												paid: {
-													title:  ' @lang("messages.paid")',
+												Cost: {
+													title:  ' @lang("messages.Cost")',
 													visibility: 'visible',
 													input: function (data) {
 															if (data.record) {
-																return '<input type="number"  placeholder=" @lang("messages.paid")"   class="validate[required] form-control"   autocomplete="off"   name="paid"   value="' + data.record.paid + '" />';
+																return '<input type="number"  placeholder=" @lang("messages.Cost")"   class="validate[required] form-control"   autocomplete="off"   name="Cost"   value="' + data.record.Cost + '" />';
 															} else {
-																return '<input type="number"  placeholder=" @lang("messages.paid")"     class="validate[required] form-control"  autocomplete="off"   name="paid"     />';
+																return '<input type="number"  placeholder=" @lang("messages.Cost")"     class="validate[required] form-control"  autocomplete="off"   name="Cost"     />';
 															}
 														}  
 												},
