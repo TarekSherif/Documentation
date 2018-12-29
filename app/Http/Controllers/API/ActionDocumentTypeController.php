@@ -16,7 +16,7 @@ class ActionDocumentTypeController extends Controller
           {
             
             $where=" where DName like '".((isset($_GET['term']))?$_GET['term']:"")."%'";
-            $SQL="SELECT DTypeID, `DName` as 'value',`DName` as 'label' FROM `documenttype` $where ;";
+            $SQL="SELECT DTypeID, `DName` as 'value',`DName` as 'label' FROM `DocumentType` $where ;";
       
             // $where=" where phone like '".((isset($_GET['term']))?$_GET['term']:"")."%'";
             // $SQL="SELECT  `OrderID` as 'value',`phone` as 'label' FROM `TOrder` $where ;";
@@ -45,7 +45,7 @@ class ActionDocumentTypeController extends Controller
     
           try
           {
-              $SQL ='SELECT `DTypeID` as "Value",`DName` as "DisplayText" FROM `documenttype` order by SOrder';
+              $SQL ='SELECT `DTypeID` as "Value",`DName` as "DisplayText" FROM `DocumentType` order by SOrder';
               $Data= DB::select($SQL);
               $jTableResult['Result'] = "OK";
               $jTableResult['Options'] =$Data;
