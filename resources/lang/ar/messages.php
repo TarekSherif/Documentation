@@ -134,7 +134,7 @@ return [
     'DTypeID'=>'الموضوع' ,
     'SID'=>'نوع الإجراء' , 
     'OnlineCost'=>'اجمالي المبلغ' ,
-    'ReceiptCode'=>'رقم الأيصال' ,
+    'ReceiptCode'=>'رقم الأيصالات' ,
     'Locked'=>'موقع' , 
     'createby'=>'موقع' ,
 

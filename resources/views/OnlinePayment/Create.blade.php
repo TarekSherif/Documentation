@@ -33,12 +33,12 @@
  <script>
          $(function () {
             
-                $('#DName').autocomplete({
-                        source: '{{url("/")}}/api/ListOfACDocumentType?_token={{ csrf_token() }}',
-                        select: function (e, ui) {
-                        $('[name=DTypeID]').val(ui.item.DTypeID);
-                        }
-                });
+                // $('#DName').autocomplete({
+                //         source: '{{url("/")}}/api/ListOfACDocumentType?_token={{ csrf_token() }}',
+                //         select: function (e, ui) {
+                //         $('[name=DTypeID]').val(ui.item.DTypeID);
+                //         }
+                // });
                 $('#SOrderID').autocomplete({
                         source: '{{url("/")}}/api/ListOfACOnlinePayment?_token={{ csrf_token() }}',
                         select: function (e, ui) {
