@@ -35,6 +35,10 @@ $(function () {
                 
                 CID:  {
 						title:'@lang("messages.CID")',
+                        key:true,
+                        list:true,
+                        edit:true,
+                        create:true,
 							visibility: 'visible',
 							width: '10%',
 						input: function (data) {
