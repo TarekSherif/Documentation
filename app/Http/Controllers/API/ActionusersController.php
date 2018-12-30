@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 use DB;
-
+use Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+
 class ActionusersController extends Controller
 {
 
@@ -66,8 +67,8 @@ class ActionusersController extends Controller
       
             //   function login() {    
             //     $user = DB::select("select * from users where email = '" . $_POST["email"] . "' and password = '" . $_POST["password"] . "'");
-            //     if(!empty($user)){
-            //          Auth::login($user);
+            //     if(!empty($user[0])){
+            //          Auth::login($user[0]);
             //     } 
             // }
               public function Updateuser()

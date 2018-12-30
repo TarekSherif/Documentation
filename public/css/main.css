@@ -171,4 +171,11 @@ div.jtable-main-container table.jtable tbody tr > td .jtable-command-button:hove
     background-color:#fee ;
     }
 
-   
+
+
+
+    /* Order */
+    .Delivery{
+    border: 2px solid gray;
+    border-radius: 5px;
+}

@@ -34,9 +34,11 @@ return [
     'created_at'=>'create Time',
     'Addedby'=>'Added by ',
     'delivery'=>"delivery", 
+    'Dprice'=>'Delivery price',
     'address' =>'address',
     'Otherphone'=>'Other phone',
     'paid'=>'The amount paid',
+
 
   // Document Serves
   

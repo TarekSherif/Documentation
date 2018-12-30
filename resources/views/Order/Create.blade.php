@@ -21,6 +21,7 @@
 						@endif
 					</div>
 				</div>
+				<div class="Delivery">
 				<div class="col-xs-4">
 						<div class="form-group ">
 							<label>@lang("messages.address") </label>
@@ -45,7 +46,7 @@
 				</div>
 				<div class="col-xs-2">
 						<div class="form-group ">
-							<label>@lang("messages.price")  </label>
+							<label>@lang("messages.Dprice")  </label>
 							<input   id="price" name="price" placeholder="@lang('messages.price')" type="number"  class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"  value="{{old('price')}}" />
 							@if ($errors->has('price'))
 							<span class="invalid-feedback" role="alert">
@@ -55,7 +56,7 @@
 						</div>
 				</div>
 
-				
+			</div>
 				<div class="col-xs-1">
 					<br>
 					

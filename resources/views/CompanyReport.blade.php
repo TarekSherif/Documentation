@@ -173,13 +173,13 @@
 						<table class="no-border">
                          	<tr>
 								<td colspan="2">
-								<h1>  العدد/ `+$('.jtable tbody tr').length;+`</h1>
+								<h1>  العدد/ `+$('.jtable tbody tr').length();+`</h1>
 								</td>
 							</tr>
 						
                          </table>
                      </body>
-                 </html>`;
+                 `;
                   newWindow.document.write(html);
                   
                   e.preventDefault();

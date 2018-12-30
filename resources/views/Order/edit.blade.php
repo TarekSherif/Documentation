@@ -86,7 +86,7 @@
 					</div>
 					<div class="col-xs-12">
 						<div class="form-group ">
-							<label>@lang("messages.price")  </label>
+							<label>@lang("messages.Dprice")  </label>
 							<input class=" form-control " id="price" name="price" placeholder="@lang('messages.price')" type="number" value=0 />
 						</div>
 					</div>

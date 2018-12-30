@@ -126,9 +126,22 @@ class OrderController extends Controller
      * @param  \App\Model\Order  $Order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $Order)
+    public function update(Request $request,$OrderID)
     {
         //
+
+        $this->validate($request,
+        [
+            'phone' => 'required',
+        ]);
+       
+        $Order = Order::find($OrderID);
+        $Order->fill( $request->only($Order->getFillable()));
+        $Order->save();
+
+        return redirect()
+        ->action('OrderController@edit',$Order->OrderID)
+        ->with('success', 'تم  الاضافه بنجاح');
     }
 
     /**

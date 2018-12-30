@@ -19,7 +19,7 @@ return [
     'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
     'Company'=>' الشركات',
-    'CompanyReport'=>'تقرير الشركات',
+    'CompanyReport'=>'تقرير  دخول القنصلية',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",
@@ -37,6 +37,7 @@ return [
     'address' =>'العنوان',
     'Otherphone'=>'تليفون اخر',
     'delivery'=>"خدمة التوصيل",
+    'Dprice'=>'سعر التوصيل',
     'paid'=>' المبلغ المدفوع',
   // Document Serves
     'DOName'=>'اسم صاحب المستند',
