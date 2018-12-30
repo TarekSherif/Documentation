@@ -70,6 +70,8 @@ Route::post('ListOfusers', 'API\ActionusersController@ListOfusers');
 Route::post('Createuser', 'API\ActionusersController@Createuser');
 Route::post('Updateuser', 'API\ActionusersController@Updateuser');
 Route::post('Deleteuser', 'API\ActionusersController@Deleteuser');
+Route::post('Customlogin', 'API\ActionusersController@login');
+
 //=========================================================================
 
 
