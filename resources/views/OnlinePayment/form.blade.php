@@ -100,7 +100,7 @@
                                     @lang('messages.DTypeID')
                                 </label>
                 <div class="col-md-6 control-display-label">
-                        <input id='DType' type="text" class="form-control{{ $errors->has('DType') ? ' is-invalid' : '' }}"   value="{{old('DType',$OnlinePayment->DType)}}">
+                        <input id='DType' type="text" class="form-control{{ $errors->has('DType') ? ' is-invalid' : '' }}"  name="DType"  value="{{old('DType',$OnlinePayment->DType)}}">
                         @if ($errors->has('DType'))
                     <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('DType') }}</strong>
