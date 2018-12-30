@@ -26,6 +26,7 @@ Route::get('ListOfCurrentDocumentServes', 'API\ActionDocumentServesController@Li
 Route::post('ListOfDocumentsNeedin', 'API\ActionDocumentServesController@ListOfDocumentsNeedin');
 Route::post('UpdateDocumentsInService', 'API\ActionDocumentServesController@UpdateDocumentsInService');
 Route::post('UpdateDocumentsInEnjazID', 'API\ActionDocumentServesController@UpdateDocumentsInEnjazID');
+Route::post('UpdateDocumentsOut', 'API\ActionDocumentServesController@UpdateDocumentsOut');
 
 
 Route::post('ListOfDocumentsNeedout', 'API\ActionDocumentServesController@ListOfDocumentsNeedout');

@@ -76,7 +76,9 @@
 			@if ($Permission["ShowData"])  
 				listAction:   '{{url("/")}}/api/ListOfDocumentsNeedout?_token={{ csrf_token() }}',
 			@endif
-  
+			@if ($Permission["UpdateData"])
+				updateAction: '{{url("/")}}/api/UpdateDocumentsOut?_token={{ csrf_token() }}',
+			@endif	
 				// createAction: '{{url("/")}}/api/CreateDocumentServes',
 				// updateAction: '{{url("/")}}/api/UpdateDocumentServes',
 				// deleteAction: '{{url("/")}}/api/DeleteDocumentServes'

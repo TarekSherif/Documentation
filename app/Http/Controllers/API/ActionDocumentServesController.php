@@ -232,7 +232,32 @@ class ActionDocumentServesController extends Controller
             {
                 $SQL="UPDATE DocumentServes SET 
                 CID =  '" . $_POST["CID"] . "' , 
-                INCode =  '" . $_POST["INCode"] . "' , 
+                INCode =  '" . $_POST["INCode"] . "'                
+                WHERE DSID = " . $_POST["DSID"];
+                
+                DB::update($SQL);
+
+                //Return result to jTable
+                
+                $jTableResult['Result'] = "OK";
+
+            }
+            catch(Exception $ex)
+            {
+                //Return error Message
+                
+                $jTableResult['Result'] = "ERROR";
+                $jTableResult['Message'] = $ex->getMessage();
+                
+            }
+            return response()->json($jTableResult);
+     }
+     public function UpdateDocumentsOut()    {
+        $jTableResult =  array();
+    
+            try
+            {
+                $SQL="UPDATE DocumentServes SET 
                 Notes =  '" . $_POST["Notes"] . "' 
                 WHERE DSID = " . $_POST["DSID"];
                 
@@ -253,6 +278,7 @@ class ActionDocumentServesController extends Controller
             }
             return response()->json($jTableResult);
      }
+    
     
     public function ListOfDocumentsNeedout()    {
         $jTableResult =  array();
@@ -403,7 +429,7 @@ class ActionDocumentServesController extends Controller
             $SQL="UPDATE DocumentServes SET 
             `DID`= '" . $_POST["DID"] . "' ,
             `SID`= '" . $_POST["SID"] . "' ,
-            `Cost`= '" . $_POST["Cost"] . "',
+            `Notes`= '" . $_POST["Notes"] . "',
             `price`=  '" . $_POST["price"] . "'
             WHERE DSID = " . $_POST["DSID"];
             

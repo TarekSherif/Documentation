@@ -111,10 +111,6 @@
 								return '<input type="number"  placeholder=" @lang("messages.INCode")"     class="form-control "  autocomplete="off"   name="INCode"     />';
 							}
 						}  
-				},
-				Notes:{
-					title:'@lang("messages.Notes")',
-					type:'textarea'
 				}
 			}
 			
