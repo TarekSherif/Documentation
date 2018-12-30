@@ -95,17 +95,21 @@
 				},
 				DID: {
 					title:'DID' ,
-					list: false,					
+					list: false,	
+					edit: false,				
 				},
 				phone: {
 					title:'@lang("messages.phone")' ,
+					edit: false,
 				},
 				DOName: {
 					title:'@lang("messages.DOName")' ,
+					edit: false,
 				},
 				SDate: {
 					title: '@lang("messages.Sdate")',
 					type:"date" ,
+					edit: false,
 					},
 				Notes:{
 					title:'@lang("messages.Notes")',
