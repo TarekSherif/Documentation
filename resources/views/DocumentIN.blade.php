@@ -106,12 +106,16 @@
 						width: '10%',
 					input: function (data) {
 							if (data.record) {
-								return '<input type="number"  placeholder=" @lang("messages.INCode")"   class=" form-control validate[required]"   autocomplete="off"   name="INCode"   value="' + data.record.INCode + '" />';
+								return '<input type="number"  placeholder=" @lang("messages.INCode")"   class=" form-control "   autocomplete="off"   name="INCode"   value="' + data.record.INCode + '" />';
 							} else {
-								return '<input type="number"  placeholder=" @lang("messages.INCode")"     class="form-control validate[required]"  autocomplete="off"   name="INCode"     />';
+								return '<input type="number"  placeholder=" @lang("messages.INCode")"     class="form-control "  autocomplete="off"   name="INCode"     />';
 							}
 						}  
 				},
+				Notes:{
+					title:'@lang("messages.Notes")',
+					type:'textarea'
+				}
 			}
 			
 			@include('layouts.inc.JtableEvent')

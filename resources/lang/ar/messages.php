@@ -54,6 +54,7 @@ return [
     'StateF'=>'تم الرفض',
     'StateW'=>'قيد الانتظار  ',
     'INCode'=>'رقم إنجاز',
+    'Notes'=>'ملاحظات',
 
     'ServesH'=>'ServesH',
 

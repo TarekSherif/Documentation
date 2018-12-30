@@ -233,6 +233,7 @@ class ActionDocumentServesController extends Controller
                 $SQL="UPDATE DocumentServes SET 
                 CID =  '" . $_POST["CID"] . "' , 
                 INCode =  '" . $_POST["INCode"] . "' 
+                Notes =  '" . $_POST["Notes"] . "' 
                 WHERE DSID = " . $_POST["DSID"];
                 
                 DB::update($SQL);
