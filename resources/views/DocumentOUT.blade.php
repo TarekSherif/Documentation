@@ -58,7 +58,7 @@
 				saveUserPreferences: true,
 				toolbar: {
 					items: [{
-						icon: '{{asset("images/accepted.png")}}',
+						icon: '{{asset("images/Accepted.png")}}',
 						text: '@lang("messages.Accepted")',
 						click: function () {
 							//perform your custom job...
@@ -104,7 +104,11 @@
 				SDate: {
 					title: '@lang("messages.Sdate")',
 					type:"date" ,
-					}
+					},
+				Notes:{
+					title:'@lang("messages.Notes")',
+					type:'textarea'
+				}
 			}
 	@include('layouts.inc.JtableEvent')
 	

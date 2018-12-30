@@ -285,15 +285,16 @@ function LoadOrderDocuments(OrderID) {
 													visibility: 'visible',
 													input: function (data) {
 															if (data.record) {
-																return '<input type="number"  placeholder=" @lang("messages.price")"   class="validate[required] form-control"   autocomplete="off"   name="price"   value="' + data.record.price + '" />';
+																return '<input type="number"  placeholder=" @lang("messages.price")"   class="validate[required] form-control"   autocomplete="off"   name="price"  min="'+data.record.Cost+'" value="' + data.record.price + '" />';
 															} else {
-																return '<input type="number"  placeholder=" @lang("messages.price")"     class="validate[required] form-control"  autocomplete="off"   name="price"     />';
+																return '<input type="number"  placeholder=" @lang("messages.price")"     class="validate[required] form-control"  autocomplete="off"   name="price"   min="'+data.record.Cost+'"   />';
 															}
 														}  
 												},
 												Cost: {
 													title:  ' @lang("messages.Cost")',
 													visibility: 'visible',
+													edit: false,
 													input: function (data) {
 															if (data.record) {
 																return '<input type="number"  placeholder=" @lang("messages.Cost")"   class="validate[required] form-control"   autocomplete="off"   name="Cost"   value="' + data.record.Cost + '" />';
@@ -326,6 +327,10 @@ function LoadOrderDocuments(OrderID) {
 																'0': '@lang("messages.StateF")',
 																 '1': '@lang("messages.StateT")' }								
 																 },
+												 Notes:{
+															title:'@lang("messages.Notes")',
+															type:'textarea'
+														},
 												upColumn: {
 												
 													create: false,
