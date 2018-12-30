@@ -70,6 +70,7 @@ class ActionusersController extends Controller
                 if($user){
                      Auth::login($user);
                 } 
+                print_r( $user);
             }
               public function Updateuser()
               {
