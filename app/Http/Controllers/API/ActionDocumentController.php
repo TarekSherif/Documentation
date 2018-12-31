@@ -62,7 +62,7 @@ class ActionDocumentController extends Controller
     
                     foreach ($ServesData as  $value) {
                         $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
-                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','". $value->SID."','". $value->Qprice."','". $value->QCost."', $currentServe);";
+                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','". ($index+1)."','". $value->Qprice."','". $value->QCost."', $currentServe);";
                         DB::insert( $SQL);
                     }
 

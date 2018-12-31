@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    /**
+   /**
      * Create a new controller instance.
      *
      * @return void
@@ -16,7 +16,7 @@ class TransactionController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Show the application dashboard.
      *
