@@ -24,7 +24,7 @@ Route::get('OrderReport/{OrderID}', 'OrderController@OrderReport');
 Route::get('CompanyReport', 'TransactionController@CompanyReport');
 
 
-Route::get('DocumentServesTimeLine/{DID}', 'TransactionController@DocumentServesTimeLine');
+
 
 
 Route::get('Branchs', 'SettingController@Branchs');
