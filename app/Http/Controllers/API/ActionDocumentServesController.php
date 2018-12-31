@@ -74,48 +74,7 @@ class ActionDocumentServesController extends Controller
 
       
     }
-    public function DocumentServesTimeLine($DID)    {
-        $jTableResult =  array();
-        
-        try
-        {
-            
-            //Get records from database
-            $SQL ="SELECT 
-            `DocumentServes`.`DID`  ,
-            `DocumentServes`.`SOrder` , 
-            `DocumentServes`.`SDate`  ,
-            `DocumentServes`.`EDate`  , 
-            `DocumentServes`.`Successfully`,
-            `DocumentServes`.`price`,  
-            `Document`.`priority`,  
-            `Serves`.`Serves`,
-            `TOrder`.`OrderID`,
-            `TOrder`.`phone`,
-            `Document`.`DOName`
-        FROM `DocumentServes` 
-        JOIN `Serves`    on `Serves`.`SID`=`DocumentServes`.`SID`
-        JOIN `Document`  on `Document`.`DID`=`DocumentServes`.`DID` 
-        JOIN `TOrder`    on `TOrder`.`OrderID`= `Document`.`OrderID` 
-        WHERE `DocumentServes`.`DID`=$DID
-        order by `DocumentServes`.`SOrder`   ";
-                    
-
-            $Data= DB::select($SQL);
-            $jTableResult['Result'] = "OK";
-            $jTableResult['Records'] =$Data;
-            
-        }
-        catch(Exception $ex)
-        {
-            //Return error Message
-            $jTableResult['Result'] = "ERROR";
-            $jTableResult['Message'] = $ex->getMessage();
-            
-        }
-        return response()->json($jTableResult);        
-        }
-
+    
   
     public function ListOfCurrentDocumentServes()  {
         $jTableResult =  array();

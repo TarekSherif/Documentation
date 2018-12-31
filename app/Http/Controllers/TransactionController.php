@@ -27,16 +27,7 @@ class TransactionController extends Controller
         return view('welcome');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function Orders()
-    // {
-    //     return view('Orders');
-    // }
-   
+
 
 
     /**

@@ -20,9 +20,15 @@ use Illuminate\Http\Request;
 // ActionDocumentServesController-urls  
 //========================================================================
 
-Route::get('DocumentServesTimeLine/{DID}', 'API\ActionDocumentServesController@DocumentServesTimeLine');
-Route::get('ListOfCurrentDocumentServes', 'API\ActionDocumentServesController@ListOfCurrentDocumentServes');
 
+Route::post('Customlogin', 'API\ActionusersController@login');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    //
+    
+
+Route::get('ListOfCurrentDocumentServes', 'API\ActionDocumentServesController@ListOfCurrentDocumentServes');
 Route::post('ListOfDocumentsNeedin', 'API\ActionDocumentServesController@ListOfDocumentsNeedin');
 Route::post('UpdateDocumentsInService', 'API\ActionDocumentServesController@UpdateDocumentsInService');
 Route::post('UpdateDocumentsInEnjazID', 'API\ActionDocumentServesController@UpdateDocumentsInEnjazID');
@@ -70,7 +76,7 @@ Route::post('ListOfusers', 'API\ActionusersController@ListOfusers');
 Route::post('Createuser', 'API\ActionusersController@Createuser');
 Route::post('Updateuser', 'API\ActionusersController@Updateuser');
 Route::post('Deleteuser', 'API\ActionusersController@Deleteuser');
-Route::post('Customlogin', 'API\ActionusersController@login');
+
 
 //=========================================================================
 
@@ -169,3 +175,5 @@ Route::get('ListOfACOnlinePayment', 'API\ActionTOrderController@ListOfACOnlinePa
 
 
 
+
+});

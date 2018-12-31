@@ -46,22 +46,13 @@ Route::get('lang/{lang}',  function($lang)
     return back();
 });
 
-// Route::view('/Order', 'Order');
-// Route::view('/DocumentSearch',"DocumentSearch");
-// Route::view('/Document', 'Document');
-// Route::view('/Documentation', 'Documentation');
-// Route::view('/DocumentServesTimeLine', 'DocumentServesTimeLine');
 Route::view('/welcome', 'welcome');
 
-// Route::view('/users', 'users');
-// Route::view('/Serves', 'Serves');
-// Route::view('/DocumentType', 'DocumentType');
+
 
 Auth::routes();
 
 Route::get('/', 'TransactionController@index')->name('home');
-// Route::get('/', 'homeController@index')->name('home');
-// Route::get('users', 'homeController@users');
 
 
 

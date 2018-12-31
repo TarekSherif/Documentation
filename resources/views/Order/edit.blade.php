@@ -442,15 +442,7 @@ function LoadOrderDocuments(OrderID) {
 							title:  'ServesH',
 							type:"hidden"
 						},										
-					TimeLineColumn: {
-						title: 'Edit',
-						width: '3%',
-						create: false,
-						edit :false,
-						display: function (data) {
-							return '<a   class="jtable-command-button fa fa-sitemap" href="{{url("/")}}/DocumentServesTimeLine/' + data.record.DID + '" > &nbsp;  &nbsp;  &nbsp; </a>';
-							}
-						}
+					
 				},
 				//Initialize validation logic when a form is created
 				formCreated: function (event, data) {
@@ -487,16 +479,7 @@ function LoadOrderDocuments(OrderID) {
 					console.log(data);
 					
 				}
-				// ,rowUpdated: function (event, data){
-				// 	window.location.reload();
-				// }
-				// recordsLoaded: function(event, data) {
-				// 	$('.jtable-data-row').on('click',function() {
-				// 		var row_id = $(this).attr('data-record-key');
-				// 		window.open( "{{url("/")}}/DocumentServesTimeLine?DID="+ row_id);
-				// 	});
-				// }
-	
+			
 			});
 	 
 			//Load student list from server
