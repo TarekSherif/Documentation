@@ -30,7 +30,7 @@ toolbar: {
     @if ($Permission["DataToExcel"]) 
         {
         tooltip: '@lang("messages.tipExcel")',
-        icon: '{{url("/")}}/Images/excel.png',
+        icon: '{{url("/")}}/images/excel.png',
         text: '@lang("messages.Excel")',
         click: function (e) {
                  $(".jtable").table2excel({

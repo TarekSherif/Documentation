@@ -44,6 +44,7 @@
                         
                             create:true,
                             title: '@lang("messages.Branchs")',
+                            visibility :'fixed',
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.Branchs")"   class=" form-control validate[required]"   autocomplete="off"   name="BName"   value="' + data.record.BName + '" />';
@@ -54,6 +55,7 @@
                             },
                     Baddress: {
                             title: '@lang("messages.address")',
+                            visibility :'visible',
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.address")"   class=" form-control validate[required]"   autocomplete="off"   name="Baddress"   value="' + data.record.Baddress + '" />';
@@ -64,6 +66,10 @@
                             },
                         BFB: {
                             title: '@lang("messages.BFB")',
+                            visibility :'hidden',
+                            display: function (data) {
+                                return '<a href="'+data.record.BFB+'" target="_blank">'+data.record.BFB+'</a>';
+                            },
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.BFB")"   class=" form-control validate[required]"   autocomplete="off"   name="BFB"   value="' + data.record.BFB + '" />';
@@ -74,6 +80,7 @@
                             },
                         BWhats: {
                             title: '@lang("messages.BWhats")',
+                            visibility :'hidden',
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.BWhats")"   class=" form-control validate[required]"   autocomplete="off"   name="BWhats"   value="' + data.record.BWhats + '" />';
@@ -84,6 +91,10 @@
                             },
                         BMail: {
                             title: '@lang("messages.email")',
+                            visibility :'hidden',
+                            display: function (data) {
+                                return '<a href="mailto:'+data.record.BMail+'" >'+data.record.BMail+'</a>';
+                            },
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.email")"   class=" form-control validate[required]"   autocomplete="off"   name="BMail"   value="' + data.record.BMail + '" />';
@@ -94,6 +105,10 @@
                             },
                         BWebSite: {
                             title: '@lang("messages.BWebSite")',
+                            visibility :'hidden',
+                            display: function (data) {
+                                return '<a href="'+data.record.BWebSite+'" target="_blank">'+data.record.BWebSite+'</a>';
+                            },
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.BWebSite")"   class=" form-control validate[required]"   autocomplete="off"   name="BWebSite"   value="' + data.record.BWebSite + '" />';
@@ -104,6 +119,7 @@
                             },
                         BFax: {
                         title: '@lang("messages.BFax")',
+                        visibility :'hidden',
                         input: function (data) {
                                 if (data.record) {
                                     return '<input type="text"  placeholder="@lang("messages.BFax")"   class=" form-control validate[required]"   autocomplete="off"   name="BFax"   value="' + data.record.BFax + '" />';
@@ -114,6 +130,7 @@
                         },
                         BPhones: {
                             title: '@lang("messages.phone")',
+                            visibility :'hidden',
                             input: function (data) {
                                     if (data.record) {
                                         return '<input type="text"  placeholder="@lang("messages.phone")"   class=" form-control validate[required]"   autocomplete="off"   name="BPhones"   value="' + data.record.BPhones + '" />';
@@ -125,7 +142,7 @@
                         
                         SOrder: {
                                 title:  '@lang("messages.SOrder")',
-                                    visibility: 'visible',
+                                visibility :'hidden',
                                     width: '10%',
                                 input: function (data) {
                                         if (data.record) {
