@@ -160,16 +160,31 @@ class ActionDocumentServesController extends Controller
     
             try
             {
-                    
-                $SQL="UPDATE DocumentServes SET 
-                SDate =  '" . $_POST["SDate"] . "' 
-                WHERE DSID in (".implode(",",$_POST['DSID']).") " ;
-                
-                DB::update($SQL);
+                $SQL="select DSID from  DocumentServes 
+                WHERE (DSID in (".implode(",",$_POST['DSID']).")  and   CID IS  NULL )" ;
+                $WithOutCID=    DB::select($SQL);
 
-                //Return result to jTable
+                if(empty($WithOutCID)){
+                    $SQL="UPDATE DocumentServes SET 
+                                SDate =  '" . $_POST["SDate"] . "' 
+                                WHERE DSID in (".implode(",",$_POST['DSID']).") " ;
+                                
+                    DB::update($SQL);
+
+                    //Return result to jTable
+                    
+                    $jTableResult['Result'] = "OK";
+                }else{
+                    $SQL="UPDATE DocumentServes SET 
+                                SDate =  '" . $_POST["SDate"] . "' 
+                           WHERE (DSID in (".implode(",",$_POST['DSID']).") and CID IS NOT NULL )" ;
+                                
+                    DB::update($SQL);
+                    
+                    $jTableResult['Result'] = "Error";
+                }
                 
-                $jTableResult['Result'] = "OK";
+                            
 
             }
             catch(Exception $ex)

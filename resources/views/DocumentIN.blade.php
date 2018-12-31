@@ -172,6 +172,8 @@
 					
 						$selectServes.change();
 						ReloadServesNotifications();
+						console.log( data);
+						
 					}).fail(function() {
 						
 							console.log( DocumentsIn);
