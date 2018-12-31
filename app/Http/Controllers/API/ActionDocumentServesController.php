@@ -163,7 +163,7 @@ class ActionDocumentServesController extends Controller
                 $Refuse=" and   CID IS  NULL";
                 $Accepted=" and CID IS NOT NULL";
             }else {
-                $Refuse=" and   false ";
+                $Refuse=" and   0 ";
                 $Accepted="";
             }
 
