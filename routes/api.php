@@ -21,12 +21,7 @@ use Illuminate\Http\Request;
 //========================================================================
 
 
-Route::post('Customlogin', 'API\ActionusersController@login');
 
-
-Route::group(['middleware' => ['auth']], function () {
-    //
-    
 
 Route::get('ListOfCurrentDocumentServes', 'API\ActionDocumentServesController@ListOfCurrentDocumentServes');
 Route::post('ListOfDocumentsNeedin', 'API\ActionDocumentServesController@ListOfDocumentsNeedin');
@@ -173,7 +168,3 @@ Route::get('GetOrderByOrderID/{OrderID?}', 'API\ActionTOrderController@GetOrderB
 Route::get('ListOfACName', 'API\ActionTOrderController@ListOfACName');
 Route::get('ListOfACOnlinePayment', 'API\ActionTOrderController@ListOfACOnlinePayment');
 
-
-
-
-});

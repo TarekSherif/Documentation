@@ -15,7 +15,7 @@
         <!-- Login Block -->
         <div class="block push-bit">
             <!-- Login Form -->
-            <form method="POST" action="{{url('/')}}/api/Customlogin" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+            <form method="POST" action="{{ route('login') }}" id="form-login" class="form-horizontal form-bordered form-control-borderless">
                 @csrf
     
                 <div class="form-group row">

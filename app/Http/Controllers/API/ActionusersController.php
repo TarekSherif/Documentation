@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\API;
+
 use DB;
-use Models\User;
+use  App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 
 class ActionusersController extends Controller
 {
@@ -122,14 +122,5 @@ class ActionusersController extends Controller
                          }
                       return response()->json($jTableResult);
               }
-              
-            public  function login() {    
-                $user = User::where(['email'=>$_POST["email"],'password'=> $_POST["password"] ])->first();
-                if($user){
-                     Auth::login($user);
-                } 
-               
-                return view('Order.Order',$Data);
-            }
-      }
+        }
       
