@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\API;
-
 use DB;
-use  App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Hash;
 class ActionusersController extends Controller
 {
-
     
         //Getting records (listAction)
         public function ListOfusers()
@@ -40,10 +36,9 @@ class ActionusersController extends Controller
           $jTableResult =  array();
                   try 
                   {
-
                     
                           //Insert record into database
-                          $SQL="INSERT INTO users(name,email,password,role,BID) VALUES('" . $_POST["name"] . "' ,'" . $_POST["email"] . "','" . $_POST["password"]. "','" . $_POST["role"] . "','" . $_POST["BID"] . "');";
+                          $SQL="INSERT INTO users(name,email,password,role,BID) VALUES('" . $_POST["name"] . "' ,'" . $_POST["email"] . "','" . Hash::make($_POST["password"] ). "','" . $_POST["role"] . "','" . $_POST["BID"] . "');";
                           DB::insert( $SQL);
                           //Get last inserted record (to return to jTable)
                          
@@ -65,7 +60,7 @@ class ActionusersController extends Controller
                   return response()->json($jTableResult);
               }
       
-          
+      
               public function Updateuser()
               {
                   $jTableResult =  array();
@@ -78,7 +73,6 @@ class ActionusersController extends Controller
                           $SQL="UPDATE users SET
                              name = '" . $_POST["name"] . "',
                              email= '" . $_POST["email"] . "',
-                             password= '" . $_POST["password"]  . "',
                              role= '" . $_POST["role"] . "',
                              BID= '" . $_POST["BID"] . "' 
                             WHERE id = " . $_POST["id"];
@@ -109,7 +103,7 @@ class ActionusersController extends Controller
                           {
                                   //Delete from database
                                   $SQL="DELETE FROM users WHERE id = " . $_POST["id"] . ";";
-                                  DB::delete($SQL);
+                                  DB::update($SQL);
                                   //Return result to jTable
                                   $jTableResult['Result'] = "OK";
                                
@@ -122,5 +116,4 @@ class ActionusersController extends Controller
                          }
                       return response()->json($jTableResult);
               }
-        }
-      
+      }

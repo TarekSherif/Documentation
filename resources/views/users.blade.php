@@ -1,4 +1,3 @@
-
 @extends('layouts.index')
 
 @section('ScriptContent')
@@ -6,7 +5,6 @@
                
 <script type="text/javascript">
 $(function () {
-
         $('#jtableContainer').jtable({
             title: '<i class="fa fa-group  " style="color: orange;" aria-hidden="true"></i> @lang("messages.users")',
             paging: true,
@@ -56,7 +54,8 @@ $(function () {
                 },
                 password: {
                     title: '@lang("messages.password")',
-					
+					 list: false,
+                     edit:false,
 					input: function (data) {
 							if (data.record) {
 								return '<input type="password"  placeholder=" @lang("messages.password")"   class=" form-control validate[required]"   autocomplete="off"   name="password"   value="' + data.record.password + '" />';
@@ -77,20 +76,15 @@ $(function () {
                     inputClass:"validate[required] form-control",
                     options: '{{url("/")}}/api/BranchListoptions?_token={{ csrf_token() }}'
                 },
-
             } 
             @include('layouts.inc.JtableEvent')
            
-
         });
  
         //Load student list from server
         $('#jtableContainer').jtable('load');
         // $('#jtableContainer').jtable('load', { '_token': '{{ csrf_token() }}' }); 
     });
-
 </script>
 @endif
 @endsection
-
-
