@@ -294,6 +294,7 @@ function LoadOrderDocuments(OrderID) {
 												Cost: {
 													title:  ' @lang("messages.Cost")',
 													visibility: 'visible',
+													list:false,
 													edit: false,
 													input: function (data) {
 															if (data.record) {
