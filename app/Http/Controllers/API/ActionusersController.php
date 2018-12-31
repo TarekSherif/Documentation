@@ -122,12 +122,13 @@ class ActionusersController extends Controller
                          }
                       return response()->json($jTableResult);
               }
-            //   function login() {    
-            //     $user = User::where([['email','=',$_POST["email"]],['password','=', $_POST["password"] ]])->first();
-            //     if($user){
-            //          Auth::login($user);
-            //     } 
-            //     print_r( $user);
-            // }
+              
+              function login() {    
+                $user = User::where(['email'=>$_POST["email"],'password'=> $_POST["password"] ])->first();
+                if($user){
+                     Auth::login($user);
+                } 
+                print_r( $user);
+            }
       }
       
