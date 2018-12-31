@@ -59,11 +59,12 @@ class ActionDocumentController extends Controller
                 
                    
                 if( $_POST["priority"]){
-    
-                    foreach ($ServesData as  $value) {
+                    foreach ($ServesData as  $index=>$value) {
+                        $currentServe=($index==0)?"1":"0";
                         $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
-                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','". ($index+1)."','". $value->Qprice."','". $value->QCost."', $currentServe);";
+                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','".($index+1)."','". $value->Qprice."','". $value->QCost."', $currentServe);";
                         DB::insert( $SQL);
+                        
                     }
 
                 }
