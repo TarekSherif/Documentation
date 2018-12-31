@@ -164,7 +164,8 @@
 					});
 					var DocumentsIn={
 						SDate:$("#SDate").val(),
-						DSID:DSIDS
+						DSID:DSIDS,
+						SID:$SID
 					};
 								// console.log();
 									
@@ -172,7 +173,9 @@
 					
 						$selectServes.change();
 						ReloadServesNotifications();
-						console.log( data);
+						if( data.Result==="Error"){
+							alert("برجاء  ادخال الشركه");
+						}
 						
 					}).fail(function() {
 						

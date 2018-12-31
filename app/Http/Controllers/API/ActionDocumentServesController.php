@@ -157,17 +157,26 @@ class ActionDocumentServesController extends Controller
       }
     public function UpdateDocumentsInService()    {
         $jTableResult =  array();
-    
+            //$_POST['SID']
+            $SID=$_POST['SID'];
+            if( $SID==4){
+                $Refuse=" and   CID IS  NULL";
+                $Accepted=" and CID IS NOT NULL";
+            }else {
+                $Refuse=" and   false ";
+                $Accepted="";
+            }
+
             try
             {
                 $SQL="select DSID from  DocumentServes 
-                WHERE (DSID in (".implode(",",$_POST['DSID']).")  and   CID IS  NULL )" ;
+                WHERE (DSID in (".implode(",",$_POST['DSID']).")  $Refuse )" ;
                 $WithOutCID=    DB::select($SQL);
-
+                
                 if(empty($WithOutCID)){
                     $SQL="UPDATE DocumentServes SET 
                                 SDate =  '" . $_POST["SDate"] . "' 
-                                WHERE DSID in (".implode(",",$_POST['DSID']).") " ;
+                          WHERE (DSID in (".implode(",",$_POST['DSID']).") $Accepted  )" ;
                                 
                     DB::update($SQL);
 
@@ -177,7 +186,7 @@ class ActionDocumentServesController extends Controller
                 }else{
                     $SQL="UPDATE DocumentServes SET 
                                 SDate =  '" . $_POST["SDate"] . "' 
-                           WHERE (DSID in (".implode(",",$_POST['DSID']).") and CID IS NOT NULL )" ;
+                           WHERE (DSID in (".implode(",",$_POST['DSID']).") $Accepted )" ;
                                 
                     DB::update($SQL);
                     
