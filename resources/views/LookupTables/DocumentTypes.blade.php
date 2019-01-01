@@ -10,7 +10,7 @@
 $(function () {
 
         $('#jtableContainer').jtable({
-            title: '<i class="fa fa-file-text  " style="color: orange;" aria-hidden="true"></i>	 @lang("messages.DocumentTypes")',
+            title: '<i class="fa fa-file-text  " style="color: orange;" aria-hidden="true"></i>	 @lang("messages.LookupTables.DocumentTypes")',
             paging: true,
             pageSize: 10,
             sorting: true,

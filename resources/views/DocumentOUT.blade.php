@@ -7,7 +7,7 @@
 
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label>@lang("messages.Serves") </label>
+				<label>@lang("messages.LookupTables.Serves") </label>
 				<select class=" form-control " id="selectServes" name="serves">
 					<option  selected=selected value> @lang("messages.SelectServes") </option>
 				</select>

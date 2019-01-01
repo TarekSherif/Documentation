@@ -26,7 +26,7 @@
 				</div>
 				<div class="col-xs-2">
 					<div class="form-group ">
-						<label>@lang("messages.Branchs")  </label>
+						<label>@lang("messages.LookupTables.Branchs")  </label>
 						<h5 id="lblBranchs"></h5>
 					</div>
 				</div>
@@ -238,7 +238,7 @@ function LoadOrderDocuments(OrderID) {
 								$('#jtableContainer').jtable('openChildTable',
 										$img.closest('tr'),
 										{
-											title:'<i class="fa  fa-cogs  fa-fw  " style="color: #b90606;" aria-hidden="true"></i>-  @lang("messages.Serves")',
+											title:'<i class="fa  fa-cogs  fa-fw  " style="color: #b90606;" aria-hidden="true"></i>-  @lang("messages.LookupTables.Serves")',
 											defaultSorting:"SOrder ASC",
 											actions: {
 												listAction:   '{{url("/")}}/api/ListOfDocumentServes/'+DocumentData.record.DID+'?_token={{ csrf_token() }}',
@@ -272,7 +272,7 @@ function LoadOrderDocuments(OrderID) {
 														}  
 												},
 												SID:{
-													title:  ' @lang("messages.Serves")',
+													title:  ' @lang("messages.LookupTables.Serves")',
 											
 													inputClass:"validate[required] form-control",
 													 options: '{{url("/")}}/api/ServesListoptions?_token={{ csrf_token() }}'
@@ -416,7 +416,7 @@ function LoadOrderDocuments(OrderID) {
 						
 					},
 					Serves: {
-						title:  '@lang("messages.Serves")',
+						title:  '@lang("messages.LookupTables.Serves")',
 						list:false,
 						edit:false,
 						options: '{{url("/")}}/api/ServesListoptions?_token={{ csrf_token() }}'
@@ -447,7 +447,7 @@ function LoadOrderDocuments(OrderID) {
 					data.form.find('select[name=Serves]')
 					.attr('multiple','multiple')
 					.multiselect({
-						placeholder: '@lang("messages.Serves")',
+						placeholder: '@lang("messages.LookupTables.Serves")',
 						search: true,
 						selectAll: true
 					});

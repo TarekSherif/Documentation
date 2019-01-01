@@ -72,7 +72,7 @@ $(function () {
                     options: '{{url("/")}}/api/RoleListoptions?_token={{ csrf_token() }}'
                 },
                 BID:{
-                    title:  '@lang("messages.Branchs")',
+                    title:  '@lang("messages.LookupTables.Branchs")',
                     inputClass:"validate[required] form-control",
                     options: '{{url("/")}}/api/BranchListoptions?_token={{ csrf_token() }}'
                 },

@@ -29,7 +29,7 @@
             </label>
                 </div>
                 <div class="form-group ">
-                    <label>@lang("messages.Branchs") </label>
+                    <label>@lang("messages.LookupTables.Branchs") </label>
                     <select class=" form-control " disabled id="selectBranch" name="Branch">
                         
                         @foreach ($Branches as $Branch)

@@ -47,7 +47,7 @@ $(function () {
 								$('#jtableContainer').jtable('openChildTable',
 										$img.closest('tr'),
 										{
-											title:'<i class="fa fa-lock  fa-fw  " style="color: #b90606;" aria-hidden="true"></i>-    @lang("messages.Permission")',
+											title:'<i class="fa fa-lock  fa-fw  " style="color: #b90606;" aria-hidden="true"></i>-    @lang("messages.LookupTables.Permission")',
 											defaultSorting:"SOrder ASC",
 											actions: {
 												listAction:   '{{url("/")}}/api/ListOfViewRolePermissions/'+RoleData.record.RID+'?_token={{ csrf_token() }}',

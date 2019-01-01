@@ -9,7 +9,7 @@
         
         
                 $('#jtableContainer').jtable({
-                    title: '<i class="fa fa-group  " style="color: orange;" aria-hidden="true"></i>  @lang("messages.Branchs")',
+                    title: '<i class="fa fa-group  " style="color: orange;" aria-hidden="true"></i>  @lang("messages.LookupTables.Branchs")',
                     paging: true,
                     pageSize: 10,
                     sorting: true,
@@ -43,13 +43,13 @@
                         BName: {
                         
                             create:true,
-                            title: '@lang("messages.Branchs")',
+                            title: '@lang("messages.LookupTables.Branchs")',
                             visibility :'fixed',
                             input: function (data) {
                                     if (data.record) {
-                                        return '<input type="text"  placeholder="@lang("messages.Branchs")"   class=" form-control validate[required]"   autocomplete="off"   name="BName"   value="' + data.record.BName + '" />';
+                                        return '<input type="text"  placeholder="@lang("messages.LookupTables.Branchs")"   class=" form-control validate[required]"   autocomplete="off"   name="BName"   value="' + data.record.BName + '" />';
                                     } else {
-                                        return '<input type="text"  placeholder="@lang("messages.Branchs")"     class="form-control validate[required]"  autocomplete="off"   name="BName"     />';
+                                        return '<input type="text"  placeholder="@lang("messages.LookupTables.Branchs")"     class="form-control validate[required]"  autocomplete="off"   name="BName"     />';
                                     }
                                 }  
                             },

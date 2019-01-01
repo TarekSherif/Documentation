@@ -9,7 +9,7 @@
 
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label>@lang("messages.Company") </label>
+				<label>@lang("messages.LookupTables.Company") </label>
 				<select class=" form-control " id="selectCompany"  >
 						
 				</select>

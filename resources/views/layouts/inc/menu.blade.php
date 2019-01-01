@@ -45,7 +45,7 @@
           <thead>
             <tr>
               <th>
-                @lang("messages.Serves")
+                @lang("messages.LookupTables.Serves")
               </th>
               <th>
                 <i class="fa fa-arrow-circle-up " aria-hidden="true"></i>

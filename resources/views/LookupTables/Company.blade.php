@@ -9,7 +9,7 @@
 $(function () {
 
         $('#jtableContainer').jtable({
-            title: '<i class="fa fa-file-text  " style="color: orange;" aria-hidden="true"></i>	 @lang("messages.Company")',
+            title: '<i class="fa fa-file-text  " style="color: orange;" aria-hidden="true"></i>	 @lang("messages.LookupTables.Company")',
             paging: true,
             pageSize: 10,
             sorting: true,
@@ -64,7 +64,7 @@ $(function () {
 					},
 
                 CName: {
-                    title: '@lang("messages.Company")',
+                    title: '@lang("messages.LookupTables.Company")',
 					inputClass:"form-control validate[required]"
 					
 				},

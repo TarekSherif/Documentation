@@ -9,7 +9,7 @@
 
 		<div class="col-xs-5">
 			<div class="form-group ">
-				<label>@lang("messages.Serves") </label>
+				<label>@lang("messages.LookupTables.Serves") </label>
 				<select class=" form-control " id="selectServes" name="serves">
 				
 				</select>
@@ -96,7 +96,7 @@
                     options: { '0': '@lang("messages.Normal")', '1': '@lang("messages.Expedited")' }
 				},
 				CID: {
-						title:  '@lang("messages.Company")',
+						title:  '@lang("messages.LookupTables.Company")',
 						options: '{{url("/")}}/api/CompanyListoptions?_token={{ csrf_token() }}'
 							},
 

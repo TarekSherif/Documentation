@@ -74,7 +74,7 @@ http://127.0.0.1:8000/Order/create
                 <a href="{{url('/')}}/CompanyReport" >
                         <i class=" fa fa-print sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">
-                                @lang('messages.CompanyReport')
+                                @lang('messages.LookupTables.CompanyReport')
                         </span>
                     </a>
             </li>
