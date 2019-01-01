@@ -4,7 +4,7 @@
 
 
 
-<form action='{{url("/ ")}}/api/SaveOrder' id="frmOrder" method="post" novalidate >
+<form id="frmOrder" method="post" novalidate >
 
 
 	<fieldset>
@@ -154,7 +154,7 @@
 		
 				$('#collapseDocuments').collapse("toggle");
 
-				LoadOrderDocuments(		{{$OrderID}});
+				LoadOrderDocuments(	{{$OrderID}});
 			
 				LoadOrder(Record) ;
 				
@@ -171,7 +171,7 @@
 		else
 		{
 			$phone.removeClass(" is-invalid ");
-			var apiPath="{{url("/")}}/api/SaveOrder?_token={{ csrf_token() }}";
+			var apiPath="{{url("/")}}/api/UpdateOrder?_token={{ csrf_token() }}";
 			var formdata=$("#frmOrder").serialize();
 				
 			$.post(apiPath,formdata,function(data) {
@@ -293,8 +293,7 @@ function LoadOrderDocuments(OrderID) {
 												},
 												Cost: {
 													title:  ' @lang("messages.Cost")',
-													visibility: 'visible',
-													list:false,
+													visibility: 'hidden',
 													edit: false,
 													input: function (data) {
 															if (data.record) {
@@ -378,13 +377,12 @@ function LoadOrderDocuments(OrderID) {
 											formCreated: function (event, data) {
 												
 												// console.log(data.row);
-												 data.form.find("[name='SID']").on('change',function(){
+												//  data.form.find("[name='SID']").on('change',function(){
 
+												// 	data.form.find("input[name='price']")
+												// 	data.form.find("input[name='paid']")
 
-													// data.form.find("input[name='price']")
-													// data.form.find("input[name='paid']")
-
-												 });
+												//  });
 												data.form.validationEngine('attach'+promptPosition);
 											},
 											//Validate form when it is being submitted

@@ -9,16 +9,20 @@ return [
     'Order.edit' => 'الطلب',
     'Order.Create'=>' الطلب',
     'Settings'=>'الاعدادات',
-    'Branchs'=>'الفروع',
-    'users'=>'المستخدمين',
-    'Serves'=>'الخدمات',
-    'DocumentTypes'=>'نوع المستند',
+    // LookupTables
+    'LookupTables.Company'=>' الشركات',
+    'LookupTables.Branchs'=>'الفروع',
+    'LookupTables.users'=>'المستخدمين',
+    'LookupTables.Serves'=>'الخدمات',
+    'LookupTables.DocumentTypes'=>'نوع المستند',
+    'LookupTables.Permission'=>'الصلاحيات',
+
     'welcome'=>'الصفحة الرئيسية',
     'login'=>'تسجيل  دخول',
     'register'=>'تسجيل جديد',
     'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
-    'Company'=>' الشركات',
+  
     'CompanyReport'=>'تقرير  دخول القنصلية',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
@@ -80,7 +84,7 @@ return [
     "tipExcel"=>"انقر هنا لتصدير  الى جدول اكسيل",
     
 
-    'Permission'=>'الصلاحيات',
+   
     'Allow'=>'السماح',
     'Prevention'=>'المنع',
     'ShowData'=>'عرض البيانات',

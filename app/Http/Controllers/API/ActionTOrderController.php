@@ -50,27 +50,7 @@ class ActionTOrderController extends Controller
              }
              return response()->json($jTableResult);
              }
-       public function ListOfOrders()
-       {
-         $jTableResult =  array();
-       
-             try
-             {
-                 $SQL ="SELECT * FROM TOrder";
-                 $Data= DB::select($SQL);
-                 $jTableResult['Result'] = "OK";
-                 $jTableResult['Records'] =$Data;
-                
-             }
-             catch(Exception $ex)
-             {
-                 //Return error Message
-                 $jTableResult['Result'] = "ERROR";
-                 $jTableResult['Message'] = $ex->getMessage();
-                
-             }
-             return response()->json($jTableResult);
-             }
+      
              public function ListOfACOnlinePayment()
              {
                $Result =  array();
@@ -146,95 +126,62 @@ class ActionTOrderController extends Controller
              }
            
 
-          private function insertSQL(){
-            $price=(isset($_POST["price"])?$_POST["price"]:"0" );
-            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
-            $SQL="INSERT INTO TOrder( phone,address,Otherphone,price,paid ,createby,BID) 
-            VALUES( '" . $_POST["phone"] . "','" . $_POST["address"] . "','" . $_POST["Otherphone"] . "'," . $price  . "," . $paid . "," .  $_POST["createby"]  . "," .  $_POST["BID"]  . ");";
-            DB::insert( $SQL);
-         }
-         private function updateSQL(){
-            $price=(isset($_POST["price"])?$_POST["price"]:"0" );
-            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
-
-            $SQL=	"UPDATE TOrder SET
-                    phone = '" . $_POST["phone"] . "',
-                    address='" . $_POST["address"] . "',
-                    Otherphone = '" . $_POST["Otherphone"] . "',
-                    price=" .  $price . ",
-                    paid = " . $paid . "
-                    WHERE OrderID = " . $_POST["OrderID"] . ";";
-            
-          DB::update($SQL);
-         }
-     //  SaveOrder
   
-     public function   SaveOrder()
-     {
-         
-       $jTableResult =  array();
-               try
-               {
-               
-                      if($_POST["OrderID"]==-1)
-                      {
-                        self::insertSQL();
-                         $SQL ="SELECT 
-                                   `TOrder`.`OrderID`,
-                                   `TOrder`.`phone`,
-                                   `TOrder`.`address`,
-                                   `TOrder`.`Otherphone`,
-                                   `TOrder`.`price`,
-                                   `TOrder`.`paid`,
-                                   `TOrder`.`createby`,
-                                   `TOrder`.`created_at`,
-                                   `TOrder`.`EDate`,
-                                   `Branch`.`BName`,
-                                   `users`.`name`
-                               FROM TOrder 
-                               JOIN users on users.id= TOrder.createby
-                               JOIN Branch on Branch.BID= TOrder.BID 
-                               where  `TOrder`.`OrderID` = LAST_INSERT_ID();";
-                      }else
-                      {
-                        self::updateSQL();
-                           //Update record in database
-                        $SQL ="SELECT 
-                                `TOrder`.`OrderID`,
-                                `TOrder`.`phone`,
-                                `TOrder`.`address`,
-                                `TOrder`.`Otherphone`,
-                                `TOrder`.`price`,
-                                `TOrder`.`paid`,
-                                `TOrder`.`createby`,
-                                `TOrder`.`created_at`,
-                                `TOrder`.`EDate`,
-                                `Branch`.`BName`,
-                                `users`.`name`
-                            FROM TOrder 
-                            JOIN users on users.id= TOrder.createby
-                            JOIN Branch on Branch.BID= TOrder.BID 
-                            where  `TOrder`.`OrderID` = " . $_POST["OrderID"] ;
-                      }
-                        
-                       $Data= DB::select($SQL);
-                       $jTableResult['Result'] = "OK";
-                       $jTableResult['Record'] =$Data[0];
-                     
-                       
-               }
-               catch(Exception $ex)
-               {
-                   //Return error Message
-                   
-                   $jTableResult['Result'] = "ERROR";
-                   $jTableResult['Message'] = $ex->getMessage();
-                 
-               }
-               return response()->json($jTableResult);
+  
+     
+           public function  IsOrderLocked(){
+            $jTableResult =  array();
+        
+            try
+            {
+
+                $SQL="SELECT Locked FROM TOrder 
+                      WHERE OrderID = " . $_POST["OrderID"];
+                
+                $Data=DB::select($SQL);
+
+                if(!empty($Data)){
+                    $jTableResult['IsLocked']=$Data[0]->Locked;
+                }
+
+            }
+            catch(Exception $ex)
+            {
+                //Return error Message
+                
+                $jTableResult['Result'] = "ERROR";
+                $jTableResult['Message'] = $ex->getMessage();
+            }
+            return response()->json($jTableResult);
            }
-   
-   
+           public function  IsOrderFinish(){
+            $jTableResult =  array();
+        
+            try
+            {
+
+                //Update record in database
+                $SQL="UPDATE TOrder SET
+                        Locked = true 
+                      WHERE OrderID = " . $_POST["OrderID"];
+                
+                DB::update($SQL);
+
+                //Return result to jTable
+                
+                $jTableResult['Result'] = "OK";
+
+                
+            }
+            catch(Exception $ex)
+            {
+                //Return error Message
+                
+                $jTableResult['Result'] = "ERROR";
+                $jTableResult['Message'] = $ex->getMessage();
+            }
+            return response()->json($jTableResult);
+           }
            public function UpdateTOrderLocked(){
             $jTableResult =  array();
         
@@ -265,85 +212,41 @@ class ActionTOrderController extends Controller
         
         }
 
-       public function CreateOrder()
-       {
-           
-         $jTableResult =  array();
-                 try
-                 {
-                         //Insert record into database
-                         self::insertSQL();
-                         //Get last inserted record (to return to jTable)
-                        
-                         $SQL ="SELECT * FROM TOrder WHERE OrderID = LAST_INSERT_ID();";
-                         $Data= DB::select($SQL);
-                         $jTableResult['Result'] = "OK";
-                         $jTableResult['Record'] =$Data[0];
-                       
-                         
-                 }
-                 catch(Exception $ex)
-                 {
-                     //Return error Message
-                     
-                     $jTableResult['Result'] = "ERROR";
-                     $jTableResult['Message'] = $ex->getMessage();
-                   
-                 }
-                 return response()->json($jTableResult);
-             }
-     
-     
-             public function UpdateOrder()
-             {
-                 $jTableResult =  array();
-             
-                     try
-                     {
-                    
-                        //   Oname = '" . $_POST["Oname"] . "',
-                        // Sdate = '" . $_POST["Sdate"] . "',
-                        // Edate='" . $_POST["Edate"] . "'
-                         //Update record in database
-                         self::updateSQL();
-      
-                         //Return result to jTable
-                         
-                         $jTableResult['Result'] = "OK";
+   
+    public function UpdateOrder()
+    {
+        $jTableResult =  array();
+        
+        try
+        {
+    
+            $price=(isset($_POST["price"])?$_POST["price"]:"0" );
+            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
+
+            $SQL=	"UPDATE TOrder SET
+                    phone = '" . $_POST["phone"] . "',
+                    address='" . $_POST["address"] . "',
+                    Otherphone = '" . $_POST["Otherphone"] . "',
+                    price=" .  $price . ",
+                    paid = " . $paid . "
+                    WHERE OrderID = " . $_POST["OrderID"] . ";";
+            
+            DB::update($SQL);
+
          
-                        
-                     }
-                     catch(Exception $ex)
-                     {
-                         //Return error Message
-                         
-                         $jTableResult['Result'] = "ERROR";
-                         $jTableResult['Message'] = $ex->getMessage();
-                     }
-                     return response()->json($jTableResult);
-           
-             }
-     
-                 //Deleting a record (deleteAction)
-                   public function DeleteOrder()
-                   {
-                     $jTableResult =  array();
-                         try
-                         {
-                                 //Delete from database
-                                 $SQL="DELETE FROM TOrder WHERE OrderID = " . $_POST["OrderID"] . ";";
-                                 DB::delete($SQL);
-                                 //Return result to jTable
-                                 $jTableResult['Result'] = "OK";
-                              
-                         }
-                         catch(Exception $ex)
-                         {
-                             //Return error Message
-                             $jTableResult['Result'] = "ERROR";
-                             $jTableResult['Message'] = $ex->getMessage();
-                        }
-                     return response()->json($jTableResult);
-             }
-     }
+        
+        }
+        catch(Exception $ex)
+        {
+            //Return error Message
+            
+            $jTableResult['Result'] = "ERROR";
+            $jTableResult['Message'] = $ex->getMessage();
+        }
+        return response()->json(self::GetOrderByOrderID($_POST["OrderID"]));
+    
+    }
+
+                
+ }
      

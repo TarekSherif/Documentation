@@ -173,8 +173,8 @@
 					
 						$selectServes.change();
 						ReloadServesNotifications();
-						if( data.Result==="Error"){
-							alert("برجاء  ادخال الشركه");
+						if( data.Result!=="OK"){
+							alert(data.Result);
 						}
 						
 					}).fail(function() {

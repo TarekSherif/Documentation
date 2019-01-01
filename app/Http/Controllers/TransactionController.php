@@ -27,14 +27,6 @@ class TransactionController extends Controller
         return view('welcome');
     }
 
-
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function Order($OrderID=-1)
     {
         $Data = array('OrderID' => $OrderID );
@@ -49,8 +41,6 @@ class TransactionController extends Controller
     }
     public function DocumentOUT($SID=-1)
     {
-       
-
         $Data= array('SID' => $SID );
         return view('DocumentOUT',$Data);
     }

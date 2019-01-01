@@ -160,9 +160,15 @@ class ActionDocumentServesController extends Controller
             //$_POST['SID']
             $SID=$_POST['SID'];
             if( $SID==4){
-                $Refuse=" and   CID IS  NULL";
-                $Accepted=" and CID IS NOT NULL";
-            }else {
+                $Refuse=" and  (  CID IS  NULL or INCode IS  NULL) ";
+                $Accepted=" and CID IS NOT NULL  and  INCode IS NOT  NULL ";
+                $ErrorMassage="يجب اختيار الشركة وادخال رقم انجاز";
+            }elseif($SID==3){
+                $Refuse=" and  CID IS  NULL  ";
+                $Accepted=" and CID IS NOT NULL  ";
+                $ErrorMassage=" يجب اختيار الشركة";
+            }
+            else {
                 $Refuse=" and   0 ";
                 $Accepted="";
             }
@@ -190,7 +196,7 @@ class ActionDocumentServesController extends Controller
                                 
                     DB::update($SQL);
                     
-                    $jTableResult['Result'] = "Error";
+                    $jTableResult['Result'] = $ErrorMassage;
                 }
                 
                             

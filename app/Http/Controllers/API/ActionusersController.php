@@ -67,14 +67,14 @@ class ActionusersController extends Controller
               
                       try
                       {
-      
-                          //Update record in database
-                          //  password= '" . Hash::make($_POST["password"] ) . "',
+                        $password=$_POST["password"];
+                        $updatePassword=($password=="********")?'':",password= '" . Hash::make($password) . "'";
                           $SQL="UPDATE users SET
                              name = '" . $_POST["name"] . "',
                              email= '" . $_POST["email"] . "',
                              role= '" . $_POST["role"] . "',
                              BID= '" . $_POST["BID"] . "' 
+                             $updatePassword
                             WHERE id = " . $_POST["id"];
                          DB::update($SQL);
        

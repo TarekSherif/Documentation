@@ -9,16 +9,20 @@ return [
     'Order.edit' => ' Order',
     'Order.Create'=>' Order',
     'Settings'=>'Settings',
-    'Branchs'=>'Branchs',
-    'users'=>'Users',
-    'Serves'=>'Serves',
-    'DocumentTypes'=>'DocumentTypes',
+    //LookupTables
+    'LookupTables.users'=>'Users',
+    'LookupTables.Serves'=>'Serves',
+    'LookupTables.Branchs'=>'Branchs',
+    'LookupTables.Company'=>'Companies',
+    'LookupTables.DocumentTypes'=>'DocumentTypes',
+    
+
     'welcome'=>'index',
     'login'=>'Login',
     'register'=>'Register',
     'DocumentOUT'=>'OUT',
     'DocumentIN'=>'IN',
-    'Company'=>'Companies',
+    
     'CompanyReport'=>'CompanyReport',
     'OnlinePayment'=>'OnlinePayment',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
