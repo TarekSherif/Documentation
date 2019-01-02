@@ -291,7 +291,7 @@ class ActionDocumentServesController extends Controller
             try
             {
                 $Successfully=$_POST["Successfully"];
-                
+                $jTableResult['Result'] = "OK";
       
                 if($Successfully=="true"){
                         
@@ -340,9 +340,8 @@ class ActionDocumentServesController extends Controller
                 }
                 //Return result to jTable
                 
-                $jTableResult['Result'] = "OK";
+              
 
-                $jTableResult['SQL'] = $SQL;
             }
             catch(Exception $ex)
             {
