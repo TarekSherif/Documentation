@@ -3,7 +3,7 @@
 {
       $RID=(Auth::check())?Auth::user()->role:0;
       $roleMenu = array();
-       $SQL ="SELECT `ViewName`.`ViewName` ,`ViewName`.`ViewIcon`
+       $SQL ="SELECT `ViewName`.`ViewName` ,`ViewName`.`ViewIcon`,`ViewName`.`ViewPath`
               FROM `ViewName`    join `ViewRolePermission` 
               on `ViewName`.`ViewName`=`ViewRolePermission`.`ViewName`and 
               `ViewRolePermission`.`RID`=$RID and
@@ -32,9 +32,14 @@ function PagePermission ($viewName = "")
               'DataToExcel'=> false,
               'DataToPrint'=> false );
 
-    $SQL ="SELECT  `ShowData`, `InsertData`, `UpdateData`, `DeleteData` , `DataToExcel`, `DataToPrint` 
-           FROM `ViewRolePermission`
-           WHERE `ViewName`='$viewName' and  `RID`=$RID";
+    $SQL ="SELECT    `ViewRolePermission`.`ShowData`,
+                     `ViewRolePermission`.`InsertData`,
+                     `ViewRolePermission`.`UpdateData`,
+                     `ViewRolePermission`.`DeleteData` ,
+                     `ViewRolePermission`.`DataToExcel`,
+                     `ViewRolePermission`.`DataToPrint` 
+             FROM `ViewName`    join `ViewRolePermission` 
+              on `ViewName`.`ViewName`=`ViewRolePermission`.`ViewName`and  `ViewName`.`ViewPath`='$viewName' and  `RID`=$RID";
     $Data= DB::select($SQL);
     if(!empty($Data) &&  $RID!=0 )
     {

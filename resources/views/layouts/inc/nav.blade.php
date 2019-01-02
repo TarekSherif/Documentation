@@ -70,11 +70,11 @@ http://127.0.0.1:8000/Order/create
                         </span>
                     </a>
             </li>
-            <li class="{{ $view_name == "CompanyReport" ? "active" : "" }} ">
+            <li class="{{ $view_name == "Reports.CompanyReport" ? "active" : "" }} ">
                 <a href="{{url('/')}}/CompanyReport" >
                         <i class=" fa fa-print sidebar-nav-icon"></i>
                         <span class="sidebar-nav-mini-hide">
-                                @lang('messages.CompanyReport')
+                                @lang('messages.Reports.CompanyReport')
                         </span>
                     </a>
             </li>
@@ -91,10 +91,10 @@ http://127.0.0.1:8000/Order/create
                 <ul class="treeview-menu">
 
                     @foreach ($RoleMenu as $item)
-                       <li class="{{ $view_name == $item["ViewName"]  ? "active" : "" }}">
+                       <li class="{{ $view_name == $item["ViewPath"]  ? "active" : "" }}">
                             <a href="{{url('/')}}/{{$item["ViewName"]}}" >
                                     <i class="{{$item["ViewIcon"]}}"  aria-hidden="true"></i>
-                                    @lang('messages.'.$item["ViewName"])
+                                    @lang('messages.'.$item["ViewPath"])
                             </a>
                         </li>
                     @endforeach

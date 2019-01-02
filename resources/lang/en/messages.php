@@ -1,7 +1,7 @@
 <?php
 
 return [
-   'Pname'=>'Alhendy',
+   'Pname'=>'Alhendy  Group ',
    'Mname'=>'Documentation',
     //menu
     'Documents' => 'Documents',
@@ -23,7 +23,7 @@ return [
     'DocumentOUT'=>'OUT',
     'DocumentIN'=>'IN',
     
-    'CompanyReport'=>'CompanyReport',
+    'Reports.CompanyReport'=>'CompanyReport',
     'OnlinePayment'=>'OnlinePayment',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",

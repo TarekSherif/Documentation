@@ -50,7 +50,7 @@ class TransactionController extends Controller
     {
         $SQL="select     `CID`  ,  `CName` from Company order by   `SOrder` ;";
         $Data = array('Company' => DB::select( $SQL) );
-        return view('CompanyReport', $Data);
+        return view('Reports.CompanyReport', $Data);
     }
     
 

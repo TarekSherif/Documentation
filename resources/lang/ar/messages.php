@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Pname'=>'الفهد الهندي',
+    'Pname'=>'مجموعة شركات الهندي',
     'Mname'=>'توثيق',
     //menu Pages
     'Documents' => ' المستندات',
@@ -23,7 +23,7 @@ return [
     'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
   
-    'CompanyReport'=>'تقرير  دخول القنصلية',
+    'Reports.CompanyReport'=>'تقرير  دخول القنصلية',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",

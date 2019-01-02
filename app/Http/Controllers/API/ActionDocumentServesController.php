@@ -179,25 +179,14 @@ class ActionDocumentServesController extends Controller
                 WHERE (DSID in (".implode(",",$_POST['DSID']).")  $Refuse )" ;
                 $WithOutCID=    DB::select($SQL);
                 
-                if(empty($WithOutCID)){
-                    $SQL="UPDATE DocumentServes SET 
-                                SDate =  '" . $_POST["SDate"] . "' 
-                          WHERE (DSID in (".implode(",",$_POST['DSID']).") $Accepted  )" ;
-                                
-                    DB::update($SQL);
+                $SQL="UPDATE DocumentServes SET 
+                SDate =  '" . $_POST["SDate"] . "' 
+                WHERE (DSID in (".implode(",",$_POST['DSID']).") $Accepted  )" ;
+                        
+                DB::update($SQL);
 
-                    //Return result to jTable
-                    
-                    $jTableResult['Result'] = "OK";
-                }else{
-                    $SQL="UPDATE DocumentServes SET 
-                                SDate =  '" . $_POST["SDate"] . "' 
-                           WHERE (DSID in (".implode(",",$_POST['DSID']).") $Accepted )" ;
-                                
-                    DB::update($SQL);
-                    
-                    $jTableResult['Result'] = $ErrorMassage;
-                }
+                $jTableResult['Result']=(empty($WithOutCID))? "OK": $ErrorMassage;
+                
                 
                             
 
@@ -302,17 +291,18 @@ class ActionDocumentServesController extends Controller
             try
             {
                 $Successfully=$_POST["Successfully"];
-                $SQL="UPDATE DocumentServes SET 
+                
+      
+                if($Successfully=="true"){
+                        
+                    $SQL="UPDATE DocumentServes SET 
                     Successfully= " . $Successfully . " ,
                     EDate =  '" . $_POST["EDate"] . "',
                     currentServe=0
                     WHERE DSID in (".implode(",",$_POST['DSID']).") " ;
-                            
-                
-                DB::update($SQL);
+                                        
+                  DB::update($SQL);
 
-
-                if($Successfully=="true"){
                     $SQL="select `DID` , `SOrder`  from DocumentServes 
                     WHERE DSID in (".implode(",",$_POST['DSID']).") " ;
                     $Rows= DB::select($SQL);
@@ -326,6 +316,27 @@ class ActionDocumentServesController extends Controller
 
                     }
 
+                }else {
+                    $Refuse=" and  (  Notes IS  NULL) ";
+                    $Accepted=" and Notes IS NOT  NULL ";
+                    $ErrorMassage="يجب  تسجيل  سبب الرفض فى الملاحظات";
+
+                    $SQL="select DSID from  DocumentServes 
+                    WHERE (DSID in (".implode(",",$_POST['DSID']).")  $Refuse )" ;
+                    $WithOutNotes=    DB::select($SQL);
+                    
+                    $SQL="UPDATE DocumentServes SET 
+                        Successfully= " . $Successfully . " ,
+                        EDate =  '" . $_POST["EDate"] . "',
+                        currentServe=0
+                    WHERE ( DSID in (".implode(",",$_POST['DSID']).") $Accepted  )" ;
+
+                    DB::update($SQL);
+
+                  
+                    $jTableResult['Result']=(empty($WithOutNotes))? "OK": $ErrorMassage;
+                
+              
                 }
                 //Return result to jTable
                 
