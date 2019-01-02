@@ -171,6 +171,10 @@ $selectServes.on('change', function(e) {
 						// console.log();
 							
 			$.post('{{url("/")}}/api/UpdateDocumentOUTService?_token={{ csrf_token() }}',DocumentsOUT,function (data) {
+				if(data.Result!=="OK")
+				{
+					alert(data.Result);
+				}
 				$selectServes.change();
 				ReloadServesNotifications();
 			}).fail(function() {
