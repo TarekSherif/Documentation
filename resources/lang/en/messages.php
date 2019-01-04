@@ -139,6 +139,10 @@ return [
 
       'createby'=>'createby' ,
 
+      // Repot
+    'From'=>'From' ,
+    'To'=>'To' ,
+
       'Save'=>'Save' ,
       'select'=>'Select ',
 

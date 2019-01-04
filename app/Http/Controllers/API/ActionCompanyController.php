@@ -17,7 +17,9 @@ class ActionCompanyController extends Controller
         $SQL=" SELECT '1' as OID, Document.DOName,DocumentType.DName,DocumentServes.INCode,DocumentServes.DSID  from Document
         JOIN DocumentType on DocumentType.DTypeID=Document.DTypeID 
         JOIN DocumentServes on DocumentServes.DID=Document.DID
-        WHERE DocumentServes.CID='". $_POST["CID"]."' and DocumentServes.SDate='" .$_POST["SDate"]."'";
+        WHERE DocumentServes.CID='". $_POST["CID"]."' 
+        and DocumentServes.SDate='" .$_POST["SDate"]."' 
+        and DocumentServes.SID='" .$_POST["SID"]."'";
           $Data= DB::select($SQL);
           if(!empty($Data))
           {

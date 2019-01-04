@@ -6,17 +6,11 @@
                
 <div class="container">
 	<div class="row">
-
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label>@lang("messages.LookupTables.Serves") </label>
-				<select class=" form-control " id="selectServes" name="serves">
-				
-				</select>
-
-			</div>
-		</div>
-		<div class="col-xs-5">
+		<div class="col-xs-2"></div>
+		<div class="col-xs-3">
+			<h3>{{$Serves}}</h3>
+		</div >
+		<div class="col-xs-3">
 			<form action="post" id="frmDocumentIN">
 				<fieldset>
 					<label> @lang('messages.Sdate') </label>
@@ -98,9 +92,10 @@
 				CID: {
 						title:  '@lang("messages.LookupTables.Company")',
 						options: '{{url("/")}}/api/CompanyListoptions?_token={{ csrf_token() }}'
-							},
+							}
+			@if($SID=='4')
 
-				INCode: {
+				,INCode: {
 						title:'@lang("messages.INCode")',
 						visibility: 'visible',
 						width: '10%',
@@ -112,45 +107,34 @@
 							}
 						}  
 				}
+			@endif
 			}
 			
 			@include('layouts.inc.JtableEvent')
 	
 			});
 
-		var $selectServes=$("#selectServes");
+
 		
 	
 		$("#SDate").val( new Date().toJSON().slice(0,10).replace(/-/g,'-'));
 
-		$.post('{{url("/")}}/api/ListOfServes?_token={{ csrf_token() }}',function (data) {
-		// var index=0;+((index++==0)?"selected=selected ":"")+'
-			data.Records.forEach(Serves => {
-				$selectServes.append(
-					'<option '+(($SID==Serves.SID)?"selected=selected ":"")+' value='+Serves.SID+'>' + Serves.Serves +'</option>'
-				);
-			});
-			
-		});
+	
 
-		$selectServes.on('change', function(e) {
-			e.preventDefault();
-            $('#jtableContainer').jtable('load', {
-                SID: this.value,
-				BID:$("#selectBranch").val()
-            });
-			
-        });
+
 	
         //Load all records when page is first shown
-		var $SID={{$SID}};
-		@if ($SID!=-1)
+
+	
+		function LoadListOfDocumentsNeedin() {
 			$('#jtableContainer').jtable('load', {
-					SID: $SID,
-					BID:$("#selectBranch").val()
-				});
-				$selectServes.val($SID);
-		@endif
+						SID: {{$SID}},
+						BID:$("#selectBranch").val()
+					});
+		}
+			
+		LoadListOfDocumentsNeedin();
+	
 	
 	
 		$("#btnSave").click(function () {
@@ -165,13 +149,13 @@
 					var DocumentsIn={
 						SDate:$("#SDate").val(),
 						DSID:DSIDS,
-						SID:$SID
+						SID:{{$SID}}
 					};
 								// console.log();
 									
 					$.post('{{url("/")}}/api/UpdateDocumentsInService?_token={{ csrf_token() }}',DocumentsIn,function (data) {
 					
-						$selectServes.change();
+						LoadListOfDocumentsNeedin();
 						ReloadServesNotifications();
 						if( data.Result!=="OK"){
 							alert(data.Result);

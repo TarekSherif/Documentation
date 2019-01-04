@@ -4,16 +4,11 @@
 
 <div class="container">
 	<div class="row">
-
-		<div class="col-xs-5">
-			<div class="form-group ">
-				<label>@lang("messages.LookupTables.Serves") </label>
-				<select class=" form-control " id="selectServes" name="serves">
-					<option  selected=selected value> @lang("messages.SelectServes") </option>
-				</select>
-
-			</div>
-		</div>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-3">
+			<h3>{{$Serves}}</h3>
+		</div >
+		
 		<div class="col-xs-5">
 			<form action="post" id="frmDocumentOut">
 				<fieldset>
@@ -122,36 +117,18 @@
 
 			$("#EDate").val( new Date().toJSON().slice(0,10).replace(/-/g,'-'));
 
-		var $selectServes=$("#selectServes");
-
-$.post('{{url("/")}}/api/ListOfServes?_token={{ csrf_token() }}',function (data) {
-
-	data.Records.forEach(Serves => {
-		$selectServes.append(
-			'<option '+(($SID==Serves.SID)?"selected=selected ":"")+' value='+Serves.SID+'>' + Serves.Serves +'</option>'
-		);
-	});
 	
-});
 
-$selectServes.on('change', function(e) {
-	e.preventDefault();
-	$('#jtableContainer').jtable('load', {
-		SID: this.value,
-		BID:$("#selectBranch").val()
-	});
-	
-});
 
-		var $SID={{$SID}};
-		@if ($SID!=-1)
+
+	function LoadListOfDocumentsNeedout() {
 			$('#jtableContainer').jtable('load', {
-					SID: $SID,
-					BID:$("#selectBranch").val()
-				});
-				$selectServes.val($SID);
-		@endif
-	
+				SID:{{$SID}},
+				BID:$("#selectBranch").val()
+			});
+		}
+		LoadListOfDocumentsNeedout() ;
+			
 	//Load student list from server
 	// $('#jtableContainer').jtable('load');
 	function DocumentOUTService(ServesResponse) {
@@ -175,7 +152,7 @@ $selectServes.on('change', function(e) {
 				{
 					alert(data.Result);
 				}
-				$selectServes.change();
+				LoadListOfDocumentsNeedout() ;
 				ReloadServesNotifications();
 			}).fail(function() {
 					alert("fail")

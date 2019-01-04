@@ -205,12 +205,13 @@ class ActionDocumentServesController extends Controller
             
      public function UpdateDocumentsInEnjazID()    {
         $jTableResult =  array();
-    
+        
             try
             {
+                $INCode=(isset( $_POST["INCode"] )?",  INCode =  '" . $_POST["INCode"] . "' ":"");
                 $SQL="UPDATE DocumentServes SET 
-                CID =  '" . $_POST["CID"] . "' , 
-                INCode =  '" . $_POST["INCode"] . "'                
+                CID =  '" . $_POST["CID"] . "'
+                $INCode             
                 WHERE DSID = " . $_POST["DSID"];
                 
                 DB::update($SQL);

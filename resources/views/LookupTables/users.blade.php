@@ -48,7 +48,7 @@ $(function () {
 							if (data.record) {
 								return '<input type="email"  placeholder=" @lang("messages.email")"   class=" form-control validate[required]"   autocomplete="off"   name="email"   value="' + data.record.email + '" />';
 							} else {
-								return '<input type="email"  placeholder=" @lang("messages.email")"     class="form-control validate[required]"  autocomplete="off"   name="email"     />';
+								return '<input type="email"  placeholder=" @lang("messages.email")"     class="form-control validate[required]"  autocomplete="off"   name="email"   value=""   />';
 							}
 						} 
                 },

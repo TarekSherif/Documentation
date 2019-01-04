@@ -7,7 +7,11 @@
 <div class="container">
 	<div class="row">
 
-		<div class="col-xs-5">
+		<div class="col-xs-1"></div >
+		{{-- <div class="col-xs-2">
+			<h3>{{$Serves->Serves}}</h3>
+		</div > --}}
+		<div class="col-xs-3">
 			<div class="form-group ">
 				<label>@lang("messages.LookupTables.Company") </label>
 				<select class=" form-control " id="selectCompany"  >
@@ -16,15 +20,12 @@
 
 			</div>
 		</div>
-		<div class="col-xs-5">
-			<form action="post" id="frmDocumentIN">
-				<fieldset>
+
+		<div class="col-xs-3">
 					<label> @lang('messages.Sdate') </label>
 					<input class=" form-control " type="date" id="SDate"  />
-				</fieldset>
-
-			</form>
 		</div>
+	
 		<div class="col-xs-2">
 			<br>
 			{{-- <a class="btn btn-primary" id="btnSearch">
@@ -115,14 +116,15 @@
 		$("#SDate").val( new Date().toJSON().slice(0,10).replace(/-/g,'-'));
 
 		var Companys=@json($Company);
+	
 		
 		Companys.forEach(Company => {
 				$selectCompany.append(
 					'<option  value='+Company.CID+'>' + Company.CName +'</option>'
 				);
-			
-			
 		});
+
+		
 		CDocument={'CID':'','SDate': ''};
 
 		$('#SDate,#selectCompany').on('change', function(e) {
@@ -135,8 +137,9 @@
 	
 		 function Search () {
 			$('#jtableContainer').jtable('load', {
+				SID:{{$SID}},
                 CID: CDocument.CID,
-				SDate:CDocument.SDate
+				SDate:CDocument.SDate				
              });
 		}
 	

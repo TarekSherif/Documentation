@@ -144,6 +144,12 @@ return [
     'Locked'=>'موقع' , 
     'createby'=>'موقع' ,
 
+    // Repot
+    'From'=>'من' ,
+    'To'=>'الى' ,
+    
     'Save'=>'Save' ,
     'select'=>'اختار  ',
+
+
 ];

@@ -34,22 +34,26 @@ class TransactionController extends Controller
     }
 
    
-    public function DocumentIN($SID=-1)
+    public function DocumentIN($SID)
     {
-        $Data= array('SID' => $SID );
+        $Serves=DB::select("select Serves from Serves where SID = $SID")[0]->Serves;
+        $Data= array('SID' => $SID ,    'Serves' => $Serves);
         return view('DocumentIN',$Data);
     }
-    public function DocumentOUT($SID=-1)
+    public function DocumentOUT($SID)
     {
-        $Data= array('SID' => $SID );
+        $Serves=DB::select("select Serves from Serves where SID = $SID")[0]->Serves;
+        $Data= array('SID' => $SID ,    'Serves' => $Serves);
         return view('DocumentOUT',$Data);
     }
       
  
-    public function CompanyReport()
+    public function CompanyReport($SID)
     {
         $SQL="select     `CID`  ,  `CName` from Company order by   `SOrder` ;";
-        $Data = array('Company' => DB::select( $SQL) );
+        $Data['Company']= DB::select( $SQL) ;
+        $Data ['SID']=$SID;
+
         return view('Reports.CompanyReport', $Data);
     }
     
