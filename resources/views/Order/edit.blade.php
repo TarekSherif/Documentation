@@ -441,16 +441,16 @@ function LoadOrderDocuments(OrderID) {
 							type:"hidden"
 						},
 						NOCopies: {
-									title:  ' @lang("messages.NOCopies")',
-									visibility: 'visible',
-									input: function (data) {
-											if (data.record) {
-												return '<input type="number"  placeholder=" @lang("messages.NOCopies")"   class=" form-control validate[required]"   autocomplete="off"   name="NOCopies"   value="' + data.record.NOCopies + '" />';
-											} else {
-												return '<input type="number"  placeholder=" @lang("messages.NOCopies")"     class="form-control validate[required]"  autocomplete="off"   name="NOCopies" value="1"    />';
-											}
-										}  
-								},										
+							title:  ' @lang("messages.NOCopies")',
+							visibility: 'visible',
+							input: function (data) {
+									if (data.record) {
+										return '<input type="number"  placeholder=" @lang("messages.NOCopies")"   class=" form-control validate[required]"   autocomplete="off"   name="NOCopies"   value="' + data.record.NOCopies + '" />';
+									} else {
+										return '<input type="number"  placeholder=" @lang("messages.NOCopies")"     class="form-control validate[required]"  autocomplete="off"   name="NOCopies" value="1"    />';
+									}
+								}  
+						},										
 					
 				},
 				//Initialize validation logic when a form is created

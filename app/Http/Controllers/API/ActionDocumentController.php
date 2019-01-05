@@ -20,7 +20,8 @@ class ActionDocumentController extends Controller
             `Document`.`OrderID`,
             `Document`.`DTypeID`,
             `Document`.`priority` ,
-            DocumentType.DName
+            `Document`.`NOCopies` ,
+            `DocumentType`.`DName`
             FROM `Document` JOIN DocumentType on DocumentType.DTypeID=Document.DTypeID 
             where  OrderID='" . $_GET["OrderID"] . "'";
             $Data= DB::select($SQL);
