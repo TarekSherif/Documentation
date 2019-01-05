@@ -43,8 +43,8 @@ class ActionDocumentController extends Controller
         try
         {
                 //Insert record into database
-                $SQL="INSERT INTO Document(DOName, OrderID,DTypeID,priority) VALUES
-                ('" .$_POST["DOName"] . "', '" . $_POST["OrderID"] . "','" . $_POST["DTypeID"] . "'," . $_POST["priority"] . ");";
+                $SQL="INSERT INTO Document(DOName, OrderID,DTypeID,priority,NOCopies) VALUES
+                ('" .$_POST["DOName"] . "', '" . $_POST["OrderID"] . "','" . $_POST["DTypeID"] . "'," . $_POST["priority"] . ",'" . $_POST["NOCopies"] . "');";
                 DB::insert( $SQL);
                 //Get last inserted record (to return to jTable)
                 
@@ -105,11 +105,13 @@ class ActionDocumentController extends Controller
         {
             //Update record in database
             $SQL=	"UPDATE Document SET
-                DOName = '" . $_POST["DOName"] . "', 
-                OrderID = '" . $_POST["OrderID"] . "',
-                priority=" . $_POST["priority"] . ",
-                DTypeID='" . $_POST["DTypeID"] . "'
-                WHERE DID = " . $_POST["DID"] . ";";
+                        DOName = '" . $_POST["DOName"] . "', 
+                        OrderID = '" . $_POST["OrderID"] . "',
+                        priority=" . $_POST["priority"] . ",
+                        DTypeID='" . $_POST["DTypeID"] . "',
+                        NOCopies='" . $_POST["NOCopies"] . "'
+                        
+                    WHERE DID = " . $_POST["DID"] . ";";
             DB::update($SQL);
             //Return result to jTable
             $jTableResult['Result'] = "OK";

@@ -61,7 +61,7 @@ return [
     'StateW'=>'pending',
     'ServesH'=>'ServesH',
     'INCode'=>'enjaz ID',
-    
+    'NOCopies'=>'Number of Copies',
     
 
 

@@ -22,7 +22,7 @@ return [
     'register'=>'تسجيل جديد',
     'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
-  
+   
     'Reports.CompanyReport'=>'تقرير  دخول القنصلية',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
@@ -59,7 +59,7 @@ return [
     'StateW'=>'قيد الانتظار  ',
     'INCode'=>'رقم إنجاز',
     'Notes'=>'ملاحظات',
-
+    'NOCopies'=>'عدد النسخ',
     'ServesH'=>'ServesH',
 
 // DocumentOUT
