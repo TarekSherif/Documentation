@@ -22,7 +22,7 @@ Route::resource('OnlinePayment','OnlinePaymentController');
 Route::resource('Order','OrderController');
 // Report
 Route::get('OrderReport/{OrderID}', 'OrderController@OrderReport');
-Route::get('CompanyReport/{SID}', 'TransactionController@CompanyReport');
+Route::get('CompanyReport/{SID}', 'TransactionController@CompanyReport')->where('SID', '(3|4)');
 
 Route::get('DocumentIN/{SID}', 'TransactionController@DocumentIN');
 Route::get('DocumentOUT/{SID}', 'TransactionController@DocumentOUT');

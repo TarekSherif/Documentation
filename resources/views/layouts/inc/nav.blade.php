@@ -70,14 +70,9 @@ http://127.0.0.1:8000/Order/create
                         </span>
                     </a>
             </li>
-            <li class="{{ $view_name == "Reports.CompanyReport" ? "active" : "" }} ">
-                <a href="{{url('/')}}/CompanyReport" >
-                        <i class=" fa fa-print sidebar-nav-icon"></i>
-                        <span class="sidebar-nav-mini-hide">
-                                @lang('messages.Reports.CompanyReport')
-                        </span>
-                    </a>
-            </li>
+
+          
+
             <li class="treeview ">
                 <a href="#">
             <i class="fa fa-cog"></i>
@@ -89,8 +84,7 @@ http://127.0.0.1:8000/Order/create
        
           
                 <ul class="treeview-menu">
-
-                    @foreach ($RoleMenu as $item)
+                    @foreach ($MenuSettings as $item)
                        <li class="{{ $view_name == $item["ViewPath"]  ? "active" : "" }}">
                             <a href="{{url('/')}}/{{$item["ViewName"]}}" >
                                     <i class="{{$item["ViewIcon"]}}"  aria-hidden="true"></i>
@@ -98,9 +92,29 @@ http://127.0.0.1:8000/Order/create
                             </a>
                         </li>
                     @endforeach
-                
+                </ul>
+            </li>
 
 
+            <li class="treeview ">
+                <a href="#">
+            <i class="fa  fa-print"></i>
+            <span> @lang('messages.Reports')</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+       
+          
+                <ul class="treeview-menu">
+                    @foreach ($MenuReports as $item)
+                       <li class="{{ $view_name == $item["ViewPath"]  ? "active" : "" }}">
+                            <a href="{{url('/')}}/{{$item["ViewName"]}}" >
+                                    <i class="{{$item["ViewIcon"]}}"  aria-hidden="true"></i>
+                                    {{$item["ARName"]}}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
 

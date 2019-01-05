@@ -11,7 +11,6 @@
 		<div class="container">
 			<div class="row">
 
-				
 				<div class="col-xs-1">
 						<div class="form-group ">
 							<label>@lang("messages.ID")  </label>
@@ -487,16 +486,17 @@ function LoadOrderDocuments(OrderID) {
 					data.form.validationEngine('hide');
 					data.form.validationEngine('detach');
 					ReloadServesNotifications()
-				},recordAdded: function (event, data){
-					console.log(data);
-					
 				}
-			
 			});
-	 
+
 			//Load student list from server
-			$('#jtableContainer').jtable('load');
-	 
+			$('#jtableContainer').jtable('load', {}, function(data) {
+				$('#AddRecordDialogSaveButton').after('<button type="button" id="ButNext">@lang("messages.Next")</button>');
+				$(document).on('click', '#ButNext', function() {
+					$("#AddRecordDialogSaveButton").trigger('click');
+							
+				});
+			});//end load form
 			
 			
 	

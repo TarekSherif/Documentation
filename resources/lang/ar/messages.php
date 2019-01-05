@@ -9,6 +9,7 @@ return [
     'Order.edit' => 'الطلب',
     'Order.Create'=>' الطلب',
     'Settings'=>'الاعدادات',
+    'Reports'=>'التقارير',
     // LookupTables
     'LookupTables.Company'=>' الشركات',
     'LookupTables.Branchs'=>'الفروع',
@@ -23,7 +24,7 @@ return [
     'DocumentOUT'=>' خروج',
     'DocumentIN'=>'استلام',
    
-    'Reports.CompanyReport'=>'تقرير  دخول القنصلية',
+    'Reports.CompanyReport'=>'تقرير  دخول ',
     'OnlinePayment'=>' دفع الكتروني',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",
@@ -43,6 +44,8 @@ return [
     'delivery'=>"خدمة التوصيل",
     'Dprice'=>'سعر التوصيل',
     'paid'=>' المبلغ المدفوع',
+    'Next'=>'التالي',
+    
   // Document Serves
     'DOName'=>'اسم صاحب المستند',
     'priority'=>'درجة السرعه',

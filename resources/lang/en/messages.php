@@ -9,6 +9,7 @@ return [
     'Order.edit' => ' Order',
     'Order.Create'=>' Order',
     'Settings'=>'Settings',
+    'Reports'=>'Reports',
     //LookupTables
     'LookupTables.users'=>'Users',
     'LookupTables.Serves'=>'Serves',
@@ -23,7 +24,7 @@ return [
     'DocumentOUT'=>'OUT',
     'DocumentIN'=>'IN',
     
-    'Reports.CompanyReport'=>'CompanyReport',
+    'Reports.CompanyReport'=>'Entry Report',
     'OnlinePayment'=>'OnlinePayment',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",
@@ -42,7 +43,7 @@ return [
     'address' =>'address',
     'Otherphone'=>'Other phone',
     'paid'=>'The amount paid',
-
+    'Next'=>'Next',
 
   // Document Serves
   

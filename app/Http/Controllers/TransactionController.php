@@ -52,7 +52,7 @@ class TransactionController extends Controller
     {
         $SQL="select     `CID`  ,  `CName` from Company order by   `SOrder` ;";
         $Data['Company']= DB::select( $SQL) ;
-        $Data ['SID']=$SID;
+        $Data ['Serves']=DB::select("select SID,Serves from Serves where SID = $SID")[0];
 
         return view('Reports.CompanyReport', $Data);
     }

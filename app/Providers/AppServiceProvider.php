@@ -22,11 +22,13 @@ class AppServiceProvider extends ServiceProvider
             }
             
             $jtable=true;
-            $RoleMenu=RoleMenu();
+            $MenuSettings=RoleMenu('Settings');
+            $MenuReports=RoleMenu('Reports');
             $data = array('view_name' => $view_name,
                           'Permission'=>PagePermission($view_name),
                           'jtable'=>  $jtable,
-                          'RoleMenu'=>$RoleMenu,
+                          'MenuSettings'=>$MenuSettings,
+                          'MenuReports'=>$MenuReports,
                           'promptPosition'=> $promptPosition);
             view()->share( $data);
         });

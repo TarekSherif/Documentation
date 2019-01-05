@@ -8,9 +8,9 @@
 	<div class="row">
 
 		<div class="col-xs-1"></div >
-		{{-- <div class="col-xs-2">
+		<div class="col-xs-2">
 			<h3>{{$Serves->Serves}}</h3>
-		</div > --}}
+		</div >
 		<div class="col-xs-3">
 			<div class="form-group ">
 				<label>@lang("messages.LookupTables.Company") </label>
@@ -97,13 +97,13 @@
 				DName:{
 						title: '<b>@lang("messages.DName")</b>',
 						width: '30%',
-						},
-
-				INCode: {
+						}
+			@if($Serves->SID=='4')		
+				,INCode: {
 						title:'<b>@lang("messages.INCode")</b>',
 						width: '20%',
-					
 				},
+			@endif
 			}
 			
 			@include('layouts.inc.JtableEvent')
@@ -137,7 +137,7 @@
 	
 		 function Search () {
 			$('#jtableContainer').jtable('load', {
-				SID:{{$SID}},
+				SID:{{$Serves->SID}},
                 CID: CDocument.CID,
 				SDate:CDocument.SDate				
              });
@@ -145,9 +145,9 @@
 	
 		$("#btnPrint").click(function () {
 		
-					var jtable=$('.jtable'); 
-                 var newWindow = window.open();
-                  var html=`<!DOCTYPE html>
+				var jtable=$('.jtable'); 
+                var newWindow = window.open();
+                var html=`<!DOCTYPE html>
                   <html dir="rtl">
                      <head>
                              <title>{{$view_name}}-Report</title>
@@ -157,7 +157,7 @@
 						<table class="no-border">
                          	<tr>
 								<td colspan="2">
-								<h1> شركة `+$('#selectCompany').text()+`</h1>
+								<h1> شركة `+$('#selectCompany option:selected').text()+`</h1>
 								</td>
 							</tr>
 							<tr>
@@ -176,7 +176,7 @@
 						<table class="no-border">
                          	<tr>
 								<td colspan="2">
-								<h1>  العدد/ `+$('.jtable tbody tr').length();+`</h1>
+								<h1>  العدد/ `+$('.jtable tbody tr').length;+`</h1>
 								</td>
 							</tr>
 						

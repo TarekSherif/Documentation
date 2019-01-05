@@ -1,14 +1,14 @@
 <?php
- function RoleMenu()
+ function RoleMenu($ViewGroup)
 {
       $RID=(Auth::check())?Auth::user()->role:0;
       $roleMenu = array();
-       $SQL ="SELECT `ViewName`.`ViewName` ,`ViewName`.`ViewIcon`,`ViewName`.`ViewPath`
+       $SQL ="SELECT `ViewName`.`ViewName` ,`ViewName`.`ViewIcon`,`ViewName`.`ViewPath`,`ViewName`.`ARName`
               FROM `ViewName`    join `ViewRolePermission` 
               on `ViewName`.`ViewName`=`ViewRolePermission`.`ViewName`and 
               `ViewRolePermission`.`RID`=$RID and
               `ViewRolePermission`.`ShowData`=true  and 
-              `ViewName`.`ViewGroup`='Settings' 
+              `ViewName`.`ViewGroup`='$ViewGroup' 
               order by `ViewName`.`SOrder`";
 
        $Data= DB::select($SQL);
