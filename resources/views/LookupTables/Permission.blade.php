@@ -133,7 +133,7 @@ $(function () {
 												formCreated: function (event, data) {
 													//readonly 
 													data.form.find("select[name='ViewName']").addClass("readonly");
-													data.form.validationEngine('attach'+promptPosition);
+													 data.form.validationEngine('attach'{!! $promptPosition !!});
 												//  data.form.validationEngine();
 												},
 												//Validate form when it is being submitted

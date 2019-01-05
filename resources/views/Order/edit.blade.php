@@ -383,7 +383,8 @@ function LoadOrderDocuments(OrderID) {
 												// 	data.form.find("input[name='paid']")
 
 												//  });
-												data.form.validationEngine('attach'+promptPosition);
+											
+												data.form.validationEngine('attach'{!! $promptPosition !!});
 											},
 											//Validate form when it is being submitted
 											formSubmitting: function (event, data) {
@@ -469,8 +470,10 @@ function LoadOrderDocuments(OrderID) {
 						 data.form.find('[name=DTypeID]').val(ui.item.DTypeID);
 						}
 					});
-					data.form.validationEngine('attach'+promptPosition);
-				  //  data.form.validationEngine();
+				
+					  data.form.validationEngine('attach'{!! $promptPosition !!});
+
+				 
 				},
 				//Validate form when it is being submitted
 				formSubmitting: function (event, data) { 

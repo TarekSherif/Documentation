@@ -2,7 +2,7 @@
 //Initialize validation logic when a form is created
 formCreated: function (event, data) {
     //
-    data.form.validationEngine('attach'+promptPosition);
+     data.form.validationEngine('attach'{!! $promptPosition !!});
   //  data.form.validationEngine();
 },
 //Validate form when it is being submitted

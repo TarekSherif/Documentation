@@ -32,11 +32,13 @@
     <!-- Theme style -->
     
    
-    
+
+ 
     @if(session("lang")=="ar" )
-     <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/AdminLTE.min.css">
-     <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/bootstrap-rtl.min.css">
-     <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/rtl.css">
+        <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/AdminLTE.min.css">
+        <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/bootstrap-rtl.min.css">
+        <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/RTL/rtl.css">
+    
     @else
      <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/dist/css/AdminLTE.min.css">
     @endif

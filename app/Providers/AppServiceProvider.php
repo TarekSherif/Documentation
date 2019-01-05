@@ -16,13 +16,18 @@ class AppServiceProvider extends ServiceProvider
         //
         view()->composer('*', function($view) {
             $view_name=$view->getName();
+            $promptPosition= '';
+            if(session("lang")=="ar" ){
+                $promptPosition= ',{promptPosition:"topLeft"}';
+            }
+            
             $jtable=true;
             $RoleMenu=RoleMenu();
             $data = array('view_name' => $view_name,
                           'Permission'=>PagePermission($view_name),
                           'jtable'=>  $jtable,
-                          'RoleMenu'=>$RoleMenu);
-
+                          'RoleMenu'=>$RoleMenu,
+                          'promptPosition'=> $promptPosition);
             view()->share( $data);
         });
 

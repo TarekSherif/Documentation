@@ -61,24 +61,17 @@
 <script src="{{url('/')}}/Template/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{url('/')}}/Template/AdminLTE/dist/js/adminlte.js"></script>
 @if($jtable)
-<script src="{{asset('js/validationEngine/jquery.validationEngine-en.js')}}"></script>
-<script src="{{asset('js/validationEngine/jquery.validationEngine.js')}}"></script>
-<script src="{{asset('js/datepicker-ar.js')}}"></script>
-<script src="{{asset('js/MultiSelect/jquery.multiselect.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/jquery.table2excel.js')}}"></script>
+    <script src="{{asset('js/validationEngine/jquery.validationEngine-en.js')}}"></script>
+    <script src="{{asset('js/validationEngine/jquery.validationEngine.js')}}"></script>
+    <script src="{{asset('js/datepicker-ar.js')}}"></script>
+    <script src="{{asset('js/MultiSelect/jquery.multiselect.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.table2excel.js')}}"></script>
 
-<script type="text/javascript" src="{{asset('js/jtable/jquery.jtable.js')}}"></script>
-@if(session("lang")=="ar")
-<script type="text/javascript" src="{{asset('js/jtable/localization/jquery.jtable.AR.js')}}"></script>
-@endif
-
-<script>
-    var promptPosition="";
-              @if (session("lang")=="ar" )
-                  promptPosition=',{promptPosition: "topLeft"}' ;
-              @endif
-
-</script>
+    <script type="text/javascript" src="{{asset('js/jtable/jquery.jtable.js')}}"></script>
+ 
+    @if(session("lang")=="ar")
+        <script type="text/javascript" src="{{asset('js/jtable/localization/jquery.jtable.AR.js')}}"></script>
+    @endif
 @endif
 
 <script type="text/javascript">
