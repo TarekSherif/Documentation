@@ -118,10 +118,11 @@
 @section('ScriptContent')
 
 <script type="text/javascript">
+	var NextDOName="",IsNext=false;
 	$(function () {
 		
 		
-		
+	
 	
 		$('#collapseDocuments').collapse({
 					toggle:false
@@ -455,6 +456,10 @@ function LoadOrderDocuments(OrderID) {
 				},
 				//Initialize validation logic when a form is created
 				formCreated: function (event, data) {
+					if(data.formType=='create' && NextDOName!=""){
+						$('input[name=DOName]').val(NextDOName);
+						NextDOName="";
+					}
 					data.form.find('select[name=Serves]')
 					.attr('multiple','multiple')
 					.multiselect({
@@ -483,6 +488,12 @@ function LoadOrderDocuments(OrderID) {
 				},
 				//Dispose validation logic when form is closed
 				formClosed: function (event, data) {
+					if(data.formType=='create' && IsNext){
+						NextDOName=data.form.find('[name=DOName]').val();;
+						
+						
+						IsNext=false;
+					}
 					data.form.validationEngine('hide');
 					data.form.validationEngine('detach');
 					ReloadServesNotifications()
@@ -493,7 +504,9 @@ function LoadOrderDocuments(OrderID) {
 			$('#jtableContainer').jtable('load', {}, function(data) {
 				$('#AddRecordDialogSaveButton').after('<button type="button" id="ButNext">@lang("messages.Next")</button>');
 				$(document).on('click', '#ButNext', function() {
+					IsNext=true;
 					$("#AddRecordDialogSaveButton").trigger('click');
+					
 							
 				});
 			});//end load form
