@@ -151,10 +151,12 @@ Route::post('DeleteDocument', 'API\ActionDocumentController@DeleteDocument');
 //===================================================================
 // ActionTOrderController-urls  
 //========================================================================
-Route::post('UpdateOrder', 'API\ActionTOrderController@UpdateOrder');
 Route::post('IsOrderLocked', 'API\ActionTOrderController@IsOrderLocked');
 Route::post('UpdateOrderLocked', 'API\ActionTOrderController@UpdateTOrderLocked');
 Route::post('IsOrderFinish', 'API\ActionTOrderController@IsOrderFinish');
+
+Route::post('OrderTotalPrice/{OrderID}', 'API\ActionTOrderController@OrderTotalPrice');
+
 
 Route::get('GetOrderByOrderID/{OrderID?}', 'API\ActionTOrderController@GetOrderByOrderID');
 Route::get('ListOfACName', 'API\ActionTOrderController@ListOfACName');

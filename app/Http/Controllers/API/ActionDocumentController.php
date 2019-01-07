@@ -20,7 +20,6 @@ class ActionDocumentController extends Controller
             `Document`.`OrderID`,
             `Document`.`DTypeID`,
             `Document`.`priority` ,
-            `Document`.`NOCopies` ,
             `DocumentType`.`DName`
             FROM `Document` JOIN DocumentType on DocumentType.DTypeID=Document.DTypeID 
             where  OrderID='" . $_GET["OrderID"] . "'";
@@ -43,44 +42,52 @@ class ActionDocumentController extends Controller
         $jTableResult =  array();
         try
         {
-                //Insert record into database
-                $SQL="INSERT INTO Document(DOName, OrderID,DTypeID,priority,NOCopies) VALUES
-                ('" .$_POST["DOName"] . "', '" . $_POST["OrderID"] . "','" . $_POST["DTypeID"] . "'," . $_POST["priority"] . ",'" . $_POST["NOCopies"] . "');";
-                DB::insert( $SQL);
-                //Get last inserted record (to return to jTable)
-                
-                $SQL ="SELECT * FROM Document WHERE DID = LAST_INSERT_ID();";
-                $Data= DB::select($SQL);
-                $Data[0]->Serves=$_POST["ServesH"];
-                //  
-                $SQL ="SELECT * FROM Serves WHERE SID in (". $Data[0]->Serves.")";
-                $ServesData= DB::select($SQL);
+            // NOCopies
+                 $NOCopies=$_POST["NOCopies"];
+                for ($i=0; $i < $NOCopies; $i++) { 
+                    # code...
 
-                $currentServe="0";
-                
-                   
-                if( $_POST["priority"]){
-                    foreach ($ServesData as  $index=>$value) {
-                        $currentServe=($index==0)?"1":"0";
-                        $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
-                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','".($index+1)."','". $value->Qprice."','". $value->QCost."', $currentServe);";
-                        DB::insert( $SQL);
+                    //Insert record into database
+                    $SQL="INSERT INTO Document(DOName, OrderID,DTypeID,priority) VALUES
+                    ('" .$_POST["DOName"] . "', '" . $_POST["OrderID"] . "','" . $_POST["DTypeID"] . "'," . $_POST["priority"] . ");";
+                    DB::insert( $SQL);
+                    //Get last inserted record (to return to jTable)
+                    
+                    $SQL ="SELECT * FROM Document WHERE DID = LAST_INSERT_ID();";
+                    $Data= DB::select($SQL);
+                    $Data[0]->Serves=$_POST["ServesH"];
+                    //  
+                    $SQL ="SELECT * FROM Serves WHERE SID in (". $Data[0]->Serves.")";
+                    $ServesData= DB::select($SQL);
+
+                    $currentServe="0";
+                    
+                    
+                    if( $_POST["priority"]){
+                        foreach ($ServesData as  $index=>$value) {
+                            $currentServe=($index==0)?"1":"0";
+                            $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
+                            VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','".($index+1)."','". $value->Qprice."','". $value->QCost."', $currentServe);";
+                            DB::insert( $SQL);
+                            
+                        }
+
+                    }
+                    else
+                    {
+                        
+                        foreach ($ServesData as  $index=>$value) {
+                            $currentServe=($index==0)?"1":"0";
+                            $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
+                            VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','". ($index+1)."','". $value->Nprice."','". $value->NCost."', $currentServe);";
+                            DB::insert( $SQL);
+                        }
                         
                     }
 
-                }
-                else
-                {
-                    
-                    foreach ($ServesData as  $index=>$value) {
-                        $currentServe=($index==0)?"1":"0";
-                        $SQL="INSERT INTO DocumentServes(`DID` ,`SID` ,`SOrder` ,`price`,`Cost`, `currentServe`)
-                        VALUES('" . $Data[0]->DID . "','" .  $value->SID . "','". ($index+1)."','". $value->Nprice."','". $value->NCost."', $currentServe);";
-                        DB::insert( $SQL);
-                    }
-                    
-                }
 
+                }
+            
 
                     $jTableResult['Result'] = "OK";
                     $jTableResult['Record'] =$Data[0];
@@ -110,8 +117,7 @@ class ActionDocumentController extends Controller
                         OrderID = '" . $_POST["OrderID"] . "',
                         priority=" . $_POST["priority"] . ",
                         DTypeID='" . $_POST["DTypeID"] . "',
-                        NOCopies='" . $_POST["NOCopies"] . "'
-                        
+                      
                     WHERE DID = " . $_POST["DID"] . ";";
             DB::update($SQL);
             //Return result to jTable

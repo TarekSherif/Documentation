@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 class ActionTOrderController extends Controller
@@ -27,7 +28,9 @@ class ActionTOrderController extends Controller
                             `TOrder`.`price`,
                             `TOrder`.`paid`,
                             `TOrder`.`createby`,
+                            `TOrder`.`Recipientby`,
                             `TOrder`.`created_at`,
+                            `TOrder`.`updated_at`,
                             `TOrder`.`EDate`,
                             `Branch`.`BName`,
                             `users`.`name`
@@ -126,22 +129,27 @@ class ActionTOrderController extends Controller
              }
            
 
-  
+           
+           
   
      
-           public function  IsOrderLocked(){
+           public function  OrderTotalPrice($OrderID){
             $jTableResult =  array();
         
             try
             {
 
-                $SQL="SELECT Locked FROM TOrder 
-                      WHERE OrderID = " . $_POST["OrderID"];
-                
+                // $SQL="select sum(DocumentServes.price)+IFNULL(Torder.price, 0) as price
+                // from DocumentServes 
+                // join Document on DocumentServes.DID=Document.DID
+                //  join Torder on Torder.OrderID=Document.OrderID
+                // WHERE Document.OrderID=" . $OrderID ." 
+                // GROUP by Document.OrderID ,Torder.price";
+                $SQL="select * from ordertotalprice where OrderID=$OrderID";
                 $Data=DB::select($SQL);
 
                 if(!empty($Data)){
-                    $jTableResult['IsLocked']=$Data[0]->Locked;
+                    $jTableResult['price']=$Data[0]->price;
                 }
 
             }
@@ -213,40 +221,7 @@ class ActionTOrderController extends Controller
         }
 
    
-    public function UpdateOrder()
-    {
-        $jTableResult =  array();
-        
-        try
-        {
-    
-            $price=(isset($_POST["price"])?$_POST["price"]:"0" );
-            $paid=(isset($_POST["paid"])?$_POST["paid"]:"0" );
-
-            $SQL=	"UPDATE TOrder SET
-                    phone = '" . $_POST["phone"] . "',
-                    address='" . $_POST["address"] . "',
-                    Otherphone = '" . $_POST["Otherphone"] . "',
-                    price=" .  $price . ",
-                    paid = " . $paid . "
-                    WHERE OrderID = " . $_POST["OrderID"] . ";";
-            
-            DB::update($SQL);
-
-         
-        
-        }
-        catch(Exception $ex)
-        {
-            //Return error Message
-            
-            $jTableResult['Result'] = "ERROR";
-            $jTableResult['Message'] = $ex->getMessage();
-        }
-        return response()->json(self::GetOrderByOrderID($_POST["OrderID"]));
-    
-    }
-
+ 
                 
  }
      

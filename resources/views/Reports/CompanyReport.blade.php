@@ -25,17 +25,7 @@
 					<label> @lang('messages.Sdate') </label>
 					<input class=" form-control " type="date" id="SDate"  />
 		</div>
-	
-		<div class="col-xs-2">
-			<br>
-			{{-- <a class="btn btn-primary" id="btnSearch">
-					<i class="fa fa-search"></i>
-				</a> --}}
-			<a class="btn btn-primary" id="btnPrint">
-					<i class="fa fa-print"></i>
-				</a>
 
-		</div>
 	</div>
 </div>
 <table>
@@ -78,7 +68,84 @@
 			@endif
 			}
 			,
-	@include('layouts.inc.JtableToolbar'),
+			toolbar: {
+    items: [
+    @if ($Permission["DataToPrint"]) 
+          {
+              Tooltip: '@lang("messages.tipPrint")',
+              icon: '{{url("/")}}/images/printer.png',
+              text: '@lang("messages.Print")',
+             
+              click: function (e) {
+                var jtable=$('.jtable'); 
+                var newWindow = window.open();
+                var html=`<!DOCTYPE html>
+                  <html dir="rtl">
+                     <head>
+                             <title>{{$view_name}}-Report</title>
+                             <link rel="stylesheet" href="{{url("/")}}/css/print.css">
+                     </head>
+                     <body>
+						<table class="no-border">
+                         	<tr>
+								<td colspan="2">
+								<h1> شركة `+$('#selectCompany option:selected').text()+`</h1>
+								</td>
+							</tr>
+							<tr>
+								<td><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
+								<td><h3> تاريخ الدخول `+CDocument.SDate+`</h3></td>
+							</tr>
+							<tr>
+									<td colspan="2">
+										
+									</td>
+							</tr>    
+                         </table>
+						 <table>`
+							+ $(jtable).html() +
+						`</table>
+						<table class="no-border">
+                         	<tr>
+								<td colspan="2">
+								<h1>  العدد/ `+$('.jtable tbody tr').length;+`</h1>
+								</td>
+							</tr>
+						
+                         </table>
+                     </body>
+                 `;
+                  newWindow.document.write(html);
+                  
+                  e.preventDefault();
+					
+			 
+			
+              }
+          },
+    @endif
+    @if ($Permission["DataToExcel"]) 
+        {
+        tooltip: '@lang("messages.tipExcel")',
+        icon: '{{url("/")}}/images/excel.png',
+        text: '@lang("messages.Excel")',
+        click: function (e) {
+                 $(".jtable").table2excel({
+                 exclude: ".noExl",
+                 name: "Excel Document Name",
+                 filename: "{{$view_name}}",
+                 fileext: ".xls",
+                 exclude_img: true,
+                 exclude_links: true,
+                 exclude_inputs: true
+             });
+             e.preventDefault();
+         
+        }
+    }
+    @endif
+    ]
+},
 			fields: {
 			
 				DCID: {
@@ -143,57 +210,7 @@
              });
 		}
 	
-		$("#btnPrint").click(function () {
-		
-				var jtable=$('.jtable'); 
-                var newWindow = window.open();
-                var html=`<!DOCTYPE html>
-                  <html dir="rtl">
-                     <head>
-                             <title>{{$view_name}}-Report</title>
-                             <link rel="stylesheet" href="{{url("/")}}/css/print.css">
-                     </head>
-                     <body>
-						<table class="no-border">
-                         	<tr>
-								<td colspan="2">
-								<h1> شركة `+$('#selectCompany option:selected').text()+`</h1>
-								</td>
-							</tr>
-							<tr>
-								<td><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
-								<td><h3> تاريخ الدخول `+CDocument.SDate+`</h3></td>
-							</tr>
-							<tr>
-									<td colspan="2">
-										
-									</td>
-							</tr>    
-                         </table>
-						 <table>`
-							+ $(jtable).html() +
-						`</table>
-						<table class="no-border">
-                         	<tr>
-								<td colspan="2">
-								<h1>  العدد/ `+$('.jtable tbody tr').length;+`</h1>
-								</td>
-							</tr>
-						
-                         </table>
-                     </body>
-                 `;
-                  newWindow.document.write(html);
-                  
-                  e.preventDefault();
-					
-			 
-			
-				
-		 
-		});
-			
-	 
+
 	
 	
 		});

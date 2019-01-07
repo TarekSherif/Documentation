@@ -4,56 +4,121 @@
 
 
 
-<form id="frmOrder" method="post" novalidate >
+<form id="frmOrder" method="post" action="{{route('Order.update',[$OrderID]) }}
+	"  >
+	@csrf
+	@method('PUT')
 
 
 	<fieldset>
 		<div class="container">
 			<div class="row">
-
-				<div class="col-xs-1">
-						<div class="form-group ">
-							<label>@lang("messages.ID")  </label>
-							<input  id="OrderID"  name="OrderID" type="text" class="readonly form-control " value="{{$OrderID}}" />
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#BasicInfo"> @lang('messages.BasicInfo')</a></li>
+					<li><a data-toggle="tab" href="#ReceiptInfo">@lang('messages.ReceiptInfo')</a></li>
+					<li><a data-toggle="tab" href="#DeliveryInfo">@lang('messages.DeliveryInfo')</a></li>
+				  </ul>
+				  
+				  <div class="tab-content">
+					<div id="BasicInfo" class="tab-pane fade in active">
+					  <h3>@lang('messages.BasicInfo')</h3>
+							<div class="col-xs-1">
+								<div class="form-group ">
+									<label>@lang("messages.ID")  </label>
+									<input  id="OrderID"  name="OrderID" type="text" class="readonly form-control " value="{{$OrderID}}" />
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.phone")  </label>
+									<input  id="phone" name="phone" placeholder="@lang('messages.phone')" type="text"  required   class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"  value="{{old('phone')}}"  />
+									@if ($errors->has('phone'))
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $errors->first('phone') }}</strong>
+										</span>
+									@endif
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.paid")  </label>
+									<input class=" form-control " id="paid" name="paid" placeholder="@lang('messages.paid')" type="number" value=0 />
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.AmountRequired")  </label>
+									<input  id="AmountRequired"    type="text" class="readonly form-control "   />
+								</div>
+							</div>
+					</div>
+					<div id="ReceiptInfo" class="tab-pane fade">
+					  <h3>@lang('messages.ReceiptInfo')</h3>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.LookupTables.Branchs")  </label>
+									<h5 id="lblBranchs"></h5>
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.Ocreateby")  </label>
+									<h5 id="lblUsers"></h5>
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.created_at")  </label>
+									<h5 id="lblSdate"></h5>
+								</div>
+							</div>
+					</div>
+					<div id="DeliveryInfo" class="tab-pane fade">
+						<h3>@lang('messages.DeliveryInfo')</h3>
+						<div class="col-xs-2">
+							<div class="form-group ">
+								<label>@lang("messages.RecipientName")  </label>
+								<input  id="RecipientName" name="RecipientName" placeholder="@lang('messages.RecipientName')" type="text"  required   class="form-control{{ $errors->has('RecipientName') ? ' is-invalid' : '' }}"  value="{{old('RecipientName')}}"  />
+								@if ($errors->has('RecipientName'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('RecipientName') }}</strong>
+									</span>
+								@endif
+							</div>
 						</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.Recipientby")  </label>
+									<h5 id="lblRecipientby"></h5>
+								</div>
+							</div>
+							<div class="col-xs-2">
+								<div class="form-group ">
+									<label>@lang("messages.updated_at")  </label>
+									<h5 id="lblupdated_at"></h5>
+								</div>
+							</div>
+							
+						
 					</div>
-				<div class="col-xs-2">
-					<div class="form-group ">
-						<label>@lang("messages.phone")  </label>
-						<input class=" form-control " id="phone" name="phone" placeholder="@lang('messages.phone')" type="text" value="" required />
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="form-group ">
-						<label>@lang("messages.LookupTables.Branchs")  </label>
-						<h5 id="lblBranchs"></h5>
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="form-group ">
-						<label>@lang("messages.Addedby")  </label>
-						<h5 id="lblUsers"></h5>
-					</div>
-				</div>
-				<div class="col-xs-2">
-					<div class="form-group ">
-						<label>@lang("messages.created_at")  </label>
-						<h5 id="lblSdate"></h5>
-					</div>
-				</div>
-				<div class="col-xs-2">
+				  </div>
+			
+				
+				<div class="col-xs-3">
 					<br>
 					<a href="#" class="btn btn-primary" data-toggle="popover" data-placement="bottom" data-popover-content="#delivery">
-						<i class="fa fa-paper-plane"></i>
+						<i class="fa fa-rocket "></i>
 					</a>
-					<a class="btn btn-primary" id="btnSave">
+					<a class="btn btn-primary" id="btnSave" >
 						<i class="fa fa-floppy-o"></i>
 					</a>
-				<a class="btn btn-primary" id="btnPrint" href="{{url('/')}}/OrderReport/{{$OrderID}}">
-						<i class="fa fa-print"></i>
+			 
+					<a class="btn btn-primary"  disabled id="btnRecipient" href="{{url('/')}}/OrderReport/{{$OrderID}}">
+						<i class="fa fa-handshake-o"></i>
 					</a>
 
 				</div>
+
 			</div>
 		</div>
 
@@ -89,13 +154,7 @@
 							<input class=" form-control " id="price" name="price" placeholder="@lang('messages.price')" type="number" value=0 />
 						</div>
 					</div>
-					<div class="col-xs-12">
-						<div class="form-group ">
-							<label>@lang("messages.paid")  </label>
-							<input class=" form-control " id="paid" name="paid" placeholder="@lang('messages.paid')" type="number" value=0 />
-						</div>
-					</div>
-
+					
 				</div>
 			</div>
 		</div>
@@ -108,7 +167,7 @@
 
 
 
-<div id="collapseDocuments" class="white-Background collapse">
+<div class="white-Background ">
 
 	<div id="jtableContainer" class='@lang("messages.Clang")'></div>
 
@@ -123,10 +182,10 @@
 		
 		
 	
-	
-		$('#collapseDocuments').collapse({
-					toggle:false
+		$('#btnSave').click(function(){
+			document.getElementById('frmOrder').submit();
 		});
+	
 
 		$("[data-toggle=popover]").popover({
 		html : true,
@@ -152,8 +211,7 @@
 			{
 				var Record=data.Record[0];
 		
-				$('#collapseDocuments').collapse("toggle");
-
+			
 				LoadOrderDocuments(	{{$OrderID}});
 			
 				LoadOrder(Record) ;
@@ -161,34 +219,16 @@
 			}
 		
 		});
-	
-		$('#btnSave').click(function() {
-			$phone=$("#phone");
-		if($phone.val()=="")
-		{
-			$phone.addClass(" is-invalid ");
-		}
-		else
-		{
-			$phone.removeClass(" is-invalid ");
-			var apiPath="{{url("/")}}/api/UpdateOrder?_token={{ csrf_token() }}";
-			var formdata=$("#frmOrder").serialize();
-				
-			$.post(apiPath,formdata,function(data) {
-				$('#collapseDocuments').collapse('show');
-				LoadOrderDocuments(data.Record.OrderID);
-				$("#OrderID").val(data.Record.OrderID);
-				LoadOrder(data.Record) ;
-			});	
-		}
+		$.post("{{url('/')}}/api/OrderTotalPrice/{{$OrderID}}?_token={{ csrf_token() }}",function(data){
+			$("#AmountRequired").val( data.price);
 		});
-	
+		
 	
 		
 		});
 
 function LoadOrder(Record) {
-		 $("#lblBranchs").html( Record.BName);
+		$("#lblBranchs").html( Record.BName);
 		$("#lblUsers").html(Record.name);
 		$("#lblSdate").html(Record.created_at);
 		$("#phone").val(Record.phone);
@@ -196,6 +236,14 @@ function LoadOrder(Record) {
 		$("#Otherphone").val(Record.Otherphone);
 		$("#price").val(Record.price);
 		$("#paid").val(Record.paid);
+
+		
+		$("#RecipientName").val('Record.RecipientName');
+		$("#lblRecipientby").html('Record.Recipientby');
+		$("#lblupdated_at").html('Record.updated_at');
+
+		
+		
 }
 
 function LoadOrderDocuments(OrderID) {
@@ -217,7 +265,26 @@ function LoadOrderDocuments(OrderID) {
 											
 				}
 				,
-	@include('layouts.inc.JtableToolbar'),
+				toolbar: {
+    items: [
+    @if ($Permission["DataToPrint"]) 
+          {
+              Tooltip: '@lang("messages.tipPrint")',
+              icon: '{{url("/")}}/images/printer.png',
+              text: '@lang("messages.Print")',
+             
+              click: function (e) {
+                 var jtable=$('.jtable'); 
+                 var newWindow = window.open("{{url('/')}}/OrderReport/{{$OrderID}}");
+					
+                            
+                  e.preventDefault();
+              }
+          },
+    @endif
+   
+    ]
+},
 				fields: {
 					DID: {
 						key: true,
@@ -443,7 +510,9 @@ function LoadOrderDocuments(OrderID) {
 						},
 						NOCopies: {
 							title:  ' @lang("messages.NOCopies")',
-							visibility: 'visible',
+							edit:false,
+							list:false,
+						
 							input: function (data) {
 									if (data.record) {
 										return '<input type="number"  placeholder=" @lang("messages.NOCopies")"   class=" form-control validate[required]"   autocomplete="off"   name="NOCopies"   value="' + data.record.NOCopies + '" />';
@@ -481,17 +550,13 @@ function LoadOrderDocuments(OrderID) {
 				},
 				//Validate form when it is being submitted
 				formSubmitting: function (event, data) { 
-					 data.form.find('[name=ServesH]').val(data.form.find('[name=Serves]').val());
-				
+					data.form.find('[name=ServesH]').val(data.form.find('[name=Serves]').val());
 					return data.form.validationEngine('validate');
-					
 				},
 				//Dispose validation logic when form is closed
 				formClosed: function (event, data) {
 					if(data.formType=='create' && IsNext){
 						NextDOName=data.form.find('[name=DOName]').val();;
-						
-						
 						IsNext=false;
 					}
 					data.form.validationEngine('hide');

@@ -37,14 +37,24 @@ return [
     'ID'=>'ID',
     'phone'=>'phone',
     'created_at'=>'create Time',
-    'Addedby'=>'Added by ',
+    'updated_at'=>'updated Time',
+    'Recipientby'=>'Recipient by',
+    'RecipientName'=>'Recipient Name',
+    'BasicInfo'=>'Basic Info.',
+    'ReceiptInfo'=>'Receipt Info. ',
+    'DeliveryInfo'=>'Delivery Info.',
+     
+    
+    'Ocreateby'=>'create by',
+
     'delivery'=>"delivery", 
     'Dprice'=>'Delivery price',
     'address' =>'address',
     'Otherphone'=>'Other phone',
     'paid'=>'The amount paid',
     'Next'=>'Next',
-
+    'AmountRequired'=>'Amount Required',
+ 
   // Document Serves
   
     'DOName'=>'Document Owner Name',
