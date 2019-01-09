@@ -14,9 +14,9 @@
 		<div class="container">
 			<div class="row">
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#BasicInfo"> @lang('messages.BasicInfo')</a></li>
-					<li><a data-toggle="tab" href="#ReceiptInfo">@lang('messages.ReceiptInfo')</a></li>
-					<li><a data-toggle="tab" href="#DeliveryInfo">@lang('messages.DeliveryInfo')</a></li>
+					<li   class="active"><a data-toggle="tab" href="#BasicInfo"> @lang('messages.BasicInfo')</a></li>
+					<li  ><a data-toggle="tab" href="#ReceiptInfo">@lang('messages.ReceiptInfo')</a></li>
+					<li id="li-DeliveryInfo"><a data-toggle="tab" href="#DeliveryInfo">@lang('messages.DeliveryInfo')</a></li>
 				  </ul>
 				  
 				  <div class="tab-content">
@@ -51,6 +51,16 @@
 									<input  id="AmountRequired"    type="text" class="readonly form-control "   />
 								</div>
 							</div>
+							<div class="col-xs-3">
+								<br>
+								<a href="#" class="btn btn-primary" data-toggle="popover" data-placement="bottom" data-popover-content="#delivery">
+									<i class="fa fa-rocket "></i>
+								</a>
+								<a class="btn btn-primary" id="btnSave" >
+									<i class="fa fa-floppy-o"></i>
+								</a>
+				
+							</div>
 					</div>
 					<div id="ReceiptInfo" class="tab-pane fade">
 					  <h3>@lang('messages.ReceiptInfo')</h3>
@@ -72,13 +82,14 @@
 									<h5 id="lblSdate"></h5>
 								</div>
 							</div>
+						
 					</div>
 					<div id="DeliveryInfo" class="tab-pane fade">
 						<h3>@lang('messages.DeliveryInfo')</h3>
 						<div class="col-xs-2">
 							<div class="form-group ">
 								<label>@lang("messages.RecipientName")  </label>
-								<input  id="RecipientName" name="RecipientName" placeholder="@lang('messages.RecipientName')" type="text"  required   class="form-control{{ $errors->has('RecipientName') ? ' is-invalid' : '' }}"  value="{{old('RecipientName')}}"  />
+								<input  id="RecipientName" disabled name="RecipientName" placeholder="@lang('messages.RecipientName')" type="text"  required   class="form-control{{ $errors->has('RecipientName') ? ' is-invalid' : '' }}"  value="{{old('RecipientName')}}"  />
 								@if ($errors->has('RecipientName'))
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $errors->first('RecipientName') }}</strong>
@@ -98,26 +109,20 @@
 									<h5 id="lblupdated_at"></h5>
 								</div>
 							</div>
-							
+							<div class="col-xs-3">
+								<br>
+												 
+								<a class="btn btn-primary  disabled " id="btnRecipient">
+									<i class="fa fa-handshake-o"></i>
+								</a>
+			
+							</div>
 						
 					</div>
 				  </div>
 			
 				
-				<div class="col-xs-3">
-					<br>
-					<a href="#" class="btn btn-primary" data-toggle="popover" data-placement="bottom" data-popover-content="#delivery">
-						<i class="fa fa-rocket "></i>
-					</a>
-					<a class="btn btn-primary" id="btnSave" >
-						<i class="fa fa-floppy-o"></i>
-					</a>
-			 
-					<a class="btn btn-primary"  disabled id="btnRecipient" href="{{url('/')}}/OrderReport/{{$OrderID}}">
-						<i class="fa fa-handshake-o"></i>
-					</a>
-
-				</div>
+		
 
 			</div>
 		</div>
@@ -178,6 +183,12 @@
 
 <script type="text/javascript">
 	var NextDOName="",IsNext=false;
+	function OrderTotalPrice() {
+			$.post("{{url('/')}}/api/OrderTotalPrice/{{$OrderID}}?_token={{ csrf_token() }}",function(data){
+				$("#AmountRequired").val( data.price);
+			});
+			
+		}
 	$(function () {
 		
 		
@@ -204,25 +215,51 @@
 		});
 		
 		$('#frmOrder').trigger("reset");
+		$('#btnRecipient').click(function(data){
+			var RecipientUrl="{{url('/')}}/api/Recipient/{{$OrderID}}?_token={{ csrf_token() }}";
+			var RecipientData={RecipientName:$('#RecipientName').val()};
+			$.post(RecipientUrl,RecipientData,function(data){
+				if(data.Result=="OK"){
+					$('#RecipientName').removeClass("is-invalid");
+				}else{
 
+					$('#RecipientName').addClass("is-invalid");
+				}
+				
+				console.log(data);
+
+			});
+		});
 		$.get("{{url('/')}}/api/GetOrderByOrderID/{{$OrderID}}?_token={{ csrf_token() }}",function(data){
 			
 			if (data.Record.length>0)
 			{
 				var Record=data.Record[0];
-		
-			
+				// $('#btnRecipient').prop('disabled', true);
+				// 
 				LoadOrderDocuments(	{{$OrderID}});
-			
 				LoadOrder(Record) ;
+				OrderTotalPrice();
+
+				if (data.finishDocument) {
+				 
+					$('#btnRecipient').removeClass('disabled');
+					$('#RecipientName').prop('disabled', false);
+					 $("ul.nav-tabs li").removeClass("active");
+					 $("#BasicInfo").removeClass("active in");
+					 $('#li-DeliveryInfo').addClass("active");
+					 $('a[href="#DeliveryInfo"]').attr("aria-expanded","true");
+					 $('#DeliveryInfo').addClass("active in");
+					
+				} 
+
+			
 				
 			}
 		
 		});
-		$.post("{{url('/')}}/api/OrderTotalPrice/{{$OrderID}}?_token={{ csrf_token() }}",function(data){
-			$("#AmountRequired").val( data.price);
-		});
-		
+
+	
 	
 		
 		});
@@ -238,9 +275,9 @@ function LoadOrder(Record) {
 		$("#paid").val(Record.paid);
 
 		
-		$("#RecipientName").val('Record.RecipientName');
-		$("#lblRecipientby").html('Record.Recipientby');
-		$("#lblupdated_at").html('Record.updated_at');
+		$("#RecipientName").val(Record.RecipientName);
+		$("#lblRecipientby").html(Record.Recipientby);
+		$("#lblupdated_at").html(Record.updated_at);
 
 		
 		
@@ -463,7 +500,8 @@ function LoadOrderDocuments(OrderID) {
 											formClosed: function (event, data) {
 												data.form.validationEngine('hide');
 												data.form.validationEngine('detach');
-												ReloadServesNotifications()
+												ReloadServesNotifications();
+												OrderTotalPrice();
 											}
 										
 										   }, function (data) { //opened handler
@@ -561,7 +599,8 @@ function LoadOrderDocuments(OrderID) {
 					}
 					data.form.validationEngine('hide');
 					data.form.validationEngine('detach');
-					ReloadServesNotifications()
+					ReloadServesNotifications();
+					OrderTotalPrice();
 				}
 			});
 

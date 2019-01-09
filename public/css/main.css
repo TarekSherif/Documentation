@@ -179,3 +179,8 @@ div.jtable-main-container table.jtable tbody tr > td .jtable-command-button:hove
     border: 2px solid gray;
     border-radius: 5px;
 }
+.disabled{
+    cursor:not-allowed;
+    opacity: .5;
+    pointer-events: none;
+}

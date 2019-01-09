@@ -154,6 +154,7 @@ Route::post('DeleteDocument', 'API\ActionDocumentController@DeleteDocument');
 Route::post('IsOrderLocked', 'API\ActionTOrderController@IsOrderLocked');
 Route::post('UpdateOrderLocked', 'API\ActionTOrderController@UpdateTOrderLocked');
 Route::post('IsOrderFinish', 'API\ActionTOrderController@IsOrderFinish');
+Route::post('Recipient/{OrderID}', 'API\ActionTOrderController@Recipient');
 
 Route::post('OrderTotalPrice/{OrderID}', 'API\ActionTOrderController@OrderTotalPrice');
 

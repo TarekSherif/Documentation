@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,8 @@ class ActionTOrderController extends Controller
                             `TOrder`.`paid`,
                             `TOrder`.`createby`,
                             `TOrder`.`Recipientby`,
+                            `TOrder`.`RecipientName`,
+                            `TOrder`.`Recipientby`,
                             `TOrder`.`created_at`,
                             `TOrder`.`updated_at`,
                             `TOrder`.`EDate`,
@@ -40,8 +43,26 @@ class ActionTOrderController extends Controller
                         where  `TOrder`.`OrderID` = ".$OrderID;
 
                  $Data= DB::select($SQL);
-                 $jTableResult['Result'] = "OK";
                  $jTableResult['Record'] =$Data;
+
+                 $SQL = "SELECT Document.OrderID from Document JOIN DocumentServes ON Document.DID=DocumentServes.DID and 
+                            Document.OrderID=$OrderID and DocumentServes.EDate is NULL and Document.DID not in 
+                            (SELECT Document.DID from Document
+                            JOIN DocumentServes ON Document.DID=DocumentServes.DID and Document.OrderID=$OrderID 
+                            and DocumentServes.Successfully=0)";
+
+                $finishDocument= DB::select($SQL);
+
+                $jTableResult['finishDocument'] = false;
+              
+                if (empty($finishDocument)) {
+                    $jTableResult['finishDocument'] = true;
+                }
+
+                
+
+                $jTableResult['Result'] = "OK";
+
                 
              }
              catch(Exception $ex)
@@ -53,7 +74,38 @@ class ActionTOrderController extends Controller
              }
              return response()->json($jTableResult);
              }
-      
+             
+             public function  Recipient($OrderID){
+                $jTableResult =  array();
+            
+                try
+                {
+                    if(!empty($_POST["RecipientName"])){
+                       
+                        
+                        $SQL="UPDATE   TOrder SET
+                        RecipientName=  '" . $_POST["RecipientName"] . "',
+                        Recipientby=  '" . Auth::user()->id . "'  , 
+                        updated_at=  '" . now() . "'  
+                        
+                        WHERE OrderID = " .$OrderID;
+                        DB::update($SQL);
+                        $jTableResult['Result'] = "OK";
+  
+                    }else{
+                        $jTableResult['Result'] = "ERROR";
+                    }
+
+                }
+                catch(Exception $ex)
+                {
+                    //Return error Message
+                    
+                    $jTableResult['Result'] = "ERROR";
+                    $jTableResult['Message'] = $ex->getMessage();
+                }
+                return response()->json($jTableResult);
+               }
              public function ListOfACOnlinePayment()
              {
                $Result =  array();
@@ -169,11 +221,10 @@ class ActionTOrderController extends Controller
             {
 
                 //Update record in database
-                $SQL="UPDATE TOrder SET
-                        Locked = true 
+                $SQL="SELECT Locked FROM TOrder
                       WHERE OrderID = " . $_POST["OrderID"];
                 
-                DB::update($SQL);
+                DB::select($SQL);
 
                 //Return result to jTable
                 

@@ -73,49 +73,10 @@ CREATE TABLE `DocumentType` (
   `SOrder` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Stand-in structure for view `ListOfDocumentsNeedin`
--- (See below for the actual view)
---
-CREATE TABLE `ListOfDocumentsNeedin` (
-`DSID` int(11)
-,`SID` int(11)
-,`CID` varchar(50)
-,`INCode` varchar(50)
-,`phone` varchar(20)
-,`BID` int(11)
-,`DOName` varchar(100)
-,`Notes` varchar(255)
-,`priority` tinyint(1)
-);
 
--- --------------------------------------------------------
 
---
--- Stand-in structure for view `ListOfDocumentsNeedout`
--- (See below for the actual view)
---
-CREATE TABLE `ListOfDocumentsNeedout` (
-`DSID` int(11)
-,`SID` int(11)
-,`phone` varchar(20)
-,`BID` int(11)
-,`DOName` varchar(100)
-,`SDate` date
-,`Notes` varchar(255)
-);
 
-CREATE VIEW ordertotalprice AS
-    select Torder.OrderID,sum(DocumentServes.price)+IFNULL(Torder.price, 0) as price
-    from DocumentServes 
-    join Document on DocumentServes.DID=Document.DID
-    join Torder on Torder.OrderID=Document.OrderID
-    GROUP by Torder.OrderID,Torder.price
--- --------------------------------------------------------
 
---
--- بنية الجدول `OnlinePayment`
---
 
 CREATE TABLE `OnlinePayment` (
   `OnlinePaymentID` int(11) NOT NULL,
@@ -416,21 +377,52 @@ INSERT INTO `ViewRolePermission` ( `RID`, `ViewName`, `ShowData`, `InsertData`, 
 
 -- --------------------------------------------------------
 
---
--- Structure for view `ListOfDocumentsNeedin`
---
-DROP TABLE IF EXISTS `ListOfDocumentsNeedin`;
+CREATE VIEW `ordertotalprice` AS
+    select `TOrder`.`OrderID`,sum(`DocumentServes`.`price`)+IFNULL(`TOrder`.`price`, 0) as price
+    from `DocumentServes` 
+    join `Document` on `DocumentServes`.`DID`=`Document`.`DID`
+    join `TOrder` on `TOrder`.`OrderID`=`Document`.`OrderID`
+    GROUP by `TOrder`.`OrderID`,`TOrder`.`price`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ListOfDocumentsNeedin`  AS  select `DocumentServes`.`DSID` AS `DSID`,`DocumentServes`.`SID` AS `SID`,`DocumentServes`.`CID` AS `CID`,`DocumentServes`.`INCode` AS `INCode`,`TOrder`.`phone` AS `phone`,`TOrder`.`BID` AS `BID`,`Document`.`DOName` AS `DOName`,`DocumentServes`.`Notes` AS `Notes`,`Document`.`priority` AS `priority` from ((`DocumentServes` join `Document` on((`Document`.`DID` = `DocumentServes`.`DID`))) join `TOrder` on((`TOrder`.`OrderID` = `Document`.`OrderID`))) where (isnull(`DocumentServes`.`SDate`) and (`DocumentServes`.`currentServe` = 1)) ;
 
--- --------------------------------------------------------
 
---
--- Structure for view `ListOfDocumentsNeedout`
---
-DROP TABLE IF EXISTS `ListOfDocumentsNeedout`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ListOfDocumentsNeedout`  AS  select `DocumentServes`.`DSID` AS `DSID`,`DocumentServes`.`SID` AS `SID`,`TOrder`.`phone` AS `phone`,`TOrder`.`BID` AS `BID`,`Document`.`DOName` AS `DOName`,`DocumentServes`.`SDate` AS `SDate`,`DocumentServes`.`Notes` AS `Notes` from ((`DocumentServes` join `Document` on((`Document`.`DID` = `DocumentServes`.`DID`))) join `TOrder` on((`TOrder`.`OrderID` = `Document`.`OrderID`))) where ((`DocumentServes`.`SDate` is not null) and isnull(`DocumentServes`.`EDate`)) ;
+CREATE VIEW `ListOfDocumentsNeedin` AS 
+                        SELECT 
+                            `DocumentServes`.`DSID` , 
+                            `DocumentServes`.`SID`,
+                            `DocumentServes`.`CID` , 
+                            `DocumentServes`.`INCode`,
+                            `TOrder`.`phone`,
+                            `TOrder`.`BID`,
+                            `Document`.`DOName`,
+                            `DocumentServes`.`Notes`,
+                            `Document`.`priority`
+                        FROM `DocumentServes` 
+                        JOIN `Document`  on `Document`.`DID`=`DocumentServes`.`DID` 
+                        JOIN `TOrder`    on `TOrder`.`OrderID`= `Document`.`OrderID` 
+                       WHERE
+                            `DocumentServes`.`SDate`  IS NULL  and
+                            `DocumentServes`.`currentServe`=1  ;
+
+
+CREATE VIEW `ListOfDocumentsNeedout` AS 
+                        SELECT 
+                            `DocumentServes`.`DSID` , 
+                            `DocumentServes`.`SID`,
+                            `TOrder`.`phone`,
+                            `TOrder`.`BID`,
+                            `Document`.`DOName`,
+                            `DocumentServes`.`SDate`,
+                            `DocumentServes`.`Notes`
+                        FROM `DocumentServes` 
+                        JOIN `Document`  on `Document`.`DID`=`DocumentServes`.`DID` 
+                        JOIN `TOrder`    on `TOrder`.`OrderID`= `Document`.`OrderID` 
+                       WHERE
+                            `DocumentServes`.`SDate`  IS NOT NULL and 
+                            `DocumentServes`.`EDate` IS  NULL  ;
+
+ 
 
 
 --
@@ -548,11 +540,11 @@ INSERT INTO `Serves` (`SID`, `Serves`, `Nprice`, `Qprice`, `NCost`, `QCost`, `SO
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `BID`, `api_token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mr.Hany', 'hanysaid@alhendy.com', NULL, '$2y$10$Sv7d.I9DJ3Dc/pTiLBcgO.Ts/MywyGmuAV64aBhpdM80T7POQX3Ru', 1, 1, NULL, 'n1t9v82lwL3tiDiIdzRwiB7lPVFGARohMPXfQbnmm2aprTvtslXaQGbZ3naB', NULL, NULL),
+(1, 'Hany Said', 'hanysaid@alhendy.com', NULL, '$2y$10$Sv7d.I9DJ3Dc/pTiLBcgO.Ts/MywyGmuAV64aBhpdM80T7POQX3Ru', 1, 1, NULL, 'n1t9v82lwL3tiDiIdzRwiB7lPVFGARohMPXfQbnmm2aprTvtslXaQGbZ3naB', NULL, NULL),
 (2, 'Tarek Sherif ', 'Eng.tarek.sherif@gmail.com', NULL, '$2y$10$ran/TIR4AZMyEnFTzcZ9rOv3m/FTklt1hWv7JcmIAhcQU1GjMreZO', 1, 1, NULL, 'WModdoIEfnBSj5Bg2ImR5yaPkfW3uR0K7imD5DpECusT0txwOZLna7JgQwlx', NULL, NULL),
 (3, 'TestManager', 'TestManager@alhendy.com', NULL, '$2y$10$M4X4C8ygIah2OJhOAiHsgO2sC2nxqc.BMt98X4iNZL9XzsxmRYpNq', 2, 1, NULL, 'sakeTnTurnjsqn4MZaUZVDgsO5lyAxF1GrdejzL2Y4AnQxwRLd8PfbBlDwct', NULL, NULL),
 (4, 'hady', 'hady@alhendy.com', NULL, '$2y$10$qadpqmNsyh/1yg1EVgP9jOWcRao3LwLfXKIqKJ63HH8WL7IaS.a9O', 2, 1, NULL, 'uIy0e5HJi3dTkBfkh4WPTXYI7Y1c22F1QIQSH0yFfJC9pnehKfY1aSecavPS', NULL, NULL),
-(5, 'AymanGad', 'mr.hany@alhendy.com', NULL, '$2y$10$B8k0BiOXqWUY.9joFiiGnutTEr724rqY5zQIcf0L1zmOGiqLPNZTq', 1, 4, NULL, NULL, NULL, NULL),
+(5, 'Hany Said', 'mr.hany@alhendy.com', NULL, '$2y$10$B8k0BiOXqWUY.9joFiiGnutTEr724rqY5zQIcf0L1zmOGiqLPNZTq', 1, 4, NULL, NULL, NULL, NULL),
 (6, 'Abdallah Fathy', 'abdallafathy82@gmail.com', NULL, '$2y$10$Z/zEl0PVVb.NH8PZhziSBOA2nFtzl6Su2UuQPFhTAoAefwAeXech2', 2, 1, NULL, NULL, NULL, NULL),
 (7, 'mohamed mostafa', 'midooooo3553@gmail.com', NULL, '$2y$10$ImWX0LMCHfSetVw7mjvosuwvxY1tkesxXaoQACpi2P3GHFHhQAWPS', 2, 3, NULL, NULL, NULL, NULL),
 (8, 'Ahmed Fawzi', 'af-meteora@live.com', NULL, '$2y$10$N685WvaYIkcnP0P6xlzHPOrhI9nv0aWL9VDRNucQ9qcLKrlSeEqTC', 2, 1, NULL, 'AcPRyd2Ri2m3lmfObIqdCGbFoMIBjMB2hU0R7JtWT65TecO7tHCplpwP4Z64', NULL, NULL),
