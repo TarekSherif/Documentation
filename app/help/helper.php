@@ -39,7 +39,7 @@ function PagePermission ($viewName = "")
                      `ViewRolePermission`.`DataToExcel`,
                      `ViewRolePermission`.`DataToPrint` 
              FROM `ViewName`    join `ViewRolePermission` 
-              on `ViewName`.`ViewName`=`ViewRolePermission`.`ViewName`and  `ViewName`.`ViewPath`='$viewName' and  `RID`=$RID";
+              on `ViewName`.`ViewName`=`ViewRolePermission`.`ViewName`and  `ViewName`.`ViewPath` like '%$viewName%' and  `RID`=$RID";
     $Data= DB::select($SQL);
     if(!empty($Data) &&  $RID!=0 )
     {
