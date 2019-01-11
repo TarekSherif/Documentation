@@ -21,17 +21,11 @@
         <div class="tab-pane active" id="control-sidebar-settings-tab">
             <form method="post">
                 <h3 class="control-sidebar-heading"> @lang("messages.GeneralSettings") </h3>
-
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-              @lang("messages.ShowAllBranchs") 
-              <input type="checkbox" class="pull-right" id="ChkBranch" checked>
-            </label>
-                </div>
+ 
                 <div class="form-group ">
                     <label>@lang("messages.LookupTables.Branchs") </label>
-                    <select class=" form-control " disabled id="selectBranch" name="Branch">
-                        
+                    <select class=" form-control "  id="selectBranch" name="Branch">
+                        <option selected  value="0"> @lang("messages.SelectBranch")</option>
                         @foreach ($Branches as $Branch)
                              <option  value="{{$Branch->Value}}"> {{$Branch->DisplayText}}</option>
                         @endforeach
@@ -60,6 +54,8 @@
 
 <script src="{{url('/')}}/Template/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{url('/')}}/Template/AdminLTE/dist/js/adminlte.js"></script>
+<script src="{{url('/')}}/js/js.cookie.js"></script>
+
 @if($jtable)
     <script src="{{asset('js/validationEngine/jquery.validationEngine-en.js')}}"></script>
     <script src="{{asset('js/validationEngine/jquery.validationEngine.js')}}"></script>
@@ -85,26 +81,24 @@
         BranchList.forEach(Branch => {
             if (Branch.Value==params) {
                 BranchName= Branch.DisplayText ;
+
             }
         });
         return BranchName;
     }  
 
     $selectBranch=$(selectBranch);
-    var ChkBranch = $('#ChkBranch');
+
+ if(! Cookies.get('BID')){
+    Cookies.set('BID', 0 );
+ }
+
   
-    $('input').on('click',function () {
-        if (ChkBranch.is(':checked')) {
-            $selectBranch.val(0);
-            $selectBranch.attr("disabled","true");
-            
-        } else {
-            $selectBranch.removeAttr('disabled');
-        }
-    });
-    
+    $selectBranch.val( Cookies.get('BID'));
+
     $selectBranch.on('change', function(e) {
 			e.preventDefault();
+            Cookies.set('BID', $(this).val() );
             ReloadServesNotifications()
             $('#top-search').autocomplete({
            source: '{{url("/")}}/api/ListOfACName?_token={{ csrf_token() }}&BID='+$selectBranch.val()
