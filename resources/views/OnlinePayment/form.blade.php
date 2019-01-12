@@ -73,28 +73,7 @@
 
        
         
-            <div class="form-group row">
-                <label for='SID' class="col-md-2 control-label"> @lang('messages.SID') </label>
-                <div class="col-md-6">
-                    <select name="SID" id="SID" class="form-control">
-                            <option  selected hidden disabled> --@lang('messages.select')  @lang('messages.LookupTables.Serves')--</option>
-                                    @foreach ($Serves as $item)
-                                        @if ($OnlinePayment->SID==$item->SID)
-                                            <option selected value="{{$item->SID}}">{{$item->Serves}}</option>
-                                        @else
-                                            <option  value="{{$item->SID}}">{{$item->Serves}}</option>
-                                        @endif
-                                       
-                                        
-                                    @endforeach
-                                </select> @if ($errors->has('SID'))
-                    <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('SID') }}</strong>
-                                            </span> @endif
-                </div>
-            </div>
-
-
+         
             <div class="form-group row">
                 <label class="control-label col-md-2">
                                     @lang('messages.DTypeID')
@@ -108,8 +87,23 @@
 
                 </div>
             </div>
+
             <div class="form-group row">
-                <label for='Cost' class="col-md-2 control-label"> @lang('messages.Cost') </label>
+                    <label for='ActionType' class="col-md-2 control-label"> @lang('messages.ActionType') </label>
+                    <div class="col-md-6 control-display-label">
+                            <input id='ActionType' type="text" class="form-control{{ $errors->has('ActionType') ? ' is-invalid' : '' }}"  name="ActionType"  value="{{old('ActionType',$OnlinePayment->ActionType)}}">
+                            @if ($errors->has('ActionType'))
+                        <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('ActionType') }}</strong>
+                                </span> @endif
+    
+                    </div>
+                </div>
+    
+
+                
+            <div class="form-group row">
+                <label for='Cost' class="col-md-2 control-label"> @lang('messages.OnlineCost') </label>
                 <div class="col-md-6">
                     <input id='Cost' type="number" class="form-control{{ $errors->has('Cost') ? ' is-invalid' : '' }}" name='Cost' value="{{old('Cost',$OnlinePayment->Cost)}}">                    @if ($errors->has('Cost'))
                     <span class="invalid-feedback" role="alert">

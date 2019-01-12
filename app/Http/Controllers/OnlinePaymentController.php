@@ -58,7 +58,7 @@ class OnlinePaymentController extends Controller
             'passportID' => 'required' ,
             'OName' => 'required' ,
             'DType' => 'required' ,
-            'SID' => 'required' ,
+            'ActionType' => 'required' ,
             'Cost' => 'required' ,
             'ReceiptCode' => 'required' ,
         ],
@@ -162,6 +162,7 @@ class OnlinePaymentController extends Controller
  private  function GetLookUpData()
  {
      $OnlinePayment =new OnlinePayment();
+    
     return array(
         'OnlinePayment'=> $OnlinePayment,
         'Serves' => DB::select('select SID,Serves from Serves ;') ,

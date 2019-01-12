@@ -87,7 +87,7 @@ CREATE TABLE `OnlinePayment` (
   `passportID` varchar(50) NOT NULL,
   `OName` varchar(150) NOT NULL,
   `DType` varchar(50) NOT NULL,
-  `SID` int(11) NOT NULL,
+  `ActionType` varchar(50) NOT NULL,
   `Cost` decimal(10,0) NOT NULL,
   `ReceiptCode` varchar(50) NOT NULL,
   `Locked` tinyint(1) NOT NULL DEFAULT '0',

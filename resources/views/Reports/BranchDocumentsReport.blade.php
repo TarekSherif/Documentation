@@ -6,25 +6,15 @@
                
 <div class="container">
 	<div class="row">
-
 		<div class="col-xs-1"></div >
-		<div class="col-xs-2">
-			<h3>{{$Serves->Serves}}</h3>
-		</div >
-		<div class="col-xs-3">
-			<div class="form-group ">
-				<label>@lang("messages.LookupTables.Company") </label>
-				<select class=" form-control " id="selectCompany"  >
-						
-				</select>
-
+			<div class="col-xs-3">
+					<label> @lang('messages.From') </label>
+					<input class=" form-control " type="date" id="From"  />
 			</div>
-		</div>
-
-		<div class="col-xs-3">
-					<label> @lang('messages.Sdate') </label>
-					<input class=" form-control " type="date" id="SDate"  />
-		</div>
+			<div class="col-xs-3">
+						<label> @lang('messages.To') </label>
+						<input class=" form-control " type="date" id="To"  />
+			</div>
 
 	</div>
 </div>
@@ -64,7 +54,7 @@
 				
 			actions: {
 			@if ($Permission["ShowData"])   
-				listAction:   '{{url("/")}}/api/CompanyDocumentsReport?_token={{ csrf_token() }}',
+				listAction:   '{{url("/")}}/api/BranchDocumentsReport?_token={{ csrf_token() }}',
 			@endif
 			}
 			,
@@ -89,12 +79,12 @@
 						<table class="no-border">
                          	<tr>
 								<td colspan="2">
-								<h1> شركة `+$('#selectCompany option:selected').text()+`</h1>
+								<h1> تقرير انتاج فرع </h1>
 								</td>
 							</tr>
 							<tr>
-								<td><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
-								<td><h3> تاريخ الدخول `+CDocument.SDate+`</h3></td>
+								<td><h3> @lang("messages.From") /`+BDocument.SDate+`</h3></td>
+								<td><h3> @lang("messages.To") /`+BDocument.EDate+`</h3></td>
 							</tr>
 							<tr>
 									<td colspan="2">
@@ -192,12 +182,12 @@
 		});
 
 		
-		CDocument={'CID':'','SDate': ''};
+		BDocument={'CID':'','SDate': ''};
 
 		$('#SDate,#selectCompany').on('change', function(e) {
 			e.preventDefault();
-			CDocument.CID=$('#selectCompany').val();
-			CDocument.SDate=$('#SDate').val();
+			BDocument.CID=$('#selectCompany').val();
+			BDocument.SDate=$('#SDate').val();
 			Search () ;
         });
 	
@@ -205,8 +195,8 @@
 		 function Search () {
 			$('#jtableContainer').jtable('load', {
 				SID:{{$Serves->SID}},
-                CID: CDocument.CID,
-				SDate:CDocument.SDate				
+                CID: BDocument.CID,
+				SDate:BDocument.SDate				
              });
 		}
 	

@@ -134,8 +134,12 @@ Route::post('UpdateCompany', 'API\ActionCompanyController@UpdateCompany');
 Route::post('DeleteCompany', 'API\ActionCompanyController@DeleteCompany');
 //=========================================================================
 Route::post('CompanyListoptions', 'API\ActionCompanyController@CompanyListoptions');
-Route::post('CompanyDocuments', 'API\ActionCompanyController@CompanyDocuments');
-Route::post('CompanyDocumentsReport', 'API\ActionCompanyController@CompanyDocuments');
+
+//========================================================================
+// ActionReportController-urls  
+//========================================================================
+Route::post('BranchDocumentsReport', 'API\ActionReportController@BranchDocumentsReport');
+Route::post('CompanyDocumentsReport', 'API\ActionReportController@CompanyDocumentsReport');
 
 
        

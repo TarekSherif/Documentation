@@ -70,9 +70,11 @@
         font-family: myFirstFont;
         /* src: url("{{url('/')}}/fonts/din-next-lt-w23-light.ttf"); */
           src: url("{{url('/')}}/fonts/din-next-lt-w23-regular.ttf");
+
         }
         body {
         font-family: myFirstFont;
+       
         }
     </style>
 
@@ -139,7 +141,7 @@
                                                              displayValue: false, 
                                                              margin:0,
                                                               height:24,
-                                                              width:1.4});
+                                                              width:1.29});
                                                         </script>
                                                     </p>
 
@@ -153,7 +155,7 @@
                                                     @lang('messages.ODate')
                                 </label>
                                                 <div class="col-md-6 control-display-label">
-                                                    {{$OnlinePayment->ODate}}
+                                                    {{$OnlinePayment->ODate->format('d/m/Y')}}
                                                 </div>
                                             </div>
                                         </div>
@@ -203,35 +205,29 @@
                                                     @lang('messages.DTypeID')
                                 </label>
                                                 <div class="col-md-6 control-display-label">
-                                                    @foreach ($Serves as $item)
-                                                    @if ($OnlinePayment->SID==$item->SID)
-                                                       {{$item->Serves}}
-                                                    @endif 
-                                                 @endforeach
+                                                        {{$OnlinePayment->DType}}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">
-                                                    @lang('messages.SID')
+                                                    @lang('messages.ActionType')
                                 </label>
                                                 <div class="col-md-6 control-display-label">
-                                                    @foreach ($Serves as $item)
-                                                    @if ($OnlinePayment->SID==$item->SID)
-                                                       {{$item->Serves}}
-                                                    @endif 
-                                                 @endforeach    
+                                                        {{$OnlinePayment->ActionType}}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">
-                                    @lang('messages.Cost')
+                                    @lang('messages.OnlineCost')
                                 </label>
-                                                <div class="col-md-6 control-display-label">
-                                                    {{$OnlinePayment->Cost}}
+                                                 <div class="col-md-6 control-display-label">
+                                                        <span>$</span>
+                                                    {{$OnlinePayment->Cost}} 
+                                                    <span></span>
                                                 </div>
                                             </div>
                                         </div>

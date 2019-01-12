@@ -147,7 +147,7 @@ return [
     'passportID'=>'رقم الهوية او رقم الجواز' ,
     'OName'=>'الاسم' , 
     'DTypeID'=>'الموضوع' ,
-    'SID'=>'نوع الإجراء' , 
+    'ActionType'=>'نوع الإجراء' , 
     'OnlineCost'=>'اجمالي المبلغ' ,
     'ReceiptCode'=>'رقم الأيصالات' ,
     'Locked'=>'موقع' , 

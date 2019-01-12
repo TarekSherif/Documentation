@@ -1,5 +1,5 @@
 /* print styles */
-h1, h2, h3, h4, h5, h6, th , .control-label, .jtable-column-header-text {color:#055959 !important;}
+h1, h2, h3, h4, h5, h6, th , .control-label, .jtable-column-header-text {color:#000 !important;}
 * {line-height:100%;}
 div.control-display-label {    min-height: 29px;}
 
