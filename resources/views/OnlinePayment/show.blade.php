@@ -65,6 +65,16 @@
 
 
     <script src="{{asset('js/JsBarcode.all.js')}}"></script>
+    <style>
+        @font-face {
+        font-family: myFirstFont;
+        /* src: url("{{url('/')}}/fonts/din-next-lt-w23-light.ttf"); */
+          src: url("{{url('/')}}/fonts/din-next-lt-w23-regular.ttf");
+        }
+        body {
+        font-family: myFirstFont;
+        }
+    </style>
 
 </head>
 
