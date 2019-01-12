@@ -111,7 +111,7 @@
       <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-          <img src="{{url('/')}}/Template/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{url('/')}}/Template/AdminLTE/dist/img/user2-160x160.jpg?v=1" class="img-circle" alt="User Image">
             <span class="LogoBname">
                 {{GetBranchName($Branches)}}
            </span> 
