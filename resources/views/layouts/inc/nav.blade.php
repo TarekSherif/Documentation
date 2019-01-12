@@ -24,6 +24,9 @@
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="{{url('/')}}/Template/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <span class="SLogoBname">
+                        {{GetBranchName($Branches)}}
+                   </span> 
             </div>
             <div class="pull-left info">
                 <p>{{Auth::user()->name}}</p>

@@ -43,7 +43,13 @@
             </td>
         </tr>
         <tr>
-            <td><img src="{{url('/')}}/images/icon180.png" alt=""></td>
+            <td>
+                <img src="{{url('/')}}/images/Report.png" alt="">
+                   <span class="LogoBname">
+                        {{$Order->BName}}
+                   </span>
+                
+            </td>
             <td><h3> التاريخ : {{$Order->created_at}} </h3></td>
         </tr>
         

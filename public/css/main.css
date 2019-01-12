@@ -184,3 +184,18 @@ div.jtable-main-container table.jtable tbody tr > td .jtable-command-button:hove
     opacity: .5;
     pointer-events: none;
 }
+
+.LogoBname{
+    position: relative;
+    LEFT: 69PX;
+    TOP: 18PX;
+    COLOR: #C41319;
+    FONT-WEIGHT: BOLD;
+}
+.SLogoBname{
+    position: relative;
+    LEFT: 49PX;
+    TOP: 11PX;
+    COLOR: #C41319;
+    FONT-WEIGHT: BOLD;
+}

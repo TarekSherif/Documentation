@@ -17,3 +17,13 @@ table.no-border ,table.no-border   th,table.no-border   td {
 }
 table.no-border tr:nth-child(even){ background-color:#ffffff; } 
 table.no-border tr:hover {   background-color:#ffffff }
+
+
+.LogoBname {
+    position: relative;
+    LEFT: 135PX;
+    TOP: -50PX;
+    COLOR: #C41319;
+    FONT-WEIGHT: BOLD;
+    font-size: 40px;
+}
