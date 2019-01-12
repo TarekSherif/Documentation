@@ -25,6 +25,10 @@
 					<label> @lang('messages.Sdate') </label>
 					<input class=" form-control " type="date" id="SDate"  />
 		</div>
+		<div class="col-xs-3">
+				<label> @lang('messages.chkShowDate') </label><br>
+				<input   type="checkbox" id="chkShowDate"  />
+	  </div>
 
 	</div>
 </div>
@@ -79,6 +83,8 @@
               click: function (e) {
                 var jtable=$('.jtable'); 
                 var newWindow = window.open();
+				
+				
                 var html=`<!DOCTYPE html>
                   <html dir="rtl">
                      <head>
@@ -92,11 +98,21 @@
 								<h1> شركة `+$('#selectCompany option:selected').text()+`</h1>
 								</td>
 							</tr>
-							<tr>
-								<td><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
-								<td><h3> تاريخ الدخول `+CDocument.SDate+`</h3></td>
-							</tr>
-							<tr>
+							`
+							if ($('#chkShowDate').prop('checked')) {
+
+								html=html+	`	<tr>
+													<td><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
+													<td><h3> تاريخ الدخول `+CDocument.SDate+`</h3></td>
+												</tr>`
+							}
+							else{
+								html=html+		`<tr>
+													<td  colspan="2"><h3> ترخيص رقم /`+CDocument.CID+`</h3></td>
+												</tr>`
+							}
+							
+							html=html+	`	<tr>
 									<td colspan="2">
 										
 									</td>
@@ -193,26 +209,30 @@
 
 		
 		CDocument={'CID':'','SDate': ''};
-
-		$('#SDate,#selectCompany').on('change', function(e) {
-			e.preventDefault();
-			CDocument.CID=$('#selectCompany').val();
-			CDocument.SDate=$('#SDate').val();
-			Search () ;
-        });
-	
-	
-		 function Search () {
+		function Search () {
 			$('#jtableContainer').jtable('load', {
 				SID:{{$Serves->SID}},
                 CID: CDocument.CID,
-				SDate:CDocument.SDate				
+				SDate:CDocument.SDate	
              });
 		}
-	
+		function change () {
+			CDocument.CID=$('#selectCompany').val();
+			CDocument.SDate=$('#SDate').val();
+			console.log(CDocument);
+			Search () ;
+		}
 
+		$('#SDate,#selectCompany').on('change', function(e) {
+			e.preventDefault();
+			change ();
+			
+        });
 	
 	
+		change ();
+	
+		 
 		});
 
 </script>

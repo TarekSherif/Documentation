@@ -156,7 +156,7 @@ return [
     // Repot
     'From'=>'من' ,
     'To'=>'الى' ,
-    
+    'chkShowDate'=>'عرض التاريخ ؟',
     'Save'=>'Save' ,
     'select'=>'اختار  ',
 

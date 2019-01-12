@@ -33,14 +33,9 @@
  <script>
          $(function () {
             
-                var now = new Date();
-
-                var day = ("0" + now.getDate()).slice(-2);
-                var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-                $('#ODate').val(today);
-                console.log(today);
-                
+              
+                $('#ODate').val(new Date().toJSON().slice(0,10).replace(/-/g,'-'));
+               
                 $('#SOrderID').autocomplete({
                         source: '{{url("/")}}/api/ListOfACOnlinePayment?_token={{ csrf_token() }}',
                         select: function (e, ui) {
