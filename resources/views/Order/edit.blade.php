@@ -241,7 +241,9 @@
 				LoadOrder(Record) ;
 				OrderTotalPrice();
 
-				if (data.finishDocument) {
+
+
+				if (data.finishDocument && data.Documentcount >= 1) {
 				 
 					$('#btnRecipient').removeClass('disabled');
 					$('#RecipientName').prop('disabled', false);

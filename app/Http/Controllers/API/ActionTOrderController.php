@@ -53,6 +53,7 @@ class ActionTOrderController extends Controller
 
                 $finishDocument= DB::select($SQL);
 
+
                 $jTableResult['finishDocument'] = false;
               
                 if (empty($finishDocument)) {
@@ -60,6 +61,14 @@ class ActionTOrderController extends Controller
                 }
 
                 
+                 $SQL = "SELECT count(OrderID) as Documentcount from Document 
+                        WHERE OrderID =$OrderID 
+                        ";
+
+                $Documentcount= DB::select($SQL)[0]->Documentcount;
+                
+
+                $jTableResult['Documentcount'] = intval($Documentcount);
 
                 $jTableResult['Result'] = "OK";
 
