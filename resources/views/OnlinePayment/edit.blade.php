@@ -53,7 +53,7 @@
                 //         select: function (e, ui) {
                 //         $('[name=DTypeID]').val(ui.item.DTypeID);
                 //         }
-                // });
+                // });,k33333333333333333333333333333333333
                 $('#SOrderID').autocomplete({
                         source: '{{url("/")}}/api/ListOfACOnlinePayment?_token={{ csrf_token() }}',
                         select: function (e, ui) {

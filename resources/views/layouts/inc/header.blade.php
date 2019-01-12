@@ -57,7 +57,7 @@
     
     <link href="{{asset('css/themes/metroblue/jquery-ui.css')}}" rel="stylesheet" type="text/css" />
     
-    <link rel="stylesheet" href="{{url('/')}}/css/main.css">
+    <link rel="stylesheet" href="{{url('/')}}/css/main.css?v=1">
 
 
 
