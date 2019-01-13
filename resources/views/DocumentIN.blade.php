@@ -60,9 +60,46 @@
 			@if ($Permission["UpdateData"])
 				updateAction: '{{url("/")}}/api/UpdateDocumentsInEnjazID?_token={{ csrf_token() }}',
 			@endif	
-			}
-			,
-	@include('layouts..inc.JtableToolbar'),
+			},
+			toolbar: {
+    items: [
+    @if ($Permission["DataToPrint"]) 
+          {
+              Tooltip: '@lang("messages.tipPrint")',
+              icon: '{{url("/")}}/images/printer.png',
+              text: '@lang("messages.Print")',
+             
+              click: function (e) {
+                
+                 var newWindow = window.open("{{url('/')}}/CompanyReport/{{$SID}}","_self");
+               
+                  e.preventDefault();
+              }
+          },
+    @endif
+    @if ($Permission["DataToExcel"]) 
+        {
+        tooltip: '@lang("messages.tipExcel")',
+        icon: '{{url("/")}}/images/excel.png',
+        text: '@lang("messages.Excel")',
+        click: function (e) {
+                 $(".jtable").table2excel({
+                 exclude: ".noExl",
+                 name: "Excel Document Name",
+                 filename: "{{$view_name}}",
+                 fileext: ".xls",
+                 exclude_img: true,
+                 exclude_links: true,
+                 exclude_inputs: true
+             });
+             e.preventDefault();
+         
+        }
+    }
+    @endif
+    ]
+}
+	,
 			fields: {
 			
 				DSID: {

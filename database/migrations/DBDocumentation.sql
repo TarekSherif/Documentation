@@ -83,13 +83,13 @@ CREATE TABLE `OnlinePayment` (
   `OCode` int(11) NOT NULL,
   `ODate` date NOT NULL,
   `TCode` int(11) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `passportID` varchar(50) NOT NULL,
-  `OName` varchar(150) NOT NULL,
-  `DType` varchar(50) NOT NULL,
-  `ActionType` varchar(50) NOT NULL,
+  `address` varchar(50)  CHARACTER SET utf8 NOT NULL,
+  `passportID` varchar(50)  CHARACTER SET utf8 NOT NULL,
+  `OName` varchar(150)  CHARACTER SET utf8 NOT NULL,
+  `DType` varchar(50)  CHARACTER SET utf8 NOT NULL,
+  `ActionType` varchar(50) CHARACTER SET utf8 NOT NULL,
   `Cost` decimal(10,0) NOT NULL,
-  `ReceiptCode` varchar(50) NOT NULL,
+  `ReceiptCode` varchar(50)  CHARACTER SET utf8 NOT NULL,
   `Locked` tinyint(1) NOT NULL DEFAULT '0',
   `BID` int(11) NOT NULL,
   `createby` int(11) NOT NULL,
@@ -132,13 +132,13 @@ CREATE TABLE `Serves` (
 --
 -- بنية الجدول `TOrder`
 --
-
+ 
 CREATE TABLE `TOrder` (
   `OrderID` int(11) NOT NULL,
-  `RecipientName` varchar(150) DEFAULT NULL,
+  `RecipientName` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `phone` varchar(20) NOT NULL,
-  `address` varchar(150) DEFAULT NULL,
-  `Otherphone` varchar(20) DEFAULT NULL,
+  `address` varchar(150)CHARACTER SET utf8 DEFAULT NULL,
+  `Otherphone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `price` decimal(10,0) DEFAULT '0',
   `paid` decimal(10,0) DEFAULT '0',
   `createby` int(11) NOT NULL,
@@ -296,19 +296,19 @@ ALTER TABLE `Branch`
 -- AUTO_INCREMENT for table `Document`
 --
 ALTER TABLE `Document`
-  MODIFY `DID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `DID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `DocumentServes`
 --
 ALTER TABLE `DocumentServes`
-  MODIFY `DSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `DSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `DocumentType`
 --
 ALTER TABLE `DocumentType`
-  MODIFY `DTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `DTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `OnlinePayment`
@@ -332,7 +332,7 @@ ALTER TABLE `Serves`
 -- AUTO_INCREMENT for table `TOrder`
 --
 ALTER TABLE `TOrder`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -347,35 +347,57 @@ ALTER TABLE `ViewRolePermission`
   MODIFY `RVPID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
-
-
-INSERT INTO `ViewRolePermission` ( `RID`, `ViewName`, `ShowData`, `InsertData`, `UpdateData`, `DeleteData`, `DataToExcel`, `DataToPrint`) VALUES
-( 1, 'Order', 1, 1, 1, 1, 1, 1),
-( 1, 'OnlinePayment', 1, 1, 1, 1, 1, 1),
-( 1, 'CompanyReport/3', 1, 1, 1, 1, 1, 1),
-( 1, 'CompanyReport/4', 1, 1, 1, 1, 1, 1),
-( 1, 'Branchs', 1, 1, 1, 1, 1, 1),
-( 1, 'users', 1, 1, 1, 1, 1, 1),
-( 1, 'Serves', 1, 1, 1, 1, 1, 1),
-( 1, 'DocumentTypes', 1, 1, 1, 1, 1, 1),
-( 1, 'Company', 1, 1, 1, 1, 1, 1),
-( 1, 'DocumentIN', 1, 1, 1, 1, 1, 1),
-( 1, 'DocumentOUT', 1, 1, 1, 1, 1, 1),
-( 1, 'Permission', 1, 1, 1, 1, 1, 1),
-(2, 'Order', 1, 1, 1, 1, 1, 1),
-(2, 'OnlinePayment', 1, 1, 1, 1, 1, 1),
-( 2, 'CompanyReport/3', 1, 1, 1, 1, 1, 1),
-( 2, 'CompanyReport/4', 1, 1, 1, 1, 1, 1),
-( 2, 'Branchs', 0, 0, 0, 0, 0, 0),
-( 2, 'users', 0, 0, 0, 0, 0, 0),
-( 2, 'Serves', 0, 0, 0, 0, 0, 0),
-( 2, 'DocumentTypes', 1, 1, 1, 1, 1, 1),
-( 2, 'Company', 0, 0, 0, 0, 0, 0),
-( 2, 'DocumentIN', 1, 1, 1, 1, 1, 1),
-( 2, 'DocumentOUT', 1, 1, 1, 1, 1, 1),
-( 2, 'Permission', 0, 0, 0, 0, 0, 0);
-
 -- --------------------------------------------------------
+
+
+-- =================================================================================
+
+-- Constraints FK
+
+-- =================================================================================
+-- [CONSTRAINT [symbol]] FOREIGN KEY
+--     [index_name] (col_name, ...)
+--     REFERENCES tbl_name (col_name,...)
+--     [ON DELETE reference_option]
+--     [ON UPDATE reference_option]
+
+-- reference_option:
+--     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
+--  RESTRICT      منع مسح الاب لو فيه اطفال
+--  CASCADE    اللى هيتم على الاب هيتم عل الاطفال
+--  SET NULL   مسح الاب مع وضع قيمة فارغه عند الاطفال
+
+ALTER TABLE `TOrder`
+ ADD CONSTRAINT `TOrder_FK_BID` FOREIGN KEY (`BID`) REFERENCES `Branch`(`BID`) ON DELETE  NO ACTION  ON UPDATE CASCADE,
+ ADD CONSTRAINT `TOrder_FK_createby` FOREIGN KEY (`createby`) REFERENCES `users`(`id`) ON DELETE  NO ACTION  ON UPDATE CASCADE;
+
+
+ALTER TABLE  `Document` 
+ ADD CONSTRAINT `Document_FK_OrderID` FOREIGN KEY (`OrderID`) REFERENCES `TOrder`(`OrderID`) ON DELETE CASCADE  ON UPDATE CASCADE,
+ ADD CONSTRAINT `Document_FK_DTypeID` FOREIGN KEY (`DTypeID`) REFERENCES `DocumentType`(`DTypeID`) ON DELETE  NO ACTION  ON UPDATE CASCADE;
+ 
+
+
+ALTER TABLE   `ViewRolePermission`
+ ADD CONSTRAINT `ViewRolePermission_FK_RID` FOREIGN KEY (`RID`) REFERENCES  `Role`(`RID`) ON DELETE CASCADE  ON UPDATE CASCADE,
+ ADD CONSTRAINT `ViewRolePermission_FK_ViewName` FOREIGN KEY (`ViewName`) REFERENCES  `ViewName`(`ViewName`) ON DELETE  CASCADE  ON UPDATE CASCADE;
+ 
+
+
+-- ALTER TABLE   `users`
+--   ADD CONSTRAINT `users_FK_role` FOREIGN KEY (`role`) REFERENCES  `Role`(`RID`) ON DELETE CASCADE  ON UPDATE CASCADE;
+--  ADD CONSTRAINT `users_FK_BID` FOREIGN KEY (`BID`) REFERENCES `Branch`(`BID`) ON DELETE  SET NULL  ON UPDATE CASCADE;
+ 
+
+
+
+ALTER TABLE   `DocumentServes`
+ ADD CONSTRAINT `DocumentServes_FK_SID` FOREIGN KEY (`SID`) REFERENCES  `Serves`(`SID`) ON DELETE NO ACTION   ON UPDATE CASCADE,
+ ADD CONSTRAINT `DocumentServes_FK_DID` FOREIGN KEY (`DID`) REFERENCES `Document`(`DID`) ON DELETE  CASCADE  ON UPDATE CASCADE,
+ ADD CONSTRAINT `DocumentServes_FK_CID` FOREIGN KEY (`CID`) REFERENCES `Company`(`CID`) ON DELETE  NO ACTION   ON UPDATE CASCADE;
+ 
+
+
 
 CREATE VIEW `ordertotalprice` AS
     select `TOrder`.`OrderID`,sum(`DocumentServes`.`price`)+IFNULL(`TOrder`.`price`, 0) as price
@@ -423,6 +445,7 @@ CREATE VIEW `ListOfDocumentsNeedout` AS
                             `DocumentServes`.`EDate` IS  NULL  ;
 
  
+
 
 
 --
@@ -492,29 +515,28 @@ INSERT INTO `DocumentType` (`DTypeID`, `DName`, `SOrder`) VALUES
 (38, 'شهاده مزاوله مهنه', 35),
 (39, 'صحيفه استثمار', 36),
 (40, 'قسيمه زواج', 4),
-(41, 'اشهاد طلاق', 6),
+(41, ' شهاد طلاق', 6),
 (42, 'صك نكاح', 7),
 (43, 'صك حصر ورثه', 40),
 (44, 'عقد عمل', 41),
 (45, 'شهاده ميلاد سعودى', 3),
-(46, 'محضر اجتماع', 43),
-(47, 'اشهاد وفاه ووراثه', 44),
-(48, 'بيان طلاق', 45),
-(49, 'شهاده وفاه سعودى', 5),
-(50, 'تقرير طبى ', 47),
-(51, 'ميزانيه', 48),
-(52, 'قيد عائلى ', 49),
-(53, 'شهاده نقابه', 50),
-(54, 'صحيفه حاله جنائيه', 51),
-(55, 'شهاده صحيه', 52),
-(56, 'عقد تأسيس', 53),
-(57, 'دبلوم فنى ', 54),
-(58, 'دبلوم صناعى ', 55),
-(59, 'دبلوم تجارى ', 56),
-(60, 'دبلومه', 57),
-(61, 'ثانوى عام', 58),
-(62, 'ثانوى ازهرى ', 59),
-(63, 'بيان رسوب', 60);
+(46, 'شهاد وفاه ووراثه', 44),
+(47, 'بيان طلاق', 45),
+(48, 'شهاده وفاه سعودى', 5),
+(49, 'تقرير طبى ', 47),
+(50, 'ميزانيه', 48),
+(51, 'قيد عائلى ', 49),
+(52, 'شهاده نقابه', 50),
+(53, 'صحيفه حاله جنائيه', 51),
+(54, 'شهاده صحيه', 52),
+(55, 'عقد تأسيس', 53),
+(56, 'دبلوم فنى ', 54),
+(57, 'دبلوم صناعى ', 55),
+(58, 'دبلوم تجارى ', 56),
+(59, 'دبلومه', 57),
+(60, 'ثانوى عام', 58),
+(61, 'ثانوى ازهرى ', 59),
+(62, 'بيان رسوب', 60);
 
 -- --------------------------------------------------------
 
@@ -566,7 +588,35 @@ INSERT INTO `ViewName` (`ViewName`, `ViewPath`, `ViewIcon`, `ARName`, `ViewGroup
 ('DocumentOUT', 'DocumentOUT', '', 'فى الداخل', '', 0),
 ('DocumentTypes', 'LookupTables.DocumentTypes', 'fa fa-file-text', 'نوع المستند', 'Settings', 5),
 ('OnlinePayment', 'OnlinePayment.Create', 'fa fa-credit-card sidebar-nav-icon', 'دفع الكتروني', '', 1),
-('Order', 'Order.create', 'fa fa-plus sidebar-nav-icon', 'الطلب', '', 1),
+('Order', 'Order.create,Order.edit', 'fa fa-plus sidebar-nav-icon', 'الطلب', '', 1),
 ('Permission', 'LookupTables.Permission', 'fa fa-lock', 'الصلاحيات', 'Settings', 3),
 ('Serves', 'LookupTables.Serves', 'fa fa-handshake-o', 'الخدمات', 'Settings', 6),
 ('users', 'LookupTables.users', 'fa fa-users', 'المستخدمين', 'Settings', 4);
+
+
+INSERT INTO `ViewRolePermission` ( `RID`, `ViewName`, `ShowData`, `InsertData`, `UpdateData`, `DeleteData`, `DataToExcel`, `DataToPrint`) VALUES
+( 1, 'Order', 1, 1, 1, 1, 1, 1),
+( 1, 'OnlinePayment', 1, 1, 1, 1, 1, 1),
+( 1, 'CompanyReport/3', 1, 1, 1, 1, 1, 1),
+( 1, 'CompanyReport/4', 1, 1, 1, 1, 1, 1),
+( 1, 'Branchs', 1, 1, 1, 1, 1, 1),
+( 1, 'users', 1, 1, 1, 1, 1, 1),
+( 1, 'Serves', 1, 1, 1, 1, 1, 1),
+( 1, 'DocumentTypes', 1, 1, 1, 1, 1, 1),
+( 1, 'Company', 1, 1, 1, 1, 1, 1),
+( 1, 'DocumentIN', 1, 1, 1, 1, 1, 1),
+( 1, 'DocumentOUT', 1, 1, 1, 1, 1, 1),
+( 1, 'Permission', 1, 1, 1, 1, 1, 1),
+(2, 'Order', 1, 1, 1, 1, 1, 1),
+(2, 'OnlinePayment', 1, 1, 1, 1, 1, 1),
+( 2, 'CompanyReport/3', 1, 1, 1, 1, 1, 1),
+( 2, 'CompanyReport/4', 1, 1, 1, 1, 1, 1),
+( 2, 'Branchs', 0, 0, 0, 0, 0, 0),
+( 2, 'users', 0, 0, 0, 0, 0, 0),
+( 2, 'Serves', 0, 0, 0, 0, 0, 0),
+( 2, 'DocumentTypes', 1, 1, 1, 1, 1, 1),
+( 2, 'Company', 0, 0, 0, 0, 0, 0),
+( 2, 'DocumentIN', 1, 1, 1, 1, 1, 1),
+( 2, 'DocumentOUT', 1, 1, 1, 1, 1, 1),
+( 2, 'Permission', 0, 0, 0, 0, 0, 0);
+

@@ -71,7 +71,7 @@ return [
     'StateF'=>'rejected',
     'StateW'=>'pending',
     'ServesH'=>'ServesH',
-    'INCode'=>'enjaz ID',
+    'INCode'=>'Order ID',
     'NOCopies'=>'Number of Copies',
     
 

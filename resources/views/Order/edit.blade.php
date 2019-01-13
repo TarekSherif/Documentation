@@ -313,8 +313,7 @@ function LoadOrderDocuments(OrderID) {
               text: '@lang("messages.Print")',
              
               click: function (e) {
-                 var jtable=$('.jtable'); 
-                 var newWindow = window.open("{{url('/')}}/OrderReport/{{$OrderID}}");
+                        var newWindow = window.open("{{url('/')}}/OrderReport/{{$OrderID}}");
 					
                             
                   e.preventDefault();

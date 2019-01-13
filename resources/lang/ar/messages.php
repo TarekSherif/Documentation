@@ -66,7 +66,7 @@ return [
     'StateT'=>'تم التوثيق',
     'StateF'=>'تم الرفض',
     'StateW'=>'قيد الانتظار  ',
-    'INCode'=>'رقم إنجاز',
+    'INCode'=>'رقم الطلب',
     'Notes'=>'ملاحظات',
     'NOCopies'=>'عدد النسخ',
     'ServesH'=>'ServesH',
@@ -111,7 +111,7 @@ return [
     'Clang'=>'ar',
 
     //Document
-    'DName'=>'نوع المستند',
+    'DName'=>'نوع الشهادة',
 
     // Serves
     'Nprice'=>'سعر العادي',
