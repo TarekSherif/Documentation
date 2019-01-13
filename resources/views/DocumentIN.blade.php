@@ -70,8 +70,13 @@
               text: '@lang("messages.Print")',
              
               click: function (e) {
-                
-                 var newWindow = window.open("{{url('/')}}/CompanyReport/{{$SID}}","_self");
+				var CompanyReportList=[3,4];
+                if( CompanyReportList.includes({{$SID}}) ){
+					var newWindow = window.open("{{url('/')}}/CompanyReport/{{$SID}}","_self");
+				}else{
+					var newWindow = window.open("{{url('/')}}/DocumentINReport/{{$SID}}","_self");
+				}
+               
                
                   e.preventDefault();
               }
