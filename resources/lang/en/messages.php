@@ -25,6 +25,7 @@ return [
     'DocumentIN'=>'IN',
     
     'Reports.CompanyReport'=>'Entry Report',
+    'Reports.DocumentINReport'=>'Entry Report',
     'OnlinePayment'=>'OnlinePayment',
     'OnlinePayment.Create'=>" طلب خدمات الكترونية",
     'OnlinePayment.edit'=>"تعديل طلب خدمات الكترونية",

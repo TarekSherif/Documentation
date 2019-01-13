@@ -120,14 +120,23 @@
 				phone: {
 					title:' @lang("messages.phone")' ,
 					edit: false,
+					visibility: 'fixed'
 				},
 				DOName: {
 					title:'@lang("messages.DOName")' ,
 					edit: false,
+					visibility: 'fixed'
+				},
+				BID:{
+					title:  '@lang("messages.LookupTables.Branchs")',
+                    options: '{{url("/")}}/api/BranchListoptions?_token={{ csrf_token() }}',
+					edit: false,	
+					visibility: 'visible',
 				},
 				priority:{
 					title:'@lang("messages.priority")',
 					edit: false,
+					visibility: 'visible',
 					type: 'radiobutton',
                     options: { '0': '@lang("messages.Normal")', '1': '@lang("messages.Expedited")' }
 				},

@@ -96,16 +96,24 @@
 				phone: {
 					title:'@lang("messages.phone")' ,
 					edit: false,
+					visibility: 'fixed',
 				},
 				DOName: {
 					title:'@lang("messages.DOName")' ,
 					edit: false,
+					visibility: 'fixed',
 				},
 				SDate: {
 					title: '@lang("messages.Sdate")',
 					type:"date" ,
 					edit: false,
 					},
+				BID:{
+					title:  '@lang("messages.LookupTables.Branchs")',
+                    options: '{{url("/")}}/api/BranchListoptions?_token={{ csrf_token() }}',
+					edit: false,	
+					visibility: 'visible',
+				},
 				Notes:{
 					title:'@lang("messages.Notes")',
 					type:'textarea'
