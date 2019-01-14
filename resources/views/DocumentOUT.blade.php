@@ -114,6 +114,12 @@
 					edit: false,	
 					visibility: 'visible',
 				},
+				CID: {
+						title:  '@lang("messages.LookupTables.Company")',
+						options: '{{url("/")}}/api/CompanyListoptions?_token={{ csrf_token() }}',
+						edit: false,	
+						visibility: 'visible',
+							},
 				Notes:{
 					title:'@lang("messages.Notes")',
 					type:'textarea'

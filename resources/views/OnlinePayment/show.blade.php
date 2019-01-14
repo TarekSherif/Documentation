@@ -76,13 +76,19 @@
         font-family: myFirstFont;
        
         }
+      
+        @page {
+            size: auto;  
+            margin: 0 auto ;  
+        }
+
     </style>
 
 </head>
 
 <body class="enjaz-system" >
 
-
+             (منصة خدمات التأشیرات الإلكترونیة (إنجاز
   
     <!-- BEGIN PAGE CONTAINER -->
     <div class="page-container" style="margin-top:-5px;margin-right:-5px;">
