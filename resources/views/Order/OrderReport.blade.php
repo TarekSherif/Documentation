@@ -24,7 +24,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{url('/')}}/Template/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
     
-            <link rel="stylesheet" href="{{url("/")}}/css/print.css?v=1">
+            <link rel="stylesheet" href="{{url("/")}}/css/print.css?v=1.1">
             <style>
                 div{
                     border-radius: 10% ;

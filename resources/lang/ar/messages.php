@@ -55,7 +55,7 @@ return [
     'ReceiptInfo'=>'البيانات الاستلام',
     'DeliveryInfo'=>'البيانات التسليم',
   // Document Serves
-    'DOName'=>'اسم صاحب المستند',
+    'DOName'=>'الاسم ',
     'priority'=>'درجة السرعه',
     'Normal'=>'عادي',
     'Expedited'=>'مستعجل',

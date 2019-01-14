@@ -89,12 +89,8 @@
                   <html dir="rtl">
                      <head>
                              <title>{{$view_name}}-Report</title>
-							 <link rel="stylesheet" href="{{url("/")}}/css/print.css">
-							 <style>
-									.main-table{
-										font-size: 2em;
-									}
-							</style>
+							 <link rel="stylesheet" href="{{url("/")}}/css/print.css?v=1.1">
+							 
                      </head>
                      <body>
 						<table class="no-border">
