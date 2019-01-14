@@ -138,7 +138,8 @@ class ActionDocumentServesController extends Controller
                 $SQL ="SELECT * from ListOfDocumentsNeedin
                         Where `SID`='" . $_POST["SID"]. "' ";
                         $BID=$_POST["BID"];
-                        $SQL .=($BID=="0")?"":" and  `BID`=".$BID ;
+                        $SQL .=($BID=="0")?"":" and  `BID`=".$BID .
+                        " ORDER BY  `priority` DESC";
             //Get records from database
             
             $Data= DB::select($SQL);

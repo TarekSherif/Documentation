@@ -13,8 +13,7 @@
 <script src="{{url('/')}}/js/highcharts.js"></script>
 <script language = "JavaScript">
         $(document).ready(function() {
-            console.log(@json($Branches));
-            
+          
            var chart = {
               plotBackgroundColor: null,
               plotBorderWidth: null,
@@ -40,15 +39,14 @@
            };
            var series = [{
               type: 'pie',
-              name: 'Browser share',
+              name: 'Branch income',
               data: [
               
                 
                 @foreach ($Branches as $Branch)
-                    ['{{$Branch->BName}}',{{$Branch->price/$Total}}],
+                    ['<a href="{{$Branch->BID}}">{{$Branch->BName}}</a>',{{$Branch->price}}],
                 @endforeach
-
-              ]
+                             ]
            }];     
            var json = {};   
            json.chart = chart; 

@@ -25,21 +25,17 @@ class TransactionController extends Controller
     public function index()
     {
 
-       $SQL= 'SELECT  `Branch`.`BName`, sum(`DocumentServes`.`price`)+sum(IFNULL(`TOrder`.`price`, 0) ) as price
+       $SQL= 'SELECT  `Branch`.`BID`, `Branch`.`BName`, sum(`DocumentServes`.`price`)+sum(IFNULL(`TOrder`.`price`, 0) ) as price
             from `DocumentServes` 
             join `Document` on `DocumentServes`.`DID`=`Document`.`DID`
             join `TOrder` on `TOrder`.`OrderID`=`Document`.`OrderID`
             join `Branch` on `Branch`.`BID`=`TOrder`.`BID`
-            GROUP by  `Branch`.`BName`, `TOrder`.`price`;';
+            GROUP by   `Branch`.`BID`, `Branch`.`BName`, `TOrder`.`price`;';
 
            
       $Branches= DB::select($SQL);
-      $Total=0;
-      foreach ( $Branches as $Branch) {
-            $Total= $Total+$Branch->price;
-         }
-         $Data=  array('Total' => $Total , 
-                        'Branches'=>$Branches);
+  
+         $Data=  array('Branches'=>$Branches);
         return view('welcome',$Data);
     }
 

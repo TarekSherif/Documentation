@@ -89,7 +89,12 @@
                   <html dir="rtl">
                      <head>
                              <title>{{$view_name}}-Report</title>
-                             <link rel="stylesheet" href="{{url("/")}}/css/print.css">
+							 <link rel="stylesheet" href="{{url("/")}}/css/print.css">
+							 <style>
+									.main-table{
+										font-size: 2em;
+									}
+							</style>
                      </head>
                      <body>
 						<table class="no-border">
@@ -118,7 +123,7 @@
 									</td>
 							</tr>    
                          </table>
-						 <table>`
+						 <table class"main-table">`
 							+ $(jtable).html() +
 						`</table>
 						<table class="no-border">

@@ -97,12 +97,8 @@
     $selectBranch.val( Cookies.get('BID'));
 
     $selectBranch.on('change', function(e) {
-			e.preventDefault();
             Cookies.set('BID', $(this).val() );
-            ReloadServesNotifications()
-            $('#top-search').autocomplete({
-           source: '{{url("/")}}/api/ListOfACName?_token={{ csrf_token() }}&BID='+$selectBranch.val()
-           });
+            location.reload();
         });
       
       $('[data-toggle="push-menu"]').on('click', function (e) {
@@ -120,7 +116,8 @@
    
 ReloadServesNotifications();
     $('#top-search').autocomplete({
-           source: '{{url("/")}}/api/ListOfACName?_token={{ csrf_token() }}&BID='+$selectBranch.val(),
+        // &BID='+$selectBranch.val()
+           source: '{{url("/")}}/api/ListOfACName?_token={{ csrf_token() }}',
            "position": { my: "center top", at: "center bottom"},
            select: function (e, ui) {
               window.open( "{{url("/")}}/Order/"+ui.item.OrderID+"/edit", '_self');
