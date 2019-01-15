@@ -84,36 +84,35 @@ class ActionDocumentServesController extends Controller
             //Get records from database
              $BID=$_GET["BID"];
            
-            
-            if($BID=="0"){
-
-                     $SQL ="  SELECT   `Serves`.`SID`,
-                                        `Serves`.`Serves`,
-                                        count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
-                                        count(ListOfDocumentsNeedout.DSID) as ServesOutCount 
-                            FROM `ListOfDocumentsNeedin` 
-                            RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
-                            LEFT JOIN ListOfDocumentsNeedout on ListOfDocumentsNeedout.SID=`Serves`.`SID`
-                            GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
-                            ORDER BY `Serves`.`SOrder`
-                    ;";
-                }else{
-                    $SQL=" SELECT   `Serves`.`SID`,
+             $inBID=$outBID="";
+            if($BID != '0'){
+              $inBID="  and ListOfDocumentsNeedin.BID=$BID";
+              $outBID="  and ListOfDocumentsNeedout.BID=$BID";
+            }
+                    $SQL ="SELECT  `Serves`.`SID`,
                                     `Serves`.`Serves`,
                                     count(ListOfDocumentsNeedin.DSID) as ServesInCount ,
-                                    count(ListOfDocumentsNeedout.DSID) as ServesOutCount 
+                                    '1' as ServesOutCount 
                             FROM `ListOfDocumentsNeedin` 
-                            RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID`
-                            and ListOfDocumentsNeedin.BID=$BID
-                            LEFT JOIN ListOfDocumentsNeedout on ListOfDocumentsNeedout.SID=`Serves`.`SID`
-                            and ListOfDocumentsNeedout.BID=$BID
-                            GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`
-                            ORDER BY `Serves`.`SOrder`
-                    ";
+                            RIGHT  JOIN `Serves`  on `ListOfDocumentsNeedin`.`SID`=`Serves`.`SID` $inBID
+                            GROUP by `Serves`.`Serves`, `Serves`.`SID` ,`Serves`.`SOrder`,`ServesOutCount`
+                            ORDER BY `Serves`.`SOrder` ;";
                     
-                }   
+                    $Data= DB::select($SQL);
 
-            $Data= DB::select($SQL);
+                    $SQL ="SELECT   `Serves`.`SID`,
+                                   
+                                    count(ListOfDocumentsNeedout.DSID) as ServesOutCount 
+                    FROM `ListOfDocumentsNeedout` 
+                    RIGHT  JOIN `Serves`  on  ListOfDocumentsNeedout.SID=`Serves`.`SID` $outBID
+                    GROUP by  `Serves`.`SID` ,`Serves`.`SOrder`
+                    ORDER BY `Serves`.`SOrder`;";
+                    $DocumentsOut= DB::select($SQL);
+                    $index=0;
+                    foreach ( $Data as $Serves) {
+                        $Serves->ServesOutCount=$DocumentsOut[$index]->ServesOutCount;
+                        $index=$index+1;
+                    }
             $jTableResult['Result'] = "OK";
             $jTableResult['Records'] =$Data;
             
@@ -135,11 +134,12 @@ class ActionDocumentServesController extends Controller
 
         try
         {
+            $BID=$_POST["BID"];
+            $WhereBID  =($BID=="0")?"":" and  `BID`=".$BID ;
+
                 $SQL ="SELECT * from ListOfDocumentsNeedin
-                        Where `SID`='" . $_POST["SID"]. "' ";
-                        $BID=$_POST["BID"];
-                        $SQL .=($BID=="0")?"":" and  `BID`=".$BID .
-                        " ORDER BY  `priority` DESC";
+                        Where `SID`='" . $_POST["SID"]. "'  $WhereBID 
+                        ORDER BY  `priority` DESC";
             //Get records from database
             
             $Data= DB::select($SQL);
@@ -265,11 +265,13 @@ class ActionDocumentServesController extends Controller
     
             try
             {
-                    $SQL ="SELECT * from ListOfDocumentsNeedout
-                           where `SID`='" . $_POST["SID"]. "' ";
-                
                 $BID=$_POST["BID"];
-                $SQL .=($BID=="0")?"":" and  `BID`=".$BID ;
+                $WhereBID  =($BID=="0")?"":" and  `BID`=".$BID ;
+
+                    $SQL ="SELECT * from ListOfDocumentsNeedout
+                           where `SID`='" . $_POST["SID"]. "' $WhereBID";
+                
+               
                 //Get records from database
             
                 $Data= DB::select($SQL);

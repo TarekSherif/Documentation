@@ -435,6 +435,7 @@ CREATE VIEW `ListOfDocumentsNeedout` AS
                             `TOrder`.`phone`,
                             `TOrder`.`BID`,
                             `Document`.`DOName`,
+                            `DocumentServes`.`CID` , 
                             `DocumentServes`.`SDate`,
                             `DocumentServes`.`Notes`
                         FROM `DocumentServes` 
