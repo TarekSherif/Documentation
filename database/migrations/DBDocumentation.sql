@@ -416,6 +416,7 @@ CREATE VIEW `ListOfDocumentsNeedin` AS
                             `DocumentServes`.`CID` , 
                             `DocumentServes`.`INCode`,
                             `TOrder`.`phone`,
+                            DATE(`TOrder`.`created_at`) AS `created_at`,
                             `TOrder`.`BID`,
                             `Document`.`DOName`,
                             `DocumentServes`.`Notes`,

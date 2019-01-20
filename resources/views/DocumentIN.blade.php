@@ -122,6 +122,12 @@
 					edit: false,
 					visibility: 'fixed'
 				},
+				created_at: {
+					title: '@lang("messages.created_at")',
+					type:"date" ,
+					edit: false,
+					visibility: 'visible',
+				},
 				DOName: {
 					title:'@lang("messages.DOName")' ,
 					edit: false,
