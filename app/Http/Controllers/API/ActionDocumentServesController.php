@@ -136,15 +136,24 @@ class ActionDocumentServesController extends Controller
         {
             $BID=$_POST["BID"];
             $WhereBID  =($BID=="0")?"":" and  `BID`=".$BID ;
+            // priority DESC
+            // jtStartIndex=0&jtPageSize=10
 
                 $SQL ="SELECT * from ListOfDocumentsNeedin
                         Where `SID`='" . $_POST["SID"]. "'  $WhereBID 
-                        ORDER BY  `priority` DESC";
+                        ORDER BY  ".$_GET["jtSorting"] ." 
+                        LIMIT ".$_GET["jtStartIndex"] ." , ".$_GET["jtPageSize"]  ;
             //Get records from database
-            
             $Data= DB::select($SQL);
+
+            $SQL ="SELECT Count(*) as TotalRecordCount  from ListOfDocumentsNeedin
+            Where `SID`='" . $_POST["SID"]. "'  $WhereBID ";
+            $TotalRecordCount= DB::select($SQL)[0]->TotalRecordCount;
+            
             $jTableResult['Result'] = "OK";
             $jTableResult['Records'] =$Data;
+            $jTableResult['TotalRecordCount'] =$TotalRecordCount;
+             
             
         }
         catch(Exception $ex)
@@ -269,14 +278,21 @@ class ActionDocumentServesController extends Controller
                 $WhereBID  =($BID=="0")?"":" and  `BID`=".$BID ;
 
                     $SQL ="SELECT * from ListOfDocumentsNeedout
-                           where `SID`='" . $_POST["SID"]. "' $WhereBID";
-                
+                           where `SID`='" . $_POST["SID"]. "' $WhereBID 
+                           ORDER BY  ".$_GET["jtSorting"] ." 
+                           LIMIT ".$_GET["jtStartIndex"] ." , ".$_GET["jtPageSize"]  ;
                
-                //Get records from database
+
+            $Data= DB::select($SQL);
+                
+            $SQL ="SELECT Count(*) as TotalRecordCount  from ListOfDocumentsNeedout
+            where `SID`='" . $_POST["SID"]. "' $WhereBID ";
+            $TotalRecordCount= DB::select($SQL)[0]->TotalRecordCount;
             
-                $Data= DB::select($SQL);
-                $jTableResult['Result'] = "OK";
-                $jTableResult['Records'] =$Data;
+            $jTableResult['Result'] = "OK";
+            $jTableResult['Records'] =$Data;
+            $jTableResult['TotalRecordCount'] =$TotalRecordCount;
+      
                 
             }
             catch(Exception $ex)

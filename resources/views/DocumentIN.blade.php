@@ -42,6 +42,9 @@
 						<span >
 								@lang('messages.DocumentIN')
 						</span> `,
+			 
+            	sorting: true,
+				defaultSorting: 'priority DESC',
 				paging: true,
 				pageSize: 10,
 				selecting: true, //Enable selecting

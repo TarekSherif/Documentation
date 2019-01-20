@@ -43,6 +43,8 @@
 				`,
 				paging: true,
 				pageSize: 10,
+				sorting: true,
+				defaultSorting: 'SDate ASC',
 				selecting: true, //Enable selecting
 				multiselect: true, //Allow multiple selecting
 				selectingCheckboxes: true, //Show checkboxes on first column
