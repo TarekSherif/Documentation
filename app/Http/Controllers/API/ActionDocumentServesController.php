@@ -246,7 +246,10 @@ class ActionDocumentServesController extends Controller
     
             try
             {
+                
+
                 $SQL="UPDATE DocumentServes SET 
+               SDate =  '" . $_POST["SDate"] . "',
                 Notes =  '" . $_POST["Notes"] . "' 
                 WHERE DSID = " . $_POST["DSID"];
                 
