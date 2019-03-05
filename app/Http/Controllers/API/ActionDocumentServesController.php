@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OnlinePayment;
 
 class ActionDocumentServesController extends Controller
 {
@@ -139,7 +141,16 @@ class ActionDocumentServesController extends Controller
             // priority DESC
             // jtStartIndex=0&jtPageSize=10
 
-                $SQL ="SELECT * from ListOfDocumentsNeedin
+                // $SQL ="SELECT * from ListOfDocumentsNeedin
+                //           LEFT JOIN OnlinePayment ON OnlinePayment.OnlinePaymentID=listofdocumentsneedin.DSID
+                //         Where `SID`='" . $_POST["SID"]. "'  $WhereBID 
+                //         ORDER BY  ".$_GET["jtSorting"] ." 
+                //         LIMIT ".$_GET["jtStartIndex"] ." , ".$_GET["jtPageSize"]  ;
+
+
+
+
+                         $SQL ="SELECT * from ListOfDocumentsNeedin
                         Where `SID`='" . $_POST["SID"]. "'  $WhereBID 
                         ORDER BY  ".$_GET["jtSorting"] ." 
                         LIMIT ".$_GET["jtStartIndex"] ." , ".$_GET["jtPageSize"]  ;
@@ -213,12 +224,39 @@ class ActionDocumentServesController extends Controller
      }
     
             
-     public function UpdateDocumentsInEnjazID()    {
+     public function UpdateDocumentsInEnjazID(Request $request)    {
         $jTableResult =  array();
         
             try
             {
-                $INCode=(isset( $_POST["INCode"] )?",  INCode =  '" . $_POST["INCode"] . "' ":"");
+               
+                
+                
+                
+                if(isset( $_POST["INCode"] ))
+                {
+                    $INCode=",  INCode =  '" . $_POST["INCode"] . "' ";
+                    // DSID
+
+                    
+                    // 
+                    
+                    // $OnlinePayment = OnlinePayment::findOrNew($request->DSID);
+                  
+
+                    // $OnlinePayment->fill( $request->only($OnlinePayment->getFillable()));
+                    // $OnlinePayment->OnlinePaymentID=$request->DSID;
+                    // $OnlinePayment->BID=Auth::user()->BID;
+                    // $OnlinePayment->createby=Auth::user()->id;
+                    // $OnlinePayment->save();
+
+
+                 }
+                else
+                {
+                    $INCode="";
+                 }
+
                 $SQL="UPDATE DocumentServes SET 
                 CID =  '" . $_POST["CID"] . "'
                 $INCode             

@@ -1,10 +1,10 @@
-<input type="hidden" class="form-control  "  id="OnlinePaymentID"  name="OnlinePaymentID" value="{{old('OnlinePaymentID',$OnlinePayment->OnlinePaymentID)}}" >
+<input type="hidden" class="form-control  " id="OnlinePaymentID" name="OnlinePaymentID" value="{{old('OnlinePaymentID',$OnlinePayment->OnlinePaymentID)}}">
 <div class="portlet box  mofa-green">
-    
+
     <div class="portlet-body form">
         <div class="form-body form-horizontal">
 
-         
+
             <div class="form-group row">
                 <label for='OCode' class="col-md-2 control-label"> @lang('messages.OCode') </label>
                 <div class="col-md-6">
@@ -71,16 +71,15 @@
                 </div>
             </div>
 
-       
-        
-         
+
+
+
             <div class="form-group row">
                 <label class="control-label col-md-2">
                                     @lang('messages.DTypeID')
                                 </label>
                 <div class="col-md-6 control-display-label">
-                        <input id='DType' type="text" class="form-control{{ $errors->has('DType') ? ' is-invalid' : '' }}"  name="DType"  value="{{old('DType',$OnlinePayment->DType)}}">
-                        @if ($errors->has('DType'))
+                    <input id='DType' type="text" class="form-control{{ $errors->has('DType') ? ' is-invalid' : '' }}" name="DType" value="{{old('DType',$OnlinePayment->DType)}}">                    @if ($errors->has('DType'))
                     <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('DType') }}</strong>
                             </span> @endif
@@ -89,19 +88,19 @@
             </div>
 
             <div class="form-group row">
-                    <label for='ActionType' class="col-md-2 control-label"> @lang('messages.ActionType') </label>
-                    <div class="col-md-6 control-display-label">
-                            <input id='ActionType' type="text" class="form-control{{ $errors->has('ActionType') ? ' is-invalid' : '' }}"  name="ActionType"  value="{{old('ActionType',$OnlinePayment->ActionType)}}">
-                            @if ($errors->has('ActionType'))
-                        <span class="invalid-feedback" role="alert">
+                <label for='ActionType' class="col-md-2 control-label"> @lang('messages.ActionType') </label>
+                <div class="col-md-6 control-display-label">
+                    <input id='ActionType' type="text" class="form-control{{ $errors->has('ActionType') ? ' is-invalid' : '' }}" name="ActionType"
+                        value="{{old('ActionType',$OnlinePayment->ActionType)}}"> @if ($errors->has('ActionType'))
+                    <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('ActionType') }}</strong>
                                 </span> @endif
-    
-                    </div>
-                </div>
-    
 
-                
+                </div>
+            </div>
+
+
+
             <div class="form-group row">
                 <label for='Cost' class="col-md-2 control-label"> @lang('messages.OnlineCost') </label>
                 <div class="col-md-6">
@@ -132,7 +131,7 @@
                 </div>
             </div>
 
-          
+
 
 
         </div>

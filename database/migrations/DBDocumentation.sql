@@ -88,7 +88,7 @@ CREATE TABLE `OnlinePayment` (
   `OName` varchar(150)  CHARACTER SET utf8 NOT NULL,
   `DType` varchar(50)  CHARACTER SET utf8 NOT NULL,
   `ActionType` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `Cost` decimal(10,0) NOT NULL,
+  `Cost` decimal(5,2) NOT NULL,
   `ReceiptCode` varchar(50)  CHARACTER SET utf8 NOT NULL,
   `Locked` tinyint(1) NOT NULL DEFAULT '0',
   `BID` int(11) NOT NULL,
@@ -310,11 +310,7 @@ ALTER TABLE `DocumentServes`
 ALTER TABLE `DocumentType`
   MODIFY `DTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
---
--- AUTO_INCREMENT for table `OnlinePayment`
---
-ALTER TABLE `OnlinePayment`
-  MODIFY `OnlinePaymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ 
 
 --
 -- AUTO_INCREMENT for table `Role`

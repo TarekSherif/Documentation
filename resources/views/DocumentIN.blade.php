@@ -1,15 +1,26 @@
-
-@extends('layouts.index')
-
+@extends('layouts.index') {{-- 
+@section('CSSContent') @if($SID=='4')
+<style>
+	.jtable-edit-form {
+		-webkit-column-count: 2;
+		/* Chrome, Safari, Opera */
+		-moz-column-count: 2;
+		/* Firefox */
+		column-count: 2
+	}
+</style>
+@endif
+@endsection
+ --}} 
 @section('CoreContent')
 
-               
+
 <div class="container">
 	<div class="row">
 		<div class="col-xs-2"></div>
 		<div class="col-xs-3">
 			<h3>{{$Serves}}</h3>
-		</div >
+		</div>
 		<div class="col-xs-3">
 			<form action="post" id="frmDocumentIN">
 				<fieldset>
@@ -23,8 +34,7 @@
 			<br>
 			<a class="btn btn-primary" id="btnSave">
 					<i class="fa fa-floppy-o"></i>
-				</a>
-			{{-- <a class="btn btn-primary" id="btnPrint">
+				</a> {{-- <a class="btn btn-primary" id="btnPrint">
 					<i class="fa fa-print"></i>
 				</a> --}}
 
@@ -32,8 +42,9 @@
 	</div>
 </div>
 @endsection
+ 
 @section('ScriptContent')
-    
+
 <script type="text/javascript">
 	$(function () {
 	 
@@ -166,11 +177,83 @@
 								return '<input type="number"  placeholder=" @lang("messages.INCode")"     class="form-control "  autocomplete="off"   name="INCode"     />';
 							}
 						}  
-				}
+				},
+				// ODate: {
+				// 		title:'@lang("messages.ODate")',
+				// 		visibility: 'hidden',
+				// 		width: '10%',
+						
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="text"  placeholder=" @lang("messages.ODate")"   class=" form-control "   autocomplete="off"   name="ODate"   value="' + data.record.ODate + '" />';
+				// 			} else {
+				// 				return '<input type="text"  placeholder=" @lang("messages.ODate")"     class="form-control "  autocomplete="off"   name="ODate"     />';
+				// 			}
+				// 		}  
+				// },
+				// TCode: {
+				// 		title:'@lang("messages.TCode")',
+				// 	visibility: 'hidden',
+				// 		width: '10%',
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="number"  placeholder=" @lang("messages.TCode")"   class=" form-control "   autocomplete="off"   name="TCode"   value="' + data.record.TCode + '" />';
+				// 			} else {
+				// 				return '<input type="number"  placeholder=" @lang("messages.TCode")"     class="form-control "  autocomplete="off"   name="TCode"     />';
+				// 			}
+				// 		}  
+				// },
+				// 	Onlineaddress: {
+				// 		title:'@lang("messages.Onlineaddress")',
+				// 		visibility: 'hidden',
+				// 		width: '10%',
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="text"  placeholder=" @lang("messages.INCode")"   class=" form-control "   autocomplete="off"   name="Onlineaddress"   value="' + data.record.Onlineaddress + '" />';
+				// 			} else {
+				// 				return '<input type="text"  placeholder=" @lang("messages.INCode")"     class="form-control "  autocomplete="off"   name="Onlineaddress"     />';
+				// 			}
+				// 		}  
+				// },
+				// 	passportID: {
+				// 		title:'@lang("messages.passportID")',
+				// 		visibility: 'hidden',
+				// 		width: '10%',
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="text"  placeholder=" @lang("messages.INCode")"   class=" form-control "   autocomplete="off"   name="passportID"   value="' + data.record.passportID + '" />';
+				// 			} else {
+				// 				return '<input type="text"  placeholder=" @lang("messages.INCode")"     class="form-control "  autocomplete="off"   name="passportID"     />';
+				// 			}
+				// 		}  
+				// },
+				// 	Cost: {
+				// 		title:'@lang("messages.OnlineCost")',
+				// 		visibility: 'hidden',
+				// 		width: '10%',
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="text"  placeholder=" @lang("messages.OnlineCost")"   class=" form-control "   autocomplete="off"   name="Cost"   value="' + data.record.Cost + '" />';
+				// 			} else {
+				// 				return '<input type="text"  placeholder=" @lang("messages.OnlineCost")"     class="form-control "  autocomplete="off"   name="Cost"     />';
+				// 			}
+				// 		}  
+				// },
+				// 	ReceiptCode: {
+				// 		title:'@lang("messages.ReceiptCode")',
+				// 		visibility: 'hidden',
+				// 		width: '10%',
+				// 	input: function (data) {
+				// 			if (data.record) {
+				// 				return '<input type="text"  placeholder=" @lang("messages.ReceiptCode")"   class=" form-control "   autocomplete="off"   name="ReceiptCode"   value="' + data.record.ReceiptCode + '" />';
+				// 			} else {
+				// 				return '<input type="text"  placeholder=" @lang("messages.ReceiptCode")"     class="form-control "  autocomplete="off"   name="ReceiptCode"     />';
+				// 			}
+				// 		}  
+				// },
 			@endif
 			}
-			
-			@include('layouts.inc.JtableEvent')
+	@include('layouts.inc.JtableEvent')
 	
 			});
 

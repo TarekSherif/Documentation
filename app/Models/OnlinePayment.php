@@ -8,13 +8,14 @@ class OnlinePayment extends Model
 {
     //
     protected $table = 'OnlinePayment';
-    protected $fillable = [  'OCode', 'ODate', 'TCode', 'address', 'passportID', 'OName', 'DType', 'ActionType', 'Cost', 'ReceiptCode', 'Locked', 'BID', 'createby'];
+    // protected $fillable = [ 'OnlinePaymentID', 'OCode', 'ODate', 'TCode', 'address', 'passportID', 'OName', 'DType', 'ActionType', 'Cost', 'ReceiptCode', 'Locked', 'BID', 'createby'];
+     protected $fillable = [  'OCode', 'ODate', 'TCode', 'address', 'passportID', 'OName', 'DType', 'ActionType', 'Cost', 'ReceiptCode', 'Locked', 'BID', 'createby'];
     protected $primaryKey='OnlinePaymentID';
     protected $attributes = [
          'address' => 'القاهرة',
-         'passportID' => '2019' ,
-         'Cost'=>8,
-         'DType'=>' تصديق شهادة مؤهل',
+         'passportID' => '' ,
+         'Cost'=>8.75,
+         'DType'=>'تصديق وثيقة',
          'ActionType'=>'تصديق وثيقة',
           ];
     protected $dates = ['ODate'];
